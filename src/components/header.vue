@@ -1,19 +1,71 @@
 <template>
-  <div>
-    <slider class="slider" interval="3000" auto-play="true">
-      <div class="frame" v-for="img in imageList">
-        <image class="image" resize="cover" :src="img.src"></image>
-      </div>
-    </slider>
-  </div>
+    <header class="header">
+        <div class="header-left" @click="goBack">
+            <span class="left-arrow"></span>
+        </div>
+        <div class="header-title" v-text="message"></div>
+    </header>
 </template>
 
-<script>
-export default {
-  name: 'header',
-  }
-</script>
-
-<style scoped>
- 
+<style>
+    .header{
+        position: fixed;
+        width: 750px;
+        left: 0;
+        top: 0;
+        z-index: 1;
+        background-color:#efefef;
+        padding: 3px 0;
+    }
+    .header-left{
+        position: absolute;
+        top: 16px;
+        left: 18px;
+        font-size: 14px;
+        line-height: 21px;
+        color: #ccc;
+    }
+    .left-arrow{
+        position: absolute;
+        width: 60px;
+        height: 60px;
+        top: -5px;
+        left: -5px;
+    }
+    .left-arrow:before{
+        content: "";
+        position: absolute;
+        width: 24px;
+        height: 24px;
+        border: 1px solid #fff;
+        border-width: 2px 0 0 2px;
+        -webkit-trasform: rotate(315deg);
+        transform: rotate(315deg);
+        top: 20px;
+        left: 20px;
+    }
+    .header-title{
+        height: 80px;
+        margin: 0 88px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        font-size: 36px;
+        letter-spacing: 2px;
+        line-height: 80px;
+        color: #000;
+        text-align: center;
+    }
 </style>
+
+<script>
+    export default {
+        props: ['message'],
+        methods: {
+            goBack: function(){
+                this.$router.go(-1)
+                console.log(this.message);
+            }
+        }
+    }
+</script>
