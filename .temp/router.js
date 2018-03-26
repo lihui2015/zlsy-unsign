@@ -1,16 +1,16 @@
 import Vue from 'vue'
 /* global Vue */
 import Router from 'vue-router'
-import index from '@/components/home'
-import sort from '@/components/sort'
-import list from '@/components/list'
-import bookDetail from '@/components/bookDetail'
-import activity from '@/components/activity'
-import online from '@/components/online'
-import themeDetail from '@/components/themeDetail'
-import offline from '@/components/offline'
-import signUp from '@/components/signUp'
-import personal from '@/components/personal'
+import index from '@/assets/views/home'
+import sort from '@/assets/views/sort'
+import list from '@/assets/views/list'
+import bookDetail from '@/assets/views/bookDetail'
+import activity from '@/assets/views/activity'
+import online from '@/assets/views/online'
+import themeDetail from '@/assets/views/themeDetail'
+import offline from '@/assets/views/offline'
+import signUp from '@/assets/views/signUp'
+import personal from '@/assets/views/personal'
 
 Vue.use(Router)
 
