@@ -11,6 +11,7 @@ import themeDetail from '@/assets/views/themeDetail'
 import offline from '@/assets/views/offline'
 import signUp from '@/assets/views/signUp'
 import personal from '@/assets/views/personal'
+import book from '@/assets/views/book'
 
 Vue.use(Router)
 
@@ -40,6 +41,11 @@ module.exports = new Router({
       path: '/bookDetail',
       name: 'bookDetail',
       component: bookDetail
+    },
+    {
+      path: '/book',
+      name: 'book',
+      component: book
     },
     {
       path: '/activity',

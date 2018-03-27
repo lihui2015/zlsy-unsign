@@ -16,7 +16,7 @@
                   <text class="i-collect">&#xe744; 收藏</text>
                   <text class="i-share">&#xe744; 分享</text>
                 </div>
-                <text class="i-read">立即阅读</text>
+                <text class="i-read" @click="jump('/book')">立即阅读</text>
               </div>
             </div>
             <div class="relative-activity section-box">
@@ -151,6 +151,7 @@
     }
     .activity-box{
       width: 750px;
+      height: 220px;
       flex-direction: row;
       padding-top: 20px;
       padding-bottom: 20px;
@@ -253,7 +254,7 @@
       height: 32px;
       font-size: 0;
       line-height: 0;
-      background-image: url(http://static.h-ui.net/h-ui/3.1/images/star/iconpic-star-S-default.png);
+      background-image: url('http://static.h-ui.net/h-ui/3.1/images/star/iconpic-star-S-default.png');
       background-repeat: repeat-x;
       background-position: 0 0;
       background-size: 32px;
@@ -262,11 +263,12 @@
     .star-bar .star {
       display: inline-block;
       text-align: center;
-      background-image: url(http://static.h-ui.net/h-ui/3.1/images/star/iconpic-star-S.png);
+      background-image: url('http://static.h-ui.net/h-ui/3.1/images/star/iconpic-star-S.png');
       background-repeat: repeat-x;
       background-position: 0 0;
       height: 32px;
       background-size: 32px;
+      width: 160px;
     }   
     .star[data-star$='0.5']{
       width: 16px;
