@@ -1,8 +1,8 @@
 <template>
     <div class="wrapper borrow-records">
         <div class="recordsTag">
-            <text class="iconfont">&#xE915;</text>
-            <text class="recordsTag-text">借阅记录</text>
+            <text class="iconfont">&#xe70a;</text>
+            <text class="records-text recordsTag-text">借阅记录</text>
         </div>
         <div class="records-box">
             <div class="box-item" v-for="i in items" @click="jumpWeb()">
@@ -11,8 +11,8 @@
             </div>
         </div>
         <div class="recordsMore">
-            <text class="iconfont">&#xE915;</text>
-            <text class="recordsMore-text">查看更多</text>
+            <text class="iconfont">&#xe605;</text>
+            <text class="records-text recordsMore-text">查看更多</text>
         </div>
     </div>
 </template>
@@ -23,31 +23,49 @@
     .borrow-records{
         flex-direction: row;
         flex-wrap: nowrap;
-        padding-top: 20px;
+        padding-top: 30px;
+        border-top-width: 1px;
+        border-style: solid;
+        border-top-color: #333333;
+        justify-content: space-between;
+        align-items:flex-end;
+    }
+    .recordsTag{
+    }
+    ..recordsMore{
+    }
+    .recordsTag .iconfont{
+        font-size: 62px;
+        text-align: center;
+    }
+    .records-text{
+        margin-top: 10px;
+        font-size: 30px;
     }
     .records-box{
         display: flex;
         flex-direction: row;
         flex-wrap: nowrap;
-        justify-content: center;
-        width: 440px;
-        height: 192px;
-        
+        justify-content: space-between;
+        width: 485px;
     }
     .box-item{
-        width: 87px;
-        padding: 0px;
-        background-color: #efefef;
     }
     .i-name{
+        width: 100px;
         position: relative;
         color:#333;
-        font-size: 28px;
-        width: 300px;
+        font-size: 32px;
+        margin-top: 10px;
+        text-align: center;
+        overflow: hidden;
+        lines:1;
+        white-space: nowrap;
+        text-overflow: ellipsis;
     }
     .i-image{
-        width: 87px;
-        height: 125px;
+        width: 100px;
+        height: 145px;
     }
 </style>
 <script>

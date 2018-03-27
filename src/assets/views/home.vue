@@ -14,7 +14,7 @@
                 <block-1 :items="borrowRecords"></block-1>
             </div>
             <div class="cell-button">
-                <block-2 hasMore=true newGoods=true :books="bookList"></block-2>
+                <block-2 :books="bookList"></block-2>
             </div>
             <loading class="loading" @loading="onloading" :display="showLoading">
                 <text class="indicator">...</text>
@@ -51,7 +51,6 @@
     }
 
     .cell-button{
-        margin-top: 18px;
     }
 
 </style>

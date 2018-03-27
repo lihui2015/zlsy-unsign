@@ -14,6 +14,7 @@
         border-top-width: 1px;
         border-style: solid;
         border-top-color: #333333;
+        margin-top: 20px;
     }
     .bookSearch{
         padding-top: 20px;
@@ -24,7 +25,7 @@
         font-size: 34px;
         background-color: #ededed;
         border-radius: 8px;
-        margin: 20px 0 0;
+        margin: 30px 0 0;
         padding: 0 20px;
         flex-direction: row;
         justify-content: space-between;

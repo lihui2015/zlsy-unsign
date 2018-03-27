@@ -22,6 +22,11 @@ module.exports = new Router({
       component: index
     },
     {
+      path: '/home',
+      name: 'index',
+      component: index
+    },
+    {
       path: '/sort',
       name: 'sort',
       component: sort

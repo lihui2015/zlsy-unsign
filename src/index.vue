@@ -33,7 +33,7 @@
 
 <style scoped>
   .app-wrapper{
-        background-color: #f4f4f4;
+        background-color: #ffffff;
     }
   .r-box{
       position: absolute;

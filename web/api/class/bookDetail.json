@@ -1,0 +1,34 @@
+{
+  "code":"200",
+  "result":{
+    "detail":{
+      "tlt":"西游记","img":"https://modao.cc/uploads3/images/1794/17944170/raw_1521328349.jpeg",
+      "author":"吴承恩",
+      "descripe":"作者：吴承恩如果你无法简洁的表达你的想法，那只说明你还不够了解它。  -- 阿尔伯特·爱因斯坦",
+      "count":"123456",
+      "classes":4.5,
+      "activity":[
+        {
+          "title":"读书节活动",
+          "image": "https://modao.cc/uploads3/images/970/9709900/raw_1495461822.jpeg"
+        },{
+          "title":"读书节线下活动",
+          "image": "https://modao.cc/uploads3/images/970/9709900/raw_1495461822.jpeg"
+        }
+      ],
+      "comment":[
+        {
+          "name": "我是吕布",
+          "img": "https://modao.cc/uploads3/images/970/9709900/raw_1495461822.jpeg",
+          "content": "如果你无法简洁的表达你的想法，那只说明你还不够了解它。",
+          "classes": 4
+        },{
+          "name": "我是爱伊斯坦",
+          "img": "https://modao.cc/uploads3/images/970/9709900/raw_1495461822.jpeg",
+          "content": "如果你无法简洁的表达你的想法，那只说明你还不够了解它。",
+          "classes": 5
+        }
+      ]
+      }
+  }
+}

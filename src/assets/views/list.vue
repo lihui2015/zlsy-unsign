@@ -1,45 +1,106 @@
 <template>
-  <div>
-    <slider class="slider" interval="3000" auto-play="true">
-      <div class="frame" v-for="img in imageList">
-        <image class="image" resize="cover" :src="img.src"></image>
-      </div>
-    </slider>
-  </div>
+    <div :class="['wrapper', isIpx&&isIpx()?'w-ipx':'']">
+        <header2 title="文学" :leftBtn='leftButton'></header2>
+        <scroller class="main-list" offset-accuracy="300px">
+            <refresher></refresher>
+            <div class="book-list">
+                <div class="sub-i" v-for="i in booklist" @click="jump('/bookDetail')">
+                    <image class="i-img" resize="cover" :src="i.img"></image>
+                    <div class="text-box">
+                        <text class="i-name">{{i.tlt}}</text>
+                        <text class="i-dec">{{i.descripe}}</text>
+                    </div>
+                    
+                </div>
+            </div>
+            <!--<loading class="loading" display="hide">-->
+                <!--<text class="indicator">Loading ...</text>-->
+            <!--</loading>-->
+        </scroller>
+    </div>
 </template>
+<style scoped>
+
+    .iconfont {
+        font-family:iconfont;
+    }
+    .wrapper{
+        background-color: #f4f4f4;
+    }
+    .w-ipx{
+        margin-top: 40px;
+        margin-bottom: 50px;
+    }
+    .main-list{
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        flex-wrap: nowrap;
+        margin-top: 86px;
+        margin-bottom: 90px;
+        background-color: #fff;
+    }
+    .book-list{
+        padding: 0 20px;
+        overflow: hidden;
+    }
+    .sub-i{
+        border-top-width: 1px;
+        border-top-color: #666666;
+        padding: 30px 0;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        margin-top: -1px;
+    }
+    .text-box{
+        width: 461px;
+        text-align: left;
+    }
+    .i-img{
+        width: 199px;
+        height: 293px;
+        margin-right: 20px;
+        margin-left: 20px;
+    }
+    .i-name{
+        font-size: 34px;
+        color: #101010;
+        text-align: left;
+        margin-top: 10px;
+    }
+    .i-dec{
+        font-size: 32px;
+        color: #787878;
+        lines: 1.4;
+        margin-top: 10px;
+    }   
+</style>
 
 <script>
-export default {
-  name: 'home',
-    data () {
-      return {
-        imageList: [
-          { src: 'https://gd2.alicdn.com/bao/uploaded/i2/T14H1LFwBcXXXXXXXX_!!0-item_pic.jpg'},
-          { src: 'https://gd1.alicdn.com/bao/uploaded/i1/TB1PXJCJFXXXXciXFXXXXXXXXXX_!!0-item_pic.jpg'},
-          { src: 'https://gd3.alicdn.com/bao/uploaded/i3/TB1x6hYLXXXXXazXVXXXXXXXXXX_!!0-item_pic.jpg'}
-        ]
-      }
+    import util from '../util';
+    import refresher from '../components/refresh.vue';
+    import Header2 from '../components/Header2.vue';
+    var navigator = weex.requireModule('navigator')
+    export default {
+        components: {
+            'refresher': refresher,
+            'header2': Header2
+        },
+        data () {
+            return {
+                booklist: [],
+                leftButton: {
+                    name:"<"
+                }
+            }
+        },
+        created () {
+            this.GET('api/class/bookList.json', res => {
+                let result = res.data.result;
+                this.booklist = result['bookList'];
+            });
+        },
+        methods: {
+        }
     }
-  }
 </script>
-
-<style scoped>
-  .image {
-    width: 700px;
-    height: 700px;
-  }
-  .slider {
-    margin-top: 25px;
-    margin-left: 25px;
-    width: 700px;
-    height: 700px;
-    border-width: 2px;
-    border-style: solid;
-    border-color: #41B883;
-  }
-  .frame {
-    width: 700px;
-    height: 700px;
-    position: relative;
-  }
-</style>

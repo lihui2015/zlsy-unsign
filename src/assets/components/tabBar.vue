@@ -11,20 +11,20 @@
             <text class="bar-ic iconfont" :class="[this.isActive('home')]">&#xe660;</text>
             <text class="bar-txt" :class="[this.isActive('home')]">首页</text>
         </div>
-        <div class="bar-item" @click="tabTo('topic')">
+        <div class="bar-item" @click="tabTo('activity')">
             <text class="bar-ic iconfont" :class="[this.pIndexKey == 'topic'?'bar-active':'']">&#xe744;</text>
-            <text class="bar-txt" :class="[this.pIndexKey == 'topic'?'bar-active':'']">专题</text>
+            <text class="bar-txt" :class="[this.pIndexKey == 'topic'?'bar-active':'']">活动</text>
             <text class="notice-dot"></text>
         </div>
-        <div class="bar-item" @click="tabTo('class')">
+        <!--<div class="bar-item" @click="tabTo('class')">
             <text class="bar-ic iconfont" :class="[this.isActive('class')]">&#xe605;</text>
             <text class="bar-txt" :class="[this.isActive('class')]">分类</text>
         </div>
         <div class="bar-item" @click="tabTo('shop')">
             <text class="bar-ic iconfont" :class="[this.isActive('shop')]">&#xe61a;</text>
             <text class="bar-txt" :class="[this.isActive('shop')]">购物车</text>
-        </div>
-        <div class="bar-item" @click="tabTo('my')">
+        </div>-->
+        <div class="bar-item" @click="tabTo('personal')">
             <text class="bar-ic iconfont" :class="[this.isActive('my')]">&#xe639;</text>
             <text class="bar-txt" :class="[this.isActive('my')]">个人</text>
             <text class="i-notice">2</text>

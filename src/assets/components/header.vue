@@ -14,7 +14,7 @@
         left: 0;
         top: 0;
         z-index: 1;
-        background-color:#efefef;
+        background-color:#f8f8f8;
         padding: 3px 0;
     }
     .header-left{
