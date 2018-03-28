@@ -11,10 +11,11 @@ import offline from '@/assets/views/offline'
 import signUp from '@/assets/views/signUp'
 import personal from '@/assets/views/personal'
 import book from '@/assets/views/book'
+import comment from '@/assets/views/comment'
 
 Vue.use(Router)
 
-module.exports = new Router({
+module.exports = new Router({ 
   routes: [
     {
       path: '/',
@@ -45,6 +46,11 @@ module.exports = new Router({
       path: '/book',
       name: 'book',
       component: book
+    },
+    {
+      path: '/comment',
+      name: 'comment',
+      component: comment
     },
     {
       path: '/activity',

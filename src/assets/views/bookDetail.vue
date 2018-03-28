@@ -7,8 +7,11 @@
               <image class="i-img" resize="cover" :src="detail.img"></image>
               <div class="detail">
                 <text class="i-name">{{detail.tlt}}</text>
-                <div class="star-bar star-bar-show size-S f-l va-m mr-10">
-                  <div class="star" :data-star="detail.classes"></div>
+                <div class="star-box">
+                  <image :src="starbar" class="star-bar"></image>
+                  <div class="star" :data-star="detail.classes">
+                    <image :src="star" class="starImg"></image>
+                  </div>
                 </div>
                 <text class="i-author">作者：{{detail.author}}</text>
                 <text class="i-count">{{detail.count}}人阅读</text>
@@ -35,7 +38,7 @@
             <div class="book-comment section-box">
               <div class="comment-header section">
                 <text class="comment-tag">&#xe744; 读书评论</text>
-                <text class="comment-btn">我要评论</text>
+                <text class="comment-btn" @click="jump('/comment')">我要评论</text>
               </div>
               <div class="comment-item" v-for="item in detail.comment">
                 <text class="comment-content">{{item.content}}</text>
@@ -44,8 +47,11 @@
                     <image class="comment-author-img" :src="item.img"></image>
                     <text class="comment-author-name">{{item.name}}</text>
                   </div>
-                  <div class="star-bar">
-                    <div class="star" :data-star="item.classes"></div>
+                  <div class="star-box">
+                    <image :src="starbar" class="star-bar"></image>
+                    <div class="star" :data-star="item.classes">
+                      <image :src="star" class="starImg"></image>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -246,30 +252,29 @@
       font-size: 32px;
     }
 
-    .detail .star-bar{
+    .detail .star-box{
       margin-top: 10px;
+      position: relative;
     }
     .star-bar {
       width: 160px;
       height: 32px;
       font-size: 0;
       line-height: 0;
-      background-image: url('http://static.h-ui.net/h-ui/3.1/images/star/iconpic-star-S-default.png');
-      background-repeat: repeat-x;
-      background-position: 0 0;
-      background-size: 32px;
     }
 
-    .star-bar .star {
-      display: inline-block;
-      text-align: center;
-      background-image: url('http://static.h-ui.net/h-ui/3.1/images/star/iconpic-star-S.png');
-      background-repeat: repeat-x;
-      background-position: 0 0;
+    .star {
+      position: absolute;
+      top:0;
+      left:0;
       height: 32px;
-      background-size: 32px;
       width: 160px;
+      overflow: hidden;
     }   
+    .starImg{
+      height: 32px;
+      width: 160px;
+    }
     .star[data-star$='0.5']{
       width: 16px;
     }
@@ -318,7 +323,9 @@
                 detail: {},
                 leftButton: {
                     name:"<"
-                }
+                },
+                starbar: 'http://172.18.22.119:8081/web/assets/images/iconpic-star-S-default.png',
+                star: 'http://172.18.22.119:8081/web/assets/images/iconpic-star-S.png'
             }
         },
         created () {
