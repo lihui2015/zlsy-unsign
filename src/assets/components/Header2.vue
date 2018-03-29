@@ -5,7 +5,7 @@
         </div>
         <text class="tlt">{{title}}</text>
         <div class="right">
-            <text class="rightTxt" v-if="rightBtn">{{rightBtn.name}}</text>
+            <text class="rightTxt" v-if="rightBtn" @click="rightBtn.fun">{{rightBtn.name}}</text>
         </div>
     </div>
 </template>

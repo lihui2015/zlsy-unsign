@@ -1,26 +1,17 @@
 <template>
-    <div class="wrapper"  @click="jumpWeb(url)">
+    <div class="wrapper"  @click="jump(article.url)">
         <div class="auther-box">
             <image class="auther-img" resize="cover" :src="article.autherImg"></image>
             <text class="auther-name">{{article.auther}}</text>
         </div>
         <div class="img-box">
-            <template v-if="typeof article.img == 'string'">
-                <image class="main-img" resize="cover" :src="article.img"></image>
-            </template>
-            <template v-else-if="typeof article.img == 'object' && article.img.length>=3">
-                <image class="main-img" resize="cover" :src="article.img[0]"></image>
-                <div class="sub-imgs-box">
-                    <image class="sub-img" resize="cover" :src="article.img[1]"></image>
-                    <image class="sub-img" resize="cover" :src="article.img[2]"></image>
-                </div>
-            </template>
+            <image class="main-img" resize="cover" :src="article.img"></image>
         </div>
         <div class="tlt-box">
             <text class="tlt">{{article.tlt}}</text>
-            <text class="price" v-if="article.price">{{article.price}}元起</text>
         </div>
-        <text class="info">{{article.info}}</text>
+        <text class="info">{{article.time}}</text>
+        <text class="info">{{article.address}}</text>
     </div>
 </template>
 <style scoped>
@@ -47,7 +38,7 @@
     }
     .auther-name{
         flex:1;
-        font-size: 26px;
+        font-size: 30px;
         height: 58px;
         padding-left: 20px;
         padding-top: 10px;
@@ -61,19 +52,9 @@
         flex: 1;
         height: 380px;
     }
-    .sub-imgs-box{
-        width: 190px;
-        height: 380px;
-    }
-    .sub-img{
-        height: 188px;
-        width: 190px;
-        margin-left: 3px;
-        margin-bottom: 3px;
-    }
     .tlt-box{
         height: 80px;
-        padding: 20px;
+        padding: 20px 20px 10px;
         display: flex;
         flex-wrap: nowrap;
         flex-direction: row;
@@ -85,18 +66,13 @@
         lines:1;
         text-overflow: ellipsis;
     }
-    .price{
-        font-size: 34px;
-        color:#b4282d;
-        padding-left: 10px;
-
-    }
     .info{
-        font-size: 26px;
+        font-size: 32px;
         padding-left: 20px;
         padding-right: 20px;
+        margin-top:10px;
         overflow: hidden;
-        lines:2;
+        lines:1;
         text-overflow: ellipsis;
         color:#666;
     }

@@ -3,9 +3,6 @@
         <header2  title="专题"></header2>
         <scroller class="main-list" offset-accuracy="300px" @loadmore="onloadmore" loadmoreoffset="300">
             <refresher></refresher>
-            <div  class="cell-button"  @click="jumpWeb('http://m.you.163.com/topic/v1/look/list')">
-            <block-4 :topics="topics"></block-4>
-            </div>
             <div v-for="ar in articles" class="cell-button">
                 <block-5 :article="ar" url=""></block-5>
             </div>
@@ -25,8 +22,9 @@
         margin-bottom: 50px;
     }
     .main-list{
-        margin-top: 113px;
+        margin-top: 86px;
         margin-bottom: 90px;
+        background-color: #f4f4f4;
     }
     .cell-button{
         padding-bottom: 18px;
@@ -38,7 +36,6 @@
     import util from '../util';
     import Header2 from '../components/Header2.vue';
     import refresher from '../components/refresh.vue';
-    import Block4 from '../components/Block4.vue';
     import Block5 from '../components/Block5.vue';
     var navigator = weex.requireModule('navigator')
     export default {
@@ -51,14 +48,9 @@
         components: {
             'header2': Header2,
             'refresher': refresher,
-            'block-4': Block4,
             'block-5': Block5,
         },
         created () {
-            this.GET('api/activity/index', res => {
-                let result = res.data.result;
-                this.topics = result['topic'];
-            });
             this.GET('api/activity/articles', res => {
                 let result = res.data.result;
                 this.articles = result['articles'];

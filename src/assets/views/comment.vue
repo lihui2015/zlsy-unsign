@@ -1,18 +1,15 @@
 <template>
   
   <div :class="['wrapper', isIpx&&isIpx()?'w-ipx':'']">
-    <header2 title="写评论" :leftBtn='leftButton'></header2>
-    <div class="star_evaluate">
-
-        <div class="score score_1"></div>
-        <div class="score score_2"></div>
-        <div class="score score_3"></div>
-        <div class="score score_4"></div>
-        <div class="score score_5"></div>
-
+    <header2 title="写评论" :leftBtn='leftBtn' :rightBtn='rightBtn'></header2>
+    <div class="commentBox">
+        <text class="starText">评分</text>
+        <div class="starBox">
+            <text class="star" v-for="(i,item) in currentStar" @click="vote(item)">{{i}}</text>
+        </div>
     </div>
     <div class="textBox">
-      <textarea class="textarea"></textarea>
+      <textarea class="textarea" @input='oninput' placeholder="写下你的评论吧~" disabled='false' autofocus='true'></textarea>
     </div>
 </div>
 </template>
@@ -20,98 +17,107 @@
 <script>
 import util from '../util';
 import Header2 from '../components/Header2.vue';
+var modal = weex.requireModule('modal');
 export default {
   name: 'comment',
   components: {
     'header2': Header2
   },
   data(){
+      var _self = this;
     return {
-      leftButton: {
+      leftBtn: {
           name:"X"
       },
-      starbar: 'http://172.18.22.119:8081/web/assets/images/iconpic-star-S-default.png',
-      star: 'http://172.18.22.119:8081/web/assets/images/iconpic-star-S.png'
+      score: null,
+      comment: '',
+      rightBtn: {
+          name: '发表',
+          fun: function(){
+                if(!_self.score){
+                    modal.alert({
+                        message: '请评分',
+                        okTitle: '知道了'
+                    })
+                    return false;
+                }
+                if(!_self.comment.length){
+                    modal.alert({
+                        message: '请填写评论内容',
+                        okTitle: '知道了'
+                    })
+                    return false;
+                }
+                console.log(_self.score);
+                console.log(_self.comment);
+              _self.GET('api/comment/saveComment.json', res => {
+                let result = res.data.result;
+                modal.toast({
+                    message: result['message'],
+                    duration: 3
+                })
+              });
+          }
+      },
+      currentStar: ['☆','☆','☆','☆','☆'],
+      stars: [
+          ['★','☆','☆','☆','☆'],
+          ['★','★','☆','☆','☆'],
+          ['★','★','★','☆','☆'],
+          ['★','★','★','★','☆'],
+          ['★','★','★','★','★']
+      ]
     }
   },
   methods: {
-    saveComment: function(){
-      this.GET('api/comment/saveComment.json', res => {
-          let result = res.data.result;
-      });
+    vote(index) {
+        this.currentStar = this.stars[index];
+        this.score = index + 1;
+    },
+    oninput(event){
+        this.comment = event.value;
     }
   }
   }
 </script>
 
 <style scoped>
-    /*初始化样式*/
-    .star_evaluate {
-        position: relative;
-        width: 100px;
-        height: 20px;
-        background: url("http://172.18.22.119:8081/web/assets/images/iconpic-star-S-default.png") repeat-x;
-        background-size: 20px 20px;
-        overflow: hidden;
+    .commentBox{
+        margin-top: 86px;
+        border-bottom-width: 1px;
+        border-bottom-color: #666666;
+        flex-direction: row;
+        align-items: center;
+        padding: 20px 20px;
     }
-
-    .star,.score{
-        display: block;
-        height: 20px;
-        width: 20px;
-        position: absolute;
+    .starText{
+        margin-right: 40px;
+        font-size: 32px;
+        color: #333333;
+    }
+    .starBox{
+        flex-direction: row;
+        align-items: center;
     }
     .star{
-        z-index: 2;
+        font-size: 60px;
+        color: #333333;
+        margin-right: 30px;
+        line-height: 60px;
     }
-    .score{
-        opacity: 0;
+    .textarea{
+        font-size: 34px;
+        width: 700px;
+        margin-top: 50px;
+        margin-left: 25px;
+        padding-top: 20px;
+        padding-bottom: 20px;
+        padding-left: 20px;
+        padding-right: 20px;
+        color: #666666;
+        border-width: 2px;
+        border-style: solid;
+        border-color: #41B883;
     }
-
-    .star_1, .score_1 {
-        left: 0;
-    }
-
-    .star_2, .score_2 {
-        left: 20px;
-    }
-
-    .star_3, .score_3 {
-        left: 40px;
-    }
-
-    .star_4, .score_4 {
-        left: 60px;
-    }
-
-    .star_5, .score_5 {
-        left: 80px;
-    }
-
-    /*选中之后*/
-    .score.checked + .star {
-        background: url("http://172.18.22.119:8081/web/assets/images/iconpic-star-S.png") repeat-x;
-        background-size: 20px 20px;
-        left: 0;
-    }
-
-    .score_1.checked + .star_1 {
-        width: 20px;
-    }
-
-    .score_2.checked + .star_2 {
-        width: 40px;
-    }
-
-    .score_3.checked + .star_3 {
-        width: 60px;
-    }
-
-    .score_4.checked + .star_4 {
-        width: 80px;
-    }
-
-    .score_5.checked + .star_5 {
-        width: 100px;
-    }
+    
 </style>
