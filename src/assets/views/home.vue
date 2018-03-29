@@ -1,7 +1,7 @@
 <template>
     <div class="wrapper">
         <home-header title="书库"></home-header>
-        <scroller :class="['main-list']" offset-accuracy="300" loadmoreoffset="300" @loadmore="onloadmore">
+        <scroller :class="['main-list']">
             <refresher @loadingDown="loadingDown"></refresher>
             <div class="cell-button" @click="jumpWeb('https://m.you.163.com/act/pub/DxDpYNfbBd.html')">
                 <yx-slider :imageList="YXBanners" ></yx-slider>
@@ -83,18 +83,19 @@
             }
         },
         created () {
-            this.GET('api/home/bannerList.json', res => {
+            this.GET('banners/list', res => {
                 let result = res.data.result;
-                this.YXBanners = result['banners'];
+                this.YXBanners = result;
+                console.log(result)
             });
-            this.GET('api/home/borrowRecords.json', res => {
-                let result = res.data.result;
-                this.borrowRecords = result['borrowRecords'];
-            });
-            this.GET('api/home/bookList.json', res => {
-                let result = res.data.result;
-                this.bookList = result['bookList'];
-            })
+            // this.GET('api/home/borrowRecords.json', res => {
+            //     let result = res.data.result;
+            //     this.borrowRecords = result['borrowRecords'];
+            // });
+            // this.GET('api/home/bookList.json', res => {
+            //     let result = res.data.result;
+            //     this.bookList = result['bookList'];
+            // })
         },
         methods: {
             jumpWeb (_url) {
@@ -109,19 +110,8 @@
                 modal.toast({ message: 'loading', duration: 0.3 })
                 this.showLoading = 'show';
                 setTimeout(() => {
-                    this.goodsList.push(...this.recommend.goods1);
                     this.showLoading = 'hide'
                 }, 300)
-            },
-            onloadmore () {
-                setTimeout(() => {
-                    this.goodsList.push(...this.recommend.goods1);
-                }, 100)
-            },
-            loadingDown(){
-                this.goodsList =[];
-                this.goodsList.push(...this.recommend.goods2);
-                this.goodsList.push(...this.recommend.goods1);
             }
         }
     }
