@@ -13,6 +13,7 @@ import signUp from '@/assets/views/signUp'
 import personal from '@/assets/views/personal'
 import book from '@/assets/views/book'
 import comment from '@/assets/views/comment'
+import login from '@/assets/views/login'
 
 Vue.use(Router)
 
@@ -20,8 +21,8 @@ module.exports = new Router({
   routes: [
     {
       path: '/',
-      name: 'index',
-      component: index
+      name: 'login',
+      component: login
     },
     {
       path: '/home',
@@ -82,6 +83,11 @@ module.exports = new Router({
       path: '/personal',
       name: 'personal',
       component: personal
+    },
+    {
+      path: '/login',
+      name: 'login',
+      component: login
     }
   ]
 })
