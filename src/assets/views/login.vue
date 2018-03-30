@@ -1,9 +1,9 @@
 <template>
     <div class="wrapper-login">
         <text class="text">登录账户</text>
-        <input type="number" autofocus="true" placeholder="手机号" class="input-style" v-model="phone">
+        <input type="tel" autofocus="true" placeholder="手机号" class="input-style" v-model="phone">
         <input type="password" placeholder="密码" class="input-style" v-model="password">
-        <text class="login-btn" @click="login()">立即登录</text>
+        <text class="login-btn" @click="signIn()">立即登录</text>
         <text class="forget-psw">忘记密码？</text>
     </div>
 </template>
@@ -52,7 +52,8 @@
 <script>
     import util from '../util';
     var modal = weex.requireModule('modal');
-    let stream = weex.requireModule('stream');
+    var stream = weex.requireModule('stream');
+    var storage = weex.requireModule('storage');
     export default {
         data () {
             return {
@@ -61,34 +62,29 @@
             }
         },
         methods: {
-            login(){
-                modal.toast({
-                    message: 'login?phone='+this.phone+'&password='+this.password,
-                    duration: 3
-                })
-                console.log(this.phone)
-                console.log(this.password)
+            signIn(){
+                var _self = this;
                 var ph = this.phone,
                     pw = this.password;
                 stream.fetch({
-                    method: 'GET',
+                    method: 'POST',
                     type: 'json',
-                    headers:{
-                        'access-token': 'c750c77ee41ea47b5932eba894f8f4b1'
-                    },
-                    url: 'http://www.imbawin.com/app/login?phone='+ph+'&password='+pw
+                    url: '/json/login?phone='+ph+'&password='+pw
+                    //url: '/json/login?phone=17327486666&password=123456'
                 }, function(res){
-                    let result = res.data.result;
-                    console.log(result);
+                    
+                    if(res.data.code == 200){
+                        let result = res.data.result;
+                        storage.setItem('token',result.api_token);
+                        _self.$emit('login', { login: true})
+                    }else{
+                        modal.toast({
+                            message: res.data.message,
+                            duration: 3
+                        })
+                    }
+                    
                 })
-              // this.GET('login?phone='+this.phone+'&password='+this.password, res => {
-              //     let result = res.data.result;
-              //     console.log(result);
-              //     modal.toast({
-              //           message: result,
-              //           duration: 3
-              //       })
-              // })
             }
         }
     }

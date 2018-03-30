@@ -28,6 +28,14 @@ var mixins = {
         isIpx() {
             return weex && (weex.config.env.deviceModel === 'iPhone10,3' || weex.config.env.deviceModel === 'iPhone10,6');
         },
+        testGET (api, callback) {
+            return stream.fetch({
+                method: 'GET',
+                type: 'json',
+                url: 'http://172.18.22.119:8081/web/' + api
+                // url: 'http://192.168.16.92:8081/web/' + api
+            }, callback)
+        },
         GET (api, token, callback) {
             return stream.fetch({
                 method: 'GET',
@@ -35,10 +43,7 @@ var mixins = {
                 headers:{
                     'access-token': token
                 },
-                // url: 'http://172.18.22.119:8081/web/' + api
-                // url: 'http://192.168.16.92:8081/web/' + api
                 url: 'http://www.imbawin.com/app/' + api
-                // url: 'http://10.242.69.181:8089/yanxuan/' + api
             }, callback)
         }
 

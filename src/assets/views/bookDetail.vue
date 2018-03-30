@@ -4,22 +4,22 @@
         <scroller class="main" offset-accuracy="300px">
             <refresher></refresher>
             <div class="book-detail">
-              <image class="i-img" resize="cover" :src="detail.img"></image>
+              <image class="i-img" resize="cover" :src="detail.book_cover"></image>
               <div class="detail">
-                <text class="i-name">{{detail.tlt}}</text>
+                <text class="i-name">{{detail.book_name}}</text>
                 <div class="star-box">
                   <image :src="starbar" class="star-bar"></image>
-                  <div class="star" :data-star="detail.classes">
+                  <div class="star" :data-star="detail.score">
                     <image :src="star" class="starImg"></image>
                   </div>
                 </div>
                 <text class="i-author">作者：{{detail.author}}</text>
-                <text class="i-count">{{detail.count}}人阅读</text>
+                <text class="i-count">{{detail.read_count}}人阅读</text>
                 <div class="shareBox">
                   <text class="i-collect">&#xe744; 收藏</text>
                   <text class="i-share">&#xe744; 分享</text>
                 </div>
-                <text class="i-read" @click="jump('/book')">立即阅读</text>
+                <text class="i-read" @click="jump('/book/'+bookID)">立即阅读</text>
               </div>
             </div>
             <div class="relative-activity section-box">
@@ -33,23 +33,23 @@
             </div>
             <div class="book-desc section-box">
               <text class="desc-tag section">&#xe744; 书籍简介</text>
-              <text class="desc-content">{{detail.descripe}}</text>
+              <text class="desc-content">{{detail.description}}</text>
             </div>
             <div class="book-comment section-box">
               <div class="comment-header section">
                 <text class="comment-tag">&#xe744; 读书评论</text>
                 <text class="comment-btn" @click="jump('/comment')">我要评论</text>
               </div>
-              <div class="comment-item" v-for="item in detail.comment">
+              <div class="comment-item" v-for="item in detail.comments">
                 <text class="comment-content">{{item.content}}</text>
                 <div class="comment-detail">
                   <div class="comment-author">
-                    <image class="comment-author-img" :src="item.img"></image>
-                    <text class="comment-author-name">{{item.name}}</text>
+                    <image class="comment-author-img" :src="item.reader.avatar"></image>
+                    <text class="comment-author-name">{{item.reader.name}}</text>
                   </div>
                   <div class="star-box">
                     <image :src="starbar" class="star-bar"></image>
-                    <div class="star" :data-star="item.classes">
+                    <div class="star" :data-star="item.score">
                       <image :src="star" class="starImg"></image>
                     </div>
                   </div>
@@ -275,7 +275,9 @@
       height: 32px;
       width: 160px;
     }
-    .star[data-star$='0.5']{
+    .star[data-star$='0']{
+      width: 0px;
+    }.star[data-star$='0.5']{
       width: 16px;
     }
     .star[data-star^='1']{
@@ -313,6 +315,7 @@
     import refresher from '../components/refresh.vue';
     import Header2 from '../components/Header2.vue';
     var navigator = weex.requireModule('navigator')
+    var storage = weex.requireModule('storage')
     export default {
         components: {
             'refresher': refresher,
@@ -324,14 +327,22 @@
                 leftButton: {
                     name:"<"
                 },
+                token: '',
+                bookID: '',
                 starbar: 'http://172.18.22.119:8081/web/assets/images/iconpic-star-S-default.png',
                 star: 'http://172.18.22.119:8081/web/assets/images/iconpic-star-S.png'
             }
         },
         created () {
-            this.GET('api/class/bookDetail.json', res => {
+            this.bookID = this.$route.params.index;
+            console.log(this.bookID);
+            storage.getItem('token',event => {
+              this.token = event.data;
+              // this.token = '8755a2c81a83b12e45691e87b2ac8540';
+            })
+            this.GET('books/detail/'+this.bookID, this.token, res => {
                 let result = res.data.result;
-                this.detail = result['detail'];
+                this.detail = result[0];
             });
         },
         methods: {

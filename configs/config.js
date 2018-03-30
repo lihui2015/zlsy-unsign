@@ -48,7 +48,15 @@ const config = {
     // In our experience, they generally work as expected,
     // just be aware of this issue when enabling this option.
     cssSourceMap: false,
-    proxyTable: {},
+    proxyTable: {
+      '/json': {
+        target: 'http://www.imbawin.com/app/',
+        host: 'www.imbawin.com',
+        pathRewrite: { "^/json": "" },
+        secure: false,
+        changeOrigin: true
+      }
+    },
     autoOpenBrowser: false,
     errorOverlay: true,
     notifyOnErrors: true,

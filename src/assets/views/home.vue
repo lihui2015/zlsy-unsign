@@ -2,7 +2,7 @@
     <div class="wrapper">
         <home-header title="书库"></home-header>
         <scroller :class="['main-list']">
-            <refresher @loadingDown="loadingDown"></refresher>
+            <refresher></refresher>
             <div class="cell-button" @click="jumpWeb('https://m.you.163.com/act/pub/DxDpYNfbBd.html')">
                 <yx-slider :imageList="YXBanners" ></yx-slider>
             </div>
@@ -58,6 +58,7 @@
 <script>
     var modal = weex.requireModule('modal')
     var navigator = weex.requireModule('navigator')
+    var storage = weex.requireModule('storage');
     import util from '../util';
     import Header from '../components/header.vue';
     import refresher from '../components/refresh.vue';
@@ -79,23 +80,26 @@
                 YXBanners: [],
                 borrowRecords: [],
                 bookList: [],
-                showLoading: 'hide'
+                showLoading: 'hide',
+                token: ''
             }
         },
         created () {
-            this.GET('banners/list', res => {
+            storage.getItem('token',event => {
+                this.token = event.data;
+            })
+            this.GET('banners/list', this.token, res => {
                 let result = res.data.result;
                 this.YXBanners = result;
-                console.log(result)
             });
-            // this.GET('api/home/borrowRecords.json', res => {
-            //     let result = res.data.result;
-            //     this.borrowRecords = result['borrowRecords'];
-            // });
-            // this.GET('api/home/bookList.json', res => {
-            //     let result = res.data.result;
-            //     this.bookList = result['bookList'];
-            // })
+            this.testGET('api/home/borrowRecords.json', res => {
+                let result = res.data.result;
+                this.borrowRecords = result['borrowRecords'];
+            });
+            this.testGET('api/home/bookList.json', res => {
+                let result = res.data.result;
+                this.bookList = result['bookList'];
+            })
         },
         methods: {
             jumpWeb (_url) {

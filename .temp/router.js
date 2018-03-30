@@ -21,8 +21,8 @@ module.exports = new Router({
   routes: [
     {
       path: '/',
-      name: 'login',
-      component: login
+      name: 'index',
+      component: index
     },
     {
       path: '/home',
@@ -40,12 +40,12 @@ module.exports = new Router({
       component: list
     },
     {
-      path: '/bookDetail',
+      path: '/bookDetail/:index',
       name: 'bookDetail',
       component: bookDetail
     },
     {
-      path: '/book',
+      path: '/book/:index',
       name: 'book',
       component: book
     },

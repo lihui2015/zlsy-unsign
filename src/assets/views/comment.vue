@@ -50,7 +50,7 @@ export default {
                 }
                 console.log(_self.score);
                 console.log(_self.comment);
-              _self.GET('api/comment/saveComment.json', res => {
+              _self.testGET('api/comment/saveComment.json', res => {
                 let result = res.data.result;
                 modal.toast({
                     message: result['message'],

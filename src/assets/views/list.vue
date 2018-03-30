@@ -4,7 +4,7 @@
         <scroller class="main-list" offset-accuracy="300px">
             <refresher></refresher>
             <div class="book-list">
-                <div class="sub-i" v-for="i in booklist" @click="jump('/bookDetail')">
+                <div class="sub-i" v-for="i in booklist" @click="jump('/bookDetail/2')">
                     <image class="i-img" resize="cover" :src="i.img"></image>
                     <div class="text-box">
                         <text class="i-name">{{i.tlt}}</text>
@@ -95,7 +95,7 @@
             }
         },
         created () {
-            this.GET('api/class/bookList.json', res => {
+            this.testGET('api/class/bookList.json', res => {
                 let result = res.data.result;
                 this.booklist = result['bookList'];
             });

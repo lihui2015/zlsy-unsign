@@ -127,12 +127,12 @@
             }
         },
         created () {
-            this.GET('api/class/index', res => {
+            this.testGET('api/class/index', res => {
                 let result = res.data.result;
                 this.classes = result['classes'];
                 this.subTitle = this.classes[0]
             });
-            this.GET('api/class/subclasses', res => {
+            this.testGET('api/class/subclasses', res => {
                 let result = res.data.result;
                 this.subclasses = result['subclasses'];
             })
@@ -150,7 +150,7 @@
             },
             tabClass(str){
               this.subTitle = str;
-              this.GET('api/class/subclasses', res => {
+              this.testGET('api/class/subclasses', res => {
                   let result = res.data.result;
                   this.subclasses = result['subclasses'];
               })
