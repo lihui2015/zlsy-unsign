@@ -50,7 +50,7 @@ const config = {
     cssSourceMap: false,
     proxyTable: {
       '/json': {
-        target: 'http://www.imbawin.com/app/',
+        target: 'http://www.imbawin.com/',
         host: 'www.imbawin.com',
         pathRewrite: { "^/json": "" },
         secure: false,

@@ -1,10 +1,10 @@
 <template>
     <div :class="['wrapper', isIpx&&isIpx()?'w-ipx':'']">
         <header2 title="西游记" :leftBtn='leftButton'></header2>
-        <scroller class="main" offset-accuracy="300px">
+        <scroller class="main" offset-accuracy="300px" loadmoreoffset="300">
             <refresher></refresher>
             <div class="book-detail">
-              <image class="i-img" resize="cover" :src="detail.book_cover"></image>
+              <image class="i-img" resize="cover" :src="detail.full_cover"></image>
               <div class="detail">
                 <text class="i-name">{{detail.book_name}}</text>
                 <div class="star-box">
@@ -16,10 +16,10 @@
                 <text class="i-author">作者：{{detail.author}}</text>
                 <text class="i-count">{{detail.read_count}}人阅读</text>
                 <div class="shareBox">
-                  <text class="i-collect">&#xe744; 收藏</text>
+                  <text ref='collect' :class="['i-collect', collectTag == 1 ? 'collected' : '']" @click="collect(collectTag)">&#xe744; 收藏</text>
                   <text class="i-share">&#xe744; 分享</text>
                 </div>
-                <text class="i-read" @click="jump('/book/'+bookID)">立即阅读</text>
+                <text class="i-read" @click='handleClick'>立即阅读</text>
               </div>
             </div>
             <div class="relative-activity section-box">
@@ -38,13 +38,13 @@
             <div class="book-comment section-box">
               <div class="comment-header section">
                 <text class="comment-tag">&#xe744; 读书评论</text>
-                <text class="comment-btn" @click="jump('/comment')">我要评论</text>
+                <text class="comment-btn" @click="jump('/comment/'+bookID)">我要评论</text>
               </div>
-              <div class="comment-item" v-for="item in detail.comments">
+              <div class="comment-item" v-for="item in comments">
                 <text class="comment-content">{{item.content}}</text>
                 <div class="comment-detail">
                   <div class="comment-author">
-                    <image class="comment-author-img" :src="item.reader.avatar"></image>
+                    <image class="comment-author-img" :src="item.reader.full_avatar"></image>
                     <text class="comment-author-name">{{item.reader.name}}</text>
                   </div>
                   <div class="star-box">
@@ -56,6 +56,10 @@
                 </div>
               </div>
             </div>
+            <loading class="loading" @loading="onloading" :display="loadinging ? 'show' : 'hide'">
+              <text class="indicator-text">{{placeholder}}</text>
+              <loading-indicator class="indicator"></loading-indicator>
+            </loading> 
             <!--<loading class="loading" display="hide">-->
                 <!--<text class="indicator">Loading ...</text>-->
             <!--</loading>-->
@@ -121,6 +125,9 @@
     }
     .i-collect{
       margin-right: 40px;
+    }
+    .collected{
+      color: #ffa500;
     }
     .i-share{}
     .i-read{
@@ -307,7 +314,27 @@
     .star[data-star^='5']{
       width: 160px;
     }
-     
+    .loading {
+    width: 750;
+    display: -ms-flex;
+    display: -webkit-flex;
+    display: flex;
+    -ms-flex-align: center;
+    -webkit-align-items: center;
+    -webkit-box-align: center;
+    align-items: center;
+  }
+  .indicator-text {
+    color: #888888;
+    font-size: 42px;
+    text-align: center;
+  }
+  .indicator {
+    margin-top: 16px;
+    height: 40px;
+    width: 40px;
+    color: blue;
+  }
 </style>
 
 <script>
@@ -316,6 +343,7 @@
     import Header2 from '../components/Header2.vue';
     var navigator = weex.requireModule('navigator')
     var storage = weex.requireModule('storage')
+    var modal = weex.requireModule('modal')
     export default {
         components: {
             'refresher': refresher,
@@ -329,23 +357,111 @@
                 },
                 token: '',
                 bookID: '',
-                starbar: 'http://172.18.22.119:8081/web/assets/images/iconpic-star-S-default.png',
-                star: 'http://172.18.22.119:8081/web/assets/images/iconpic-star-S.png'
+                collectTag: 0,
+                current_page: 1,
+                comments: [],
+                total: 1,
+                loadinging: false,
+                hasNomare: false,
+                placeholder: 'Loading...',
+                //pdfUrl:'/json/storage/pdf/xiyou.pdf',
+                workerSrc: 'https://cdn.bootcss.com/pdf.js/1.9.456/pdf.worker.min.js',
+                starbar: 'http://192.168.16.92:8082/web/assets/images/iconpic-star-S-default.png',
+                star: 'http://192.168.16.92:8082/web/assets/images/iconpic-star-S.png'
             }
         },
         created () {
             this.bookID = this.$route.params.index;
-            console.log(this.bookID);
+            var _self = this;
             storage.getItem('token',event => {
               this.token = event.data;
               // this.token = '8755a2c81a83b12e45691e87b2ac8540';
+              this.GET('books/detail/'+this.bookID, this.token, res => {
+                if(res.data.code == 200){
+                    let result = res.data.result;
+                    this.detail = result;
+                    this.collectTag = result.is_collect;
+                }else{
+                    modal.toast({
+                        message: res.data.code + ":" + _self.token,
+                        duration: 3
+                    })
+                }
+              });
+              _self.getComment();
             })
-            this.GET('books/detail/'+this.bookID, this.token, res => {
-                let result = res.data.result;
-                this.detail = result[0];
-            });
+            
         },
         methods: {
+          handleClick(){
+            PDFPreview.open(this.pdfUrl);
+          },
+          collect(isCollected){
+            if(isCollected == 1){
+              return false;
+            }
+            var _self = this;
+            var data = '';
+            this.POST('books/collect/'+this.bookID, this.token, data, res => {
+              if (res.data.code == 200){
+                _self.collectTag = 1;
+                modal.toast({
+                    message: res.data.message,
+                    duration: 1
+                })
+              }else{
+                modal.toast({
+                    message: res.data.message,
+                    duration: 3
+                })
+              }
+            })
+          },
+          // onloadmore(){
+          //   this.getComment();
+          // },
+          getComment(){
+            var _self = this;
+
+            this.GET('books/comment/'+this.bookID+'?page='+this.current_page, this.token, res => {
+                this.loadinging = false;
+                if(res.data.code == 200){
+                    let result = res.data.result;
+                    if(result.data.length == 0){
+                      _self.placeholder = "暂无评论"
+                    }
+                    for(let i = 0; i<result.data.length; i++){
+                      this.comments.push(result.data[i])
+                    }
+                    //this.comments.push(result.data);
+                    console.log(this.comments);
+                    this.total = this.last_page;
+                    if(result.last_page = result.current_page){
+                      //最后一页
+                      _self.hasNomare = true;
+                    }else if(result.last_page > result.current_page){
+                      //非最后一页
+                      this.current_page = result.current_page + 1;
+                    }
+                    
+                }else{
+                    modal.toast({
+                        message: res.data.code + ":" + _self.token,
+                        duration: 3
+                    })
+                }
+              });
+          },
+          onloading (event) {
+            var _self = this;
+            if(_self.hasNomare){
+              modal.toast({ message: '没有更多评论', duration: 1 })
+              return false;
+            }
+            modal.toast({ message: 'Loading', duration: 1 })
+            this.loadinging = true;
+            this.getComment();
+          }
         }
     }
 </script>

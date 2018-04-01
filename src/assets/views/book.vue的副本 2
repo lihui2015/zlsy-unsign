@@ -1,0 +1,42 @@
+<style scoped>
+
+.h100{overflow: hidden;
+  justify-content: center;
+  align-items: dodgerblue;
+  width: 750px;
+  height: 1245px;
+  display: flex;
+}
+
+</style>
+<template>
+<div id="app" class="h100">
+  <button style="margin-top: 40px;font-size:2em;" @click='handleClick'>open</button>
+  <PDFPreview :workerSrc='workerSrc' ></PDFPreview>
+</div>
+</template>
+
+<script>
+import PDFPreview from './pdf-preview.vue'
+export default {
+  name:'book',
+  components: {
+    PDFPreview
+  },
+  data(){
+    return {
+      pdfUrl:'/json/storage/pdf/xiyou.pdf',
+      workerSrc: 'https://cdn.bootcss.com/pdf.js/1.9.456/pdf.worker.min.js'
+    }
+  },
+  mounted(){
+    //PDFPreview.open(this.pdfUrl);
+  },
+  methods: {
+    handleClick(){
+      PDFPreview.open(this.pdfUrl);
+    }
+  }
+}
+//store.commit('open', pdfUrl);
+</script>

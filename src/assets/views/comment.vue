@@ -18,6 +18,7 @@
 import util from '../util';
 import Header2 from '../components/Header2.vue';
 var modal = weex.requireModule('modal');
+var storage = weex.requireModule('storage');
 export default {
   name: 'comment',
   components: {
@@ -31,6 +32,8 @@ export default {
       },
       score: null,
       comment: '',
+      bookID: '',
+      token: '',
       rightBtn: {
           name: '发表',
           fun: function(){
@@ -50,13 +53,20 @@ export default {
                 }
                 console.log(_self.score);
                 console.log(_self.comment);
-              _self.testGET('api/comment/saveComment.json', res => {
-                let result = res.data.result;
-                modal.toast({
-                    message: result['message'],
-                    duration: 3
-                })
-              });
+                _self.POST('books/comment/'+_self.bookID, _self.token, '', res => {
+                  if (res.data.code == 200){
+                    modal.toast({
+                        message: res.data.message,
+                        duration: 1
+                    })
+                    _self.$router.go(-1)
+                  }else{
+                    modal.toast({
+                        message: res.data.message,
+                        duration: 3
+                    })
+                  }
+                });
           }
       },
       currentStar: ['☆','☆','☆','☆','☆'],
@@ -69,13 +79,19 @@ export default {
       ]
     }
   },
+  mounted(){
+    this.bookID = this.$route.params.index;
+    storage.getItem('token',event => {
+      this.token = event.data;
+    })
+  },
   methods: {
     vote(index) {
-        this.currentStar = this.stars[index];
-        this.score = index + 1;
+      this.currentStar = this.stars[index];
+      this.score = index + 1;
     },
     oninput(event){
-        this.comment = event.value;
+      this.comment = event.value;
     }
   }
   }

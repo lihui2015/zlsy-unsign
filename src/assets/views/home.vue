@@ -16,9 +16,9 @@
             <div class="cell-button">
                 <block-2 :books="bookList"></block-2>
             </div>
-            <loading class="loading" @loading="onloading" :display="showLoading">
+            <!-- <loading class="loading" @loading="onloading" :display="showLoading">
                 <text class="indicator">...</text>
-            </loading>
+            </loading> -->
         </scroller>
     </div>
 </template>
@@ -67,6 +67,7 @@
     import Block1 from '../components/Block1.vue';
     import Block2 from '../components/Block2.vue';
     export default {
+        name:'home',
         components: {
             'home-header': Header,
             'refresher': refresher,
@@ -85,20 +86,42 @@
             }
         },
         created () {
+            var _self = this;
             storage.getItem('token',event => {
-                this.token = event.data;
-            })
-            this.GET('banners/list', this.token, res => {
-                let result = res.data.result;
-                this.YXBanners = result;
-            });
-            this.testGET('api/home/borrowRecords.json', res => {
-                let result = res.data.result;
-                this.borrowRecords = result['borrowRecords'];
-            });
-            this.testGET('api/home/bookList.json', res => {
-                let result = res.data.result;
-                this.bookList = result['bookList'];
+                _self.token = event.data;
+
+                //banner ajax
+                this.GET('banners/list', _self.token, res => {
+                    if(res.data.code == 200){
+                        let result = res.data.result;
+                        this.YXBanners = result;
+                    }else{
+                        modal.toast({
+                            message: res.data.code + ":" + _self.token,
+                            duration: 3
+                        })
+                    }
+                });
+
+                //借阅记录
+                this.testGET('api/home/borrowRecords.json', res => {
+                    let result = res.data.result;
+                    this.borrowRecords = result['borrowRecords'];
+                });
+
+                //图书精选
+                this.GET('books/chosen/6', _self.token, res => {
+                    if(res.data.code == 200){
+                        let result = res.data.result;
+                        this.bookList = result;
+                    }else{
+                        //console.log(res.data.code);
+                        modal.toast({
+                            message: res.data.code + ":" + _self.token,
+                            duration: 3
+                        })
+                    }
+                })
             })
         },
         methods: {

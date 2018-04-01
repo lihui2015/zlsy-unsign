@@ -117,7 +117,8 @@ const webConfig = {
       {
         test: /\.js$/,
         use: [{
-          loader: 'babel-loader'
+          loader: 'babel-loader',
+          query: {compact: false}
         }],
         exclude: /node_modules(?!(\/|\\).*(weex).*)/
       },
@@ -177,8 +178,10 @@ const weexConfig = {
       {
         test: /\.js$/,
         use: [{
-          loader: 'babel-loader'
-        }]
+          loader: 'babel-loader',
+          query: {compact: false}
+        }],
+        exclude: /node_modules/
       },
       {
         test: /\.vue(\?[^?]+)?$/,

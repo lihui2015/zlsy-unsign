@@ -1,6 +1,6 @@
 /* global Vue */
 import Router from 'vue-router'
-import index from '@/assets/views/home'
+import home from '@/assets/views/home'
 import sort from '@/assets/views/sort'
 import list from '@/assets/views/list'
 import bookDetail from '@/assets/views/bookDetail'
@@ -20,13 +20,13 @@ module.exports = new Router({
   routes: [
     {
       path: '/',
-      name: 'index',
-      component: index
+      name: 'home',
+      component: home
     },
     {
       path: '/home',
-      name: 'index',
-      component: index
+      name: 'home',
+      component: home
     },
     {
       path: '/sort',
@@ -34,7 +34,7 @@ module.exports = new Router({
       component: sort
     },
     {
-      path: '/list',
+      path: '/list/:index',
       name: 'list',
       component: list
     },
@@ -49,7 +49,7 @@ module.exports = new Router({
       component: book
     },
     {
-      path: '/comment',
+      path: '/comment/:index',
       name: 'comment',
       component: comment
     },

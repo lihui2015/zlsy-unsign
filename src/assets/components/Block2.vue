@@ -5,9 +5,9 @@
         </div>
         <div class="box">
             <div class="i-book" v-for="i in books">
-                <image class="bk-img" resize="cover" :src="i.img"></image>
-                <text class="bk-tlt">{{i.tlt}}</text>
-                <text class="bk-count">{{i.count}}人在阅读</text>
+                <image class="bk-img" resize="cover" :src="i.full_cover" @click="jump('/bookDetail/'+i.id)"></image>
+                <text class="bk-tlt" @click="jump('/bookDetail/'+i.id)">{{i.book_name}}</text>
+                <text class="bk-count">{{i.read_count}}人在阅读</text>
             </div>
         </div>
     </div>

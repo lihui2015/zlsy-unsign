@@ -104,6 +104,8 @@
     import refresher from '../components/refresh.vue';
     import Header3 from '../components/Header3.vue';
     var navigator = weex.requireModule('navigator')
+    var storage = weex.requireModule('storage')
+    var modal = weex.requireModule('modal')
     export default {
         components: {
             'refresher': refresher,
@@ -111,19 +113,24 @@
         },
         data () {
             return {
+                token: '',
                 classes: [],
                 subclasses:[]
             }
         },
         created () {
-            this.GET('api/class/index', res => {
+            this.testGET('api/class/index', res => {
                 let result = res.data.result;
                 this.classes = result['classes'];
             });
-            this.GET('api/class/subclasses', res => {
-                let result = res.data.result;
-                this.subclasses = result['subclasses'];
+            storage.getItem('token',event => {
+                this.token = event.data;
+                this.GET('books/categories/list/0', this.token, res => {
+                    let result = res.data.result;
+                    this.subclasses = result;
+                })
             })
+            
         },
         methods: {
             jumpWeb (_url) {

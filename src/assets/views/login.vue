@@ -69,7 +69,7 @@
                 stream.fetch({
                     method: 'POST',
                     type: 'json',
-                    url: '/json/login?phone='+ph+'&password='+pw
+                    url: '/json/app/login?phone='+ph+'&password='+pw
                     //url: '/json/login?phone=17327486666&password=123456'
                 }, function(res){
                     

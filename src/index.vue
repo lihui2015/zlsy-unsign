@@ -28,9 +28,17 @@
       created () {
           util.initIconFont();
           storage.getItem('token',event => {
-              if(event.data == 'undefined'){
-                  this.login = false;
-              }
+            var localToken = event.data;
+            if(localToken == 'undefined'){
+              this.login = false;
+            }else if(localToken != 'undefined'){
+              this.GET('banners/list', localToken, res => {
+                  let result = res.data;
+                  if(result.code != 200){
+                    this.login = false;
+                  }
+              });
+            }
           })
       },
       methods: {
