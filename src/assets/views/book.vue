@@ -11,7 +11,8 @@ export default {
   name: 'book',
   data(){
     return {
-      pdfUrl: 'http://192.168.16.92:8082/web/pdf/index.html',
+      pdfUrl: '',
+      // pdfUrl: 'http://172.18.22.119:8081/web/viewer/viewer.html?file=xiyou.pdf',
       bookID: '',
       token: ''
     }
@@ -20,18 +21,16 @@ export default {
     this.bookID = this.$route.params.index;
     storage.getItem('token',event => {
       this.token = event.data;
-      // this.token = '8755a2c81a83b12e45691e87b2ac8540';
-      this.GET('books/content/2', this.token, res => {
+      this.GET('books/content/'+this.bookID, this.token, res => {
         if(res.data.code == 200){
-          let result = res.data.result;
-          this.pdfUrl = result[0].pdf_image
+          let result = res.data.result[0];
+          this.pdfUrl = 'http://www.imbawin.com/pdfjs/viewer/viewer.html?file='+result.pdf_image;
         }else{
           modal.toast({
             message: res.data.code + ":" + this.token,
             duration: 3
           })
-        }
-        
+        }  
       });
     })
     
