@@ -12,7 +12,7 @@
             <text class="sub-tlt">{{subTitle}}分类</text>
             <div class="sub-box">
                 <div class="sub-i" v-for="i in subclasses">
-                    <image class="i-img" resize="contain" :src="i.full_image_url" @click="jump('/list/'+i.id)"></image>
+                    <image class="i-img" resize="cover" :src="i.full_image_url" @click="jump('/list/'+i.id)"></image>
                     <text class="i-name">{{i.name}}</text>
                 </div>
             </div>

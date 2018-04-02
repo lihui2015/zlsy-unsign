@@ -34,7 +34,6 @@
     .box{
         flex-direction: row;
         flex-wrap: wrap;
-        justify-content: space-between;
         padding: 0px 10px;
     }
     .i-book{
