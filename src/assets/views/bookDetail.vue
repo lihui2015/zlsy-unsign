@@ -19,7 +19,7 @@
                   <text ref='collect' :class="['i-collect', collectTag == 1 ? 'collected' : '']" @click="collect(collectTag)">&#xe744; 收藏</text>
                   <text class="i-share">&#xe744; 分享</text>
                 </div>
-                <text class="i-read" @click='handleClick'>立即阅读</text>
+                <text class="i-read" @click="jump('/book/'+bookID)">立即阅读</text>
               </div>
             </div>
             <div class="relative-activity section-box">
@@ -366,8 +366,8 @@
                 placeholder: 'Loading...',
                 //pdfUrl:'/json/storage/pdf/xiyou.pdf',
                 workerSrc: 'https://cdn.bootcss.com/pdf.js/1.9.456/pdf.worker.min.js',
-                starbar: 'http://192.168.16.92:8082/web/assets/images/iconpic-star-S-default.png',
-                star: 'http://192.168.16.92:8082/web/assets/images/iconpic-star-S.png'
+                starbar: 'http://172.18.22.119:8081/web/assets/images/iconpic-star-S-default.png',
+                star: 'http://172.18.22.119:8081/web/assets/images/iconpic-star-S.png'
             }
         },
         created () {

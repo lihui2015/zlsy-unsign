@@ -51,7 +51,7 @@
             'block-5': Block5,
         },
         created () {
-            this.GET('api/activity/articles', res => {
+            this.testGET('api/activity/articles', res => {
                 let result = res.data.result;
                 this.articles = result['articles'];
             })

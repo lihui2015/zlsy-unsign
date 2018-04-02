@@ -3,7 +3,7 @@
         <header2 title="图书分类" :leftBtn='leftButton'></header2>
         <div class="class-list">
             <scroller>
-                <text class="class-txt"  :class="[isActive(i)]" v-for="(i,item) in classes" @click="tabClass(i,item)">{{i}}</text>
+                <text class="class-txt"  :class="[isActive(i.name)]" v-for="(i,item) in classes" @click="tabClass(i.name,i.id)">{{i.name}}</text>
             </scroller>
         </div>
         <scroller class="main-list" offset-accuracy="300px">
@@ -132,14 +132,24 @@
             }
         },
         created () {
-            this.testGET('api/class/index', res => {
-                let result = res.data.result;
-                this.classes = result['classes'];
-                this.subTitle = this.classes[0]
-            });
+            
             storage.getItem('token',event => {
                 this.token = event.data;
-                this.getSubClass()
+                this.GET('books/categories/list/0',this.token, res => {
+                    if(res.data.code == 200){
+                        let result = res.data.result;
+                        this.classes = result;
+                        this.subTitle = this.classes[0].name;
+                        this.subID = this.classes[0].id;
+                        this.getSubClass();
+                    }else{
+                        modal.toast({
+                            message: res.data.code + ":" + _self.token,
+                            duration: 3
+                        })
+                    }
+                });
+                
             })
         },
         methods: {

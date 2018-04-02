@@ -32,8 +32,8 @@ var mixins = {
             return stream.fetch({
                 method: 'GET',
                 type: 'json',
-                // url: 'http://172.18.22.119:8081/web/' + api
-                url: 'http://192.168.16.92:8082/web/' + api
+                url: 'http://172.18.22.119:8081/web/' + api
+                // url: 'http://192.168.16.92:8082/web/' + api
             }, callback)
         },
         GET (api, token, callback) {
@@ -51,7 +51,8 @@ var mixins = {
                 method: 'POST',
                 type: 'json',
                 headers:{
-                    "access-token": token
+                    "access-token": token,
+                    "Content-Type": "application/json"
                 },
                 body: data,
                 url: 'http://www.imbawin.com/app/' + api

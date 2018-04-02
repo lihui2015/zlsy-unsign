@@ -51,9 +51,8 @@ export default {
                     })
                     return false;
                 }
-                console.log(_self.score);
-                console.log(_self.comment);
-                _self.POST('books/comment/'+_self.bookID, _self.token, '', res => {
+                var data = JSON.stringify({"score":_self.score,"content":_self.comment});
+                _self.POST('books/comment/'+_self.bookID, _self.token, data, res => {
                   if (res.data.code == 200){
                     modal.toast({
                         message: res.data.message,
@@ -88,7 +87,7 @@ export default {
   methods: {
     vote(index) {
       this.currentStar = this.stars[index];
-      this.score = index + 1;
+      this.score = Number(index + 1);
     },
     oninput(event){
       this.comment = event.value;
