@@ -14,10 +14,10 @@
                     
                 </div>
             </div>
-            <loading class="loading" @loading="onloading" :display="loadinging ? 'show' : 'hide'">
+            <!--<loading class="loading" @loading="onloading" :display="loadinging ? 'show' : 'hide'">
               <loading-indicator class="indicator"></loading-indicator>
             </loading> 
-            <!--<loading class="loading" display="hide">-->
+            <loading class="loading" display="hide">-->
                 <!--<text class="indicator">Loading ...</text>-->
             <!--</loading>-->
         </scroller>
