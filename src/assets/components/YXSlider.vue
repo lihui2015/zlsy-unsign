@@ -37,7 +37,8 @@
     .image-title{
         position: absolute;
         width: 750px;
-        padding: 0 20px;
+        padding-right:20px;
+        padding-left:20px;
         text-align: center;
         top: 200px;
         left: 0;

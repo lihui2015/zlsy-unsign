@@ -36,24 +36,25 @@
         margin-bottom: 50px;
     }
     .main-list{
-        flex: 1;
         display: flex;
         flex-direction: column;
         flex-wrap: nowrap;
         margin-top: 86px;
         margin-bottom: 90px;
         background-color: #fff;
-        /*width: 750px;
-        height: 1245px;*/
+        width: 750px;
+        height: 1070px;
     }
     .book-list{
-        padding: 0 20px;
+        padding-left: 20px;
+        padding-right: 20px;
         overflow: hidden;
     }
     .sub-i{
         border-top-width: 1px;
         border-top-color: #666666;
-        padding: 30px 0;
+        padding-top: 30px;
+        padding-bottom: 30px;        
         flex-direction: row;
         flex-wrap: nowrap;
         margin-top: -1px;
@@ -153,8 +154,6 @@
                         for(let i = 0; i<result.data.length; i++){
                           this.booklist.push(result.data[i])
                         }
-                        //this.booklist.push(result.data);
-                        console.log(this.booklist);
                         this.total = this.last_page;
                         if(result.last_page = result.current_page){
                           //最后一页

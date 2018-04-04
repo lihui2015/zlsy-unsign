@@ -26,7 +26,10 @@
         line-height: 60px;
         border-width: 1px;
         border-color: #cccccc;
-        padding: 10px 20px;
+        padding-top: 10px;
+        padding-bottom: 10px;
+        padding-left: 20px;
+        padding-right: 20px;
         margin-top: 40px;
     }
     .login-btn{

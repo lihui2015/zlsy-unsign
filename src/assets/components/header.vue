@@ -1,10 +1,15 @@
 <template>
-    <header class="header">
-        <div class="header-left" @click="goBack">
-            <span class="left-arrow"></span>
-        </div>
-        <text class="header-title">{{title}}</text>
-    </header>
+  <div class="container" :style="{height: height}">
+    <div class="demo">
+      <wxc-minibar :title="title"
+                   background-color="#009ff0"
+                   text-color="#FFFFFF"
+                   :right-text="rightButton"
+                   leftButton=""
+                   @wxcMinibarLeftButtonClicked="minibarLeftButtonClick"
+                   @wxcMinibarRightButtonClicked="minibarRightButtonClick"></wxc-minibar>
+    </div>
+  </div>
 </template>
 
 <style scoped>
@@ -15,7 +20,8 @@
         top: 0;
         z-index: 1;
         background-color:#f8f8f8;
-        padding: 3px 0;
+        padding-top: 3px;
+        padding-bottom: 3px;
     }
     .header-left{
         position: absolute;
@@ -59,13 +65,23 @@
 </style>
 
 <script>
-    export default {
-        props: ['title'],
-        methods: {
-            goBack: function(){
-                this.$router.go(-1)
-                console.log(this.title);
-            }
+  import { WxcMinibar } from 'weex-ui';
+  const modal = weex.requireModule('modal');
+
+  export default {
+    props: ['title','leftButton','rightButton'],
+    data(){
+        return {
+            height: '86px'
         }
+    },
+    components: { WxcMinibar },
+    methods: {
+      minibarLeftButtonClick () {
+      },
+      minibarRightButtonClick () {
+        modal.toast({ 'message': 'click rightButton!', 'duration': 1 });
+      }
     }
+  };
 </script>

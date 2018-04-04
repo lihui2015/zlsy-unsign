@@ -8,7 +8,6 @@
             </div>
             <div class="cell-button">
                 <book-search></book-search>
-                
             </div>
             <div class="cell-button">
                 <block-1 :items="borrowRecords"></block-1>

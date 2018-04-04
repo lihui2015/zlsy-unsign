@@ -1,7 +1,8 @@
 <template>
     <div class="wrapper">
-        <div class="tlt-box">
-            <text class="tlt tlt-new" @click="jump('/sort')">图书精选 ></text>
+        <div class="tlt-box cell-tag">
+            <text class="tlt" @click="jump('/sort')">图书精选</text>
+            <wxc-icon name="more"></wxc-icon>
         </div>
         <div class="box">
             <div class="i-book" v-for="i in books">
@@ -16,29 +17,43 @@
     .iconfont {
         font-family:iconfont;
     }
+    .cell-tag{
+        text-align: center;
+        background-color:#009FF0;
+        height: 70px;
+        font-weight: 600;
+        text-align: left;
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+    .tlt{
+        color:#ffffff;
+        font-size: 36px;
+    }
+    .icon-font{
+        color:#ffffff;
+    }
     .wrapper{
         margin-top: 30px;
-        border-top-width: 1px;
-        border-style: solid;
-        border-top-color: #333333;
         padding-bottom: 20px;
     }
     .tlt-box{
-        padding-top: 30px;
-    }
-    .tlt{
-        text-align: center;
-        font-size: 34px;
-        color:#333333;
+        margin-top: 10px;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
     }
     .box{
         flex-direction: row;
         flex-wrap: wrap;
-        padding: 0px 10px;
+        padding-left: 10px;
+        padding-right: 10px;
+        padding-top: 20px;
     }
     .i-book{
         width: 215px;
-        padding: 20px 0;
+        padding-top: 20px;
+        padding-bottom: 20px;
     }
     .bk-img{
         height: 291px;
@@ -68,23 +83,17 @@
     }
 </style>
 <script>
+    import { WxcIcon } from 'weex-ui'
     var navigator = weex.requireModule('navigator')
     import util from '../util';
     export default {
         props:["books"],
+        components: { WxcIcon },
         data () {
             return {
             }
         },
         methods: {
-            jumpWeb (_url) {
-                if(!_url) return;
-                const url = this.$getConfig().bundleUrl;
-                navigator.push({
-                    url: util.setBundleUrl(url, 'page/webview.js?weburl='+_url) ,
-                    animated: "true"
-                });
-            }
         }
     }
 </script>

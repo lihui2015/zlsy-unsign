@@ -103,7 +103,10 @@ export default {
         border-bottom-color: #666666;
         flex-direction: row;
         align-items: center;
-        padding: 20px 20px;
+        padding-top:20px;
+        padding-bottom:20px;
+        padding-left:20px;
+        padding-right:20px;
     }
     .starText{
         margin-right: 40px;

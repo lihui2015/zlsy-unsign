@@ -1,11 +1,13 @@
 <template>
-  <div class="app-wrapper" v-if="login">
-    <router-view class="r-box"></router-view>
-    <tab-bar @tabTo="onTabTo"></tab-bar>
-  </div>
-  <div class="login-page" v-else>
-    <login-page v-on:login="handleMessage"></login-page>
-  </div>
+    <div class="box">
+        <div :class="['app-wrapper', login ? 'show':'hide']">
+            <router-view class="r-box"></router-view>
+            <tab-bar @tabTo="onTabTo"></tab-bar>
+        </div>
+        <div :class="['login-page', login ? 'hide':'show']">
+            <login-page v-on:login="handleMessage"></login-page>
+        </div>
+    </div>
 </template>
 
 <script>
@@ -48,6 +50,7 @@
           },
           handleMessage(payload){
               this.login = payload.login;
+              this.$router.push('/home')
           }
       }
   }
@@ -64,5 +67,11 @@
       left: 0;
       right: 0;
       bottom: 0;
+  }
+  .hide{
+      opacity: 0;
+  }
+  .show{
+      opacity: 1;
   }
 </style>

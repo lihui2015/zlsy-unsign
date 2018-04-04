@@ -13,6 +13,7 @@ import personal from '@/assets/views/personal'
 import book from '@/assets/views/book'
 import comment from '@/assets/views/comment'
 import login from '@/assets/views/login'
+import defaultPage from '@/assets/views/default'
 
 Vue.use(Router)
 
@@ -20,8 +21,8 @@ module.exports = new Router({
   routes: [
     {
       path: '/',
-      name: 'home',
-      component: home
+      name: 'defaultPage',
+      component: defaultPage
     },
     {
       path: '/home',

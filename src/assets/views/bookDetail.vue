@@ -78,18 +78,21 @@
         margin-bottom: 50px;
     }
     .main{
-        flex: 1;
         display: flex;
         flex-direction: column;
         flex-wrap: nowrap;
         margin-top: 86px;
         margin-bottom: 90px;
         background-color: #fff;
+        width: 750px;
+        height: 1070px;
     } 
     .book-detail{
       flex-direction: row;
       flex-wrap: nowrap;
-      padding: 20px 0 20px 20px;
+      padding-top: 20px;
+      padding-bottom: 20px;
+      padding-left: 20px;
     }
     .i-img{
       width: 234px;
@@ -145,7 +148,7 @@
     .section-box{
       border-top-width: 1px;
       border-top-color: #333333;
-      padding: 0 0 10px 0;
+      padding-bottom: 10px;      
     }
     .section{
       color: #101010;
@@ -186,7 +189,8 @@
       position: absolute;
       left: 0;
       top: 70px;
-      padding: 0 20px;
+      padding-left: 20px;
+      padding-right: 20px;      
       text-align: center;
       color:#101010;
       font-size: 32px;
@@ -198,7 +202,10 @@
     .desc-tag{
     }
     .desc-content{
-      padding: 10px 20px;
+      padding-top: 10px;
+      padding-bottom: 10px;
+      padding-left: 20px;
+      padding-right: 20px;      
       font-size: 32px;
       color: #101010;
       line-height: 40px;
@@ -229,7 +236,10 @@
     .comment-item{
       border-bottom-width: 1px;
       border-bottom-color: #cccccc;
-      padding: 20px 20px;
+      padding-top: 20px;
+      padding-bottom: 20px;
+      padding-left: 20px;
+      padding-right: 20px;      
     }
     .comment-content{
       color: #101010;
@@ -433,8 +443,6 @@
                     for(let i = 0; i<result.data.length; i++){
                       this.comments.push(result.data[i])
                     }
-                    //this.comments.push(result.data);
-                    console.log(this.comments);
                     this.total = this.last_page;
                     if(result.last_page = result.current_page){
                       //最后一页

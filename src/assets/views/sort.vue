@@ -39,6 +39,7 @@
     }
     .class-list{
         width: 162px;
+        height: 1060px;
         margin-top: 86px;
         margin-bottom: 90px;
         padding-top: 20px;
@@ -68,12 +69,17 @@
         margin-top: 86px;
         margin-bottom: 90px;
         background-color: #fff;
+        width: 588px;
+        height: 1060px;
     }
     .ad-img{
         width: 532px;
         height: 194px;
         border-radius: 6px;
-        margin: 28px;
+        margin-top: 28px;
+        margin-bottom: 28px;
+        margin-left: 28px;
+        margin-right: 28px;
     }
     .sub-tlt{
         text-align: center;

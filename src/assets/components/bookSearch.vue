@@ -1,65 +1,62 @@
 <template>
     <div class="bookSearchBox">
-        <text class="bookSearch">馆藏查询</text>
-        <div class="searchBox" @click="jumpWeb()">
-            <text class="iconfont search-text">书名，作者，ISBN</text>
-            <text class="iconfont search-icon">&#xe65c;</text>
+        <text class="bookSearch cell-tag">馆藏查询</text>
+        <div class="searchBox">
+            <wxc-searchbar ref="wxc-searchbar"
+                     @wxcSearchbarCancelClicked="wxcSearchbarCancelClicked"
+                     @wxcSearchbarInputReturned="wxcSearchbarInputReturned"
+                     @wxcSearchbarInputOnInput="wxcSearchbarInputOnInput"
+                     @wxcSearchbarCloseClicked="wxcSearchbarCloseClicked"
+                     @wxcSearchbarInputOnFocus="wxcSearchbarInputOnFocus"
+                     @wxcSearchbarInputOnBlur="wxcSearchbarInputOnBlur"></wxc-searchbar>
         </div>
     </div>
 </template>
 <style scoped>
-    .bookSearchBox{
-        background-color: #ffffff;
-        padding: 0 20px 40px 20px;
-        border-top-width: 1px;
-        border-style: solid;
-        border-top-color: #333333;
-        margin-top: 20px;
-    }
-    .bookSearch{
-        padding-top: 20px;
+    .cell-tag{
+        text-align: center;
+        font-size: 36px;
+        background-color:#009FF0;
+        color:#ffffff;
+        height: 70px;
+        justify-content: center;
+        font-weight: 600;
+        text-align: left;
+        padding-left: 20px;
+        padding-right: 20px;
     }
     .searchBox{
-        flex: 1;
-        height: 70px;
-        font-size: 34px;
-        background-color: #ededed;
-        border-radius: 8px;
-        margin: 30px 0 0;
-        padding: 0 20px;
-        flex-direction: row;
-        justify-content: space-between;
-        align-items: center;
+        padding-top: 20px;
+        padding-bottom: 20px;
     }
-    .iconfont {
-        font-family:iconfont;
-    }
-    .search {
-        flex: 1;
-        height: 70px;
-        font-size: 34px;
-        padding: 10px 15px;
-        background-color: #ededed;
-        border-radius: 8px;
-    }
+    
 </style>
 <script>
     var navigator = weex.requireModule('navigator')
+    import { WxcSearchbar } from 'weex-ui'
     import util from '../util';
     export default {
-        props:['title','leftBtn','rightBtn'],
-        data () {
-            return {
-            }
-        },
+        components: { WxcSearchbar },
+        data: () => ({
+            value: ''
+        }),
         methods: {
-            jumpWeb (_url) {
-                if(!_url) _url = 'http://m.you.163.com/search';
-                const url = this.$getConfig().bundleUrl;
-                navigator.push({
-                    url: util.setBundleUrl(url, 'page/webview.js?weburl='+_url) ,
-                    animated: "false"
-                });
+            wxcSearchbarInputOnFocus () {
+            },
+            wxcSearchbarInputOnBlur () {
+            },
+            wxcSearchbarInputReturned (){
+            },
+            wxcSearchbarCloseClicked () {
+            },
+            wxcSearchbarInputOnInput (e) {
+                this.value = e.value;
+            },
+            wxcSearchbarCancelClicked () {
+            },
+            wxcSearchbarInputDisabledClicked () {
+            },
+            wxcSearchbarDepChooseClicked () {
             }
         }
     }

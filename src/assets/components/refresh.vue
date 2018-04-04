@@ -93,8 +93,6 @@
                 }.bind(this))
             },
             onrefresh (event) {
-//                console.log('is refreshing')
-//                modal.toast({ message: 'refresh', duration: 1 })
 
                 this.loadingAni();
                 this.refreshing = true;
