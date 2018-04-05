@@ -69,13 +69,25 @@
                 var _self = this;
                 var ph = this.phone,
                     pw = this.password;
+                if(!ph.length){
+                    modal.toast({
+                        message: "请输入手机号码",
+                        duration: 1
+                    });
+                    return false;
+                }
+                if(!pw.length){
+                    modal.toast({
+                        message: "请输入密码",
+                        duration: 1
+                    })
+                }
                 stream.fetch({
                     method: 'POST',
                     type: 'json',
-                    url: '/json/app/login?phone='+ph+'&password='+pw
+                    url: 'http://www.imbawin.com/app/login?phone='+ph+'&password='+pw
                     //url: '/json/login?phone=17327486666&password=123456'
                 }, function(res){
-                    
                     if(res.data.code == 200){
                         let result = res.data.result;
                         storage.setItem('token',result.api_token);

@@ -32,8 +32,8 @@ var mixins = {
             return stream.fetch({
                 method: 'GET',
                 type: 'json',
-                url: 'http://172.18.22.119:8081/web/' + api
-                // url: 'http://192.168.16.92:8082/web/' + api
+                // url: 'http://172.18.22.119:8081/web/' + api
+                url: 'http://192.168.16.92:8081/web/' + api
             }, callback)
         },
         GET (api, token, callback) {

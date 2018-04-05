@@ -1,11 +1,14 @@
 <template>
     <div class="wrapper">
-        <text class="recordsTag  cell-tag">借阅记录</text>
+        <div class="cell-tag recordsTag">
+            <text class="tag-text">借阅记录</text>
+        </div>
+        
         <div class="borrow-records">
             <div class="records-box">
                 <div class="box-item" v-for="i in items">
-                    <image class="i-image" resize="cover" :src="i.img"></image>
-                    <text class="i-name">{{i.tlt}}</text>
+                    <image class="i-image" resize="cover" :src="i.full_cover"></image>
+                    <text class="i-name">{{i.book_name}}</text>
                 </div>
             </div>
             <div class="recordsMore">
@@ -20,10 +23,7 @@
         font-family:iconfont;
     }
     .cell-tag{
-        text-align: center;
-        font-size: 36px;
         background-color:#009FF0;
-        color:#ffffff;
         height: 70px;
         justify-content: center;
         font-weight: 600;
@@ -33,6 +33,11 @@
     }
     .recordsTag{
         margin-top: 20px;
+    }
+    .tag-text{
+        font-size: 36px;
+        color:#ffffff;
+        font-weight: 600;
     }
     .borrow-records{
         flex-direction: row;

@@ -1,10 +1,10 @@
 <template>
     <div class="box">
-        <div :class="['app-wrapper', login ? 'show':'hide']">
+        <div class="app-wrapper" v-if="login">
             <router-view class="r-box"></router-view>
             <tab-bar @tabTo="onTabTo"></tab-bar>
         </div>
-        <div :class="['login-page', login ? 'hide':'show']">
+        <div class="login-page" v-else>
             <login-page v-on:login="handleMessage"></login-page>
         </div>
     </div>
@@ -20,7 +20,7 @@
       name: 'App',
       data () {
           return {
-              login: true
+              login: false
           }
       },
       components: {
@@ -38,6 +38,8 @@
                   let result = res.data;
                   if(result.code != 200){
                     this.login = false;
+                  }else if(result.code == 200){
+                    this.login = true;
                   }
               });
             }
@@ -58,9 +60,34 @@
 </script>
 
 <style scoped>
+.box{
+  position: absolute;
+      top:0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      width: 750px;
+        height: 1334px;
+}
   .app-wrapper{
         background-color: #ffffff;
+        width: 750px;
+        height: 1334px;
+        position: absolute;
+      top:0;
+      left: 0;
+      right: 0;
+      bottom: 0;
     }
+  .login-page{
+    position: absolute;
+      top:0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      width: 750px;
+        height: 1334px;
+  }
   .r-box{
       position: absolute;
       top:0;

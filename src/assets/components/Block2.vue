@@ -2,7 +2,7 @@
     <div class="wrapper">
         <div class="tlt-box cell-tag">
             <text class="tlt" @click="jump('/sort')">图书精选</text>
-            <wxc-icon name="more"></wxc-icon>
+            <wxc-icon name="more" @click="jump('/sort')" class="colorWhite"></wxc-icon>
         </div>
         <div class="box">
             <div class="i-book" v-for="i in books">
@@ -29,8 +29,9 @@
     .tlt{
         color:#ffffff;
         font-size: 36px;
+        font-weight: 600;
     }
-    .icon-font{
+    .colorWhite{
         color:#ffffff;
     }
     .wrapper{

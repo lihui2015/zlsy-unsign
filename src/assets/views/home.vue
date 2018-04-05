@@ -8,7 +8,6 @@
             </div>
             <div class="cell-button">
                 <book-search></book-search>
-                
             </div>
             <div class="cell-button">
                 <block-1 :items="borrowRecords"></block-1>
@@ -37,6 +36,7 @@
         bottom: 90px;
         left: 0;
         right: 0;
+        background-color:#f8f8f8;
         /*margin-top: 167px;*/
         /*margin-bottom: 90px;*/
     }
@@ -99,16 +99,17 @@
                 });
 
                 //借阅记录
-                this.testGET('api/home/borrowRecords.json', res => {
-                    let result = res.data.result;
-                    this.borrowRecords = result['borrowRecords'];
-                });
+                // this.testGET('api/home/borrowRecords.json', res => {
+                //     let result = res.data.result;
+                //     this.borrowRecords = result['borrowRecords'];
+                // });
 
                 //图书精选
                 this.GET('books/chosen/6', _self.token, res => {
                     if(res.data.code == 200){
                         let result = res.data.result;
                         this.bookList = result;
+                        this.borrowRecords = result;
                     }else{
                         modal.toast({
                             message: res.data.code + ":" + _self.token,

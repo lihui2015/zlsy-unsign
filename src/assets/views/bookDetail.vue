@@ -128,11 +128,14 @@
     }
     .i-collect{
       margin-right: 40px;
+      font-size: 34px;
     }
     .collected{
       color: #ffa500;
     }
-    .i-share{}
+    .i-share{
+      font-size: 34px;
+    }
     .i-read{
       background-color: #8BC34A;
       font-size: 32px;
@@ -232,6 +235,7 @@
       height: 54px;
       text-align: center;
       line-height: 54px;
+      font-size: 34px;
     }
     .comment-item{
       border-bottom-width: 1px;

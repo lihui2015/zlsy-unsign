@@ -84,7 +84,6 @@
     .i-dec{
         font-size: 32px;
         color: #787878;
-        lines: 1;
         margin-top: 10px;
     }   
     .loading {
