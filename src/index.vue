@@ -2,7 +2,7 @@
     <div class="box">
         <div class="app-wrapper" v-if="login">
             <router-view class="r-box"></router-view>
-            <tab-bar @tabTo="onTabTo"></tab-bar>
+            <!-- <tab-bar @tabTo="onTabTo"></tab-bar> -->
         </div>
         <div class="login-page" v-else>
             <login-page v-on:login="handleMessage"></login-page>

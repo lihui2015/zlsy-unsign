@@ -1,5 +1,5 @@
 <template>
-    <div class="wrapper">
+    <div :class="['wrapper', isIpx&&isIpx()?'w-ipx':'']">
         <home-header title="阅读活动"></home-header>
         <scroller :class="['main-list']">
             <refresher></refresher>
@@ -16,33 +16,33 @@
                 <block-2 :books="bookList"></block-2>
             </div>
         </scroller>
+        <tab-bar @tabTo="onTabTo" router="home"></tab-bar>
     </div>
 </template>
+
 <style scoped>
     .iconfont {
         font-family:iconfont;
     }
-    .search {
-        flex: 1;
-        height: 60px;
-        font-size: 26px;
-        padding-top: 13px;
-        background-color: #ededed;
-        border-radius: 8px;
+    .wrapper{
+        position: absolute;
+        top:0px;
+        bottom:0px;
+        left:0px;
+        right:0px;
     }
     .main-list{
-        position: fixed;
-        top: 86px;
-        bottom: 90px;
-        left: 0;
-        right: 0;
+        /*margin-top:86px;*/
+        width: 750px;
+        /*margin-bottom: 220px;*/
+        margin-bottom: 100px;
         background-color:#f8f8f8;
         /*margin-top: 167px;*/
         /*margin-bottom: 90px;*/
     }
     .ml-ipx{
-        top: 208px;
-        bottom:140px;
+        margin-top: 208px;
+        margin-bottom:170px;
     }
 
     .cell-button{
@@ -61,9 +61,11 @@
     import bookSearch from '../components/bookSearch.vue';
     import Block1 from '../components/Block1.vue';
     import Block2 from '../components/Block2.vue';
+    import tabBar from '../components/tabBar.vue';
     export default {
         name:'home',
         components: {
+            'tab-bar': tabBar,
             'home-header': Header,
             'refresher': refresher,
             'yx-slider': YXSlider,
@@ -120,6 +122,10 @@
             })
         },
         methods: {
+        onTabTo(_result){
+              let _key = _result.data.key || '';
+              this.$router && this.$router.push('/'+_key)
+          }
         }
     }
 </script>

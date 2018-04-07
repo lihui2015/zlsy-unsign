@@ -1,4 +1,4 @@
-#Thu Apr 05 23:52:43 CST 2018
-base.0=/Users/apple/www/weex/zlsy-ui/platforms/android/app/build/intermediates/transforms/dexMerger/debug/1
+#Sun Apr 08 00:05:08 CST 2018
+base.0=/Users/apple/www/weex/zlsy-ui/platforms/android/app/build/intermediates/transforms/dexMerger/debug/77
 path.0=classes.dex
 renamed.0=classes.dex

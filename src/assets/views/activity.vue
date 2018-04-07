@@ -1,12 +1,13 @@
 <template>
     <div :class="['wrapper', isIpx&&isIpx()?'w-ipx':'']">
-        <header2  title="专题"></header2>
-        <!-- <scroller class="main-list" offset-accuracy="300px" @loadmore="onloadmore" loadmoreoffset="300">
+        <header2  title="活动"></header2>
+        <scroller class="main-list" offset-accuracy="300px" @loadmore="onloadmore" loadmoreoffset="300">
             <refresher></refresher>
             <div v-for="ar in articles" class="cell-button">
-                <block-5 :article="ar" url=""></block-5>
+                <block-3 :article="ar" url=""></block-3>
             </div>
-        </scroller> -->
+        </scroller>
+        <tab-bar @tabTo="onTabTo" router='activity'></tab-bar>
     </div>
 </template>
 <style scoped>
@@ -16,6 +17,11 @@
     }
     .wrapper{
         background-color: #f4f4f4;
+        position: absolute;
+        top:0px;
+        bottom:0px;
+        left:0px;
+        right:0px;
     }
     .w-ipx{
         margin-top: 40px;
@@ -23,10 +29,13 @@
     }
     .main-list{
         margin-top: 86px;
-        margin-bottom: 90px;
+        margin-bottom: 100px;
+        /*margin-bottom: 220px;*/
         background-color: #f4f4f4;
+
     }
     .cell-button{
+        background-color: #f4f4f4;
         padding-bottom: 18px;
     }
 
@@ -36,32 +45,77 @@
     import util from '../util';
     import Header2 from '../components/Header2.vue';
     import refresher from '../components/refresh.vue';
-    import Block5 from '../components/Block5.vue';
+    import Block3 from '../components/Block3.vue';
+    import tabBar from '../components/tabBar.vue';
+
     var navigator = weex.requireModule('navigator')
+    var storage = weex.requireModule('storage')
+    var modal = weex.requireModule('modal')
     export default {
         data () {
             return {
-                topics:[],
-                articles:[]
+                articles:[],
+                token: '',
+                listID: 1,
+                current_page: 1,
+                total: 1,
+                loadinging: false,
+                hasNomare: false
             }
         },
         components: {
+            'tab-bar': tabBar,
             'header2': Header2,
             'refresher': refresher,
-            'block-5': Block5,
+            'block-3': Block3,
         },
         created () {
-            // this.testGET('api/activity/articles', res => {
-            //     let result = res.data.result;
-            //     this.articles = result['articles'];
-            // })
+            storage.getItem('token',event => {
+                this.token = event.data;
+                this.getList()
+            })
         },
         methods: {
-            onloadmore () {
-                setTimeout(() => {
-                    this.articles.push(...this.articles);
-                }, 100)
+            getList(){
+                var _self = this;
+                this.GET('activities/list?page='+this.current_page, this.token, res => {
+                    this.loadinging = false;
+                    if(res.data.code == 200){
+                        let result = res.data.result;
+                        for(let i = 0; i<result.data.length; i++){
+                          this.articles.push(result.data[i])
+                        }
+                        this.total = this.last_page;
+                        if(result.last_page = result.current_page){
+                          //最后一页
+                          _self.hasNomare = true;
+                        }else if(result.last_page > result.current_page){
+                          //非最后一页
+                          this.current_page = result.current_page + 1;
+                        }
+                        
+                    }else{
+                        modal.toast({
+                            message: res.data.code + ":" + _self.token,
+                            duration: 3
+                        })
+                    }
+                })
             },
+            onloadmore () {
+                var _self = this;
+                if(_self.hasNomare){
+                  modal.toast({ message: '没有更多活动', duration: 1 })
+                  return false;
+                }
+                modal.toast({ message: 'Loading', duration: 1 })
+                this.loadinging = true;
+                this.getList();
+            },
+            onTabTo(_result){
+                  let _key = _result.data.key || '';
+                  this.$router && this.$router.push('/'+_key)
+              }
         }
     }
 </script>

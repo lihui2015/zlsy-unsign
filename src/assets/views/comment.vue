@@ -100,7 +100,7 @@ export default {
     .commentBox{
         margin-top: 86px;
         border-bottom-width: 1px;
-        border-bottom-color: #666666;
+        border-bottom-color: #009FF0;
         flex-direction: row;
         align-items: center;
         padding-top:20px;
@@ -124,18 +124,15 @@ export default {
         line-height: 60px;
     }
     .textarea{
+        placeholder-color: #d8d8d8;
         font-size: 34px;
         width: 700px;
-        margin-top: 50px;
-        margin-left: 25px;
+        margin-left: 20px;
+        margin-right: 20px;
         padding-top: 20px;
         padding-bottom: 20px;
-        padding-left: 20px;
-        padding-right: 20px;
         color: #666666;
-        border-width: 2px;
-        border-style: solid;
-        border-color: #41B883;
+        height: 430px;
     }
     
 </style>

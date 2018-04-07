@@ -13,17 +13,19 @@
     .wrapper{
         position: fixed;
         top: 0;
-        left: 0;right: 0;
+        left: 0;
+        right: 0;
         height: 86px;
         padding-top: 0px;
-        background-color: #f8f8f8;
+        background-color: #009FF0;
         opacity: .99;
         z-index: 101;
         flex-wrap: nowrap;
         flex-direction: row;
         justify-content: space-around;
+        align-items: center;
         border-bottom-width: 1px;
-        border-bottom-color: #d9d9d9;
+        border-bottom-color: #009FF0;
     }
     .w-ipx{
         height: 154px;
@@ -33,9 +35,12 @@
         flex: 1;
         font-size: 36px;
         padding-top: 0px;
-        color:#333;
+        color:#ffffff;
         text-align: center;
         line-height: 80px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
     }
     .left,.right{
         height: 80px;
@@ -46,12 +51,18 @@
         padding-top: 0;
         justify-content: center;
     }
+    .right{
+        padding-top: 0;
+        justify-content: center;
+    }
     .leftTxt,.rightTxt{
         font-size: 30px;
         text-align: center;
+        color: #ffffff;
     }
     .leftTxt{
         font-size: 34px;
+        color: #ffffff;
     }
 </style>
 <script>

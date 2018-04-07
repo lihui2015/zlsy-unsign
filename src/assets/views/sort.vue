@@ -12,7 +12,7 @@
             <text class="sub-tlt">{{subTitle}}分类</text>
             <div class="sub-box">
                 <div class="sub-i" v-for="i in subclasses">
-                    <image class="i-img" resize="cover" :src="i.full_image_url" @click="jump('/list/'+i.id)"></image>
+                    <image class="i-img" resize="cover" :src="i.full_image_url" @click="jump('/list/'+i.id+'/'+i.name)"></image>
                     <text class="i-name">{{i.name}}</text>
                 </div>
             </div>
@@ -20,6 +20,7 @@
                 <!--<text class="indicator">Loading ...</text>-->
             <!--</loading>-->
         </scroller>
+        <tab-bar @tabTo="onTabTo" router='sort'></tab-bar>
     </div>
 </template>
 <style scoped>
@@ -32,6 +33,11 @@
         display: flex;
         flex-wrap: nowrap;
         flex-direction: row;
+        position: absolute;
+        top:0px;
+        bottom:0px;
+        left:0px;
+        right:0px;
     }
     .w-ipx{
         margin-top: 40px;
@@ -39,9 +45,9 @@
     }
     .class-list{
         width: 162px;
-        height: 1060px;
         margin-top: 86px;
-        margin-bottom: 90px;
+        margin-bottom: 100px;
+        /*margin-bottom: 220px;*/
         padding-top: 20px;
         border-right-width: 1px;
         border-right-color: #d9d9d9;
@@ -57,9 +63,9 @@
         color:#333;
     }
     .active{
-      color: #A2313E;
+      color: #009FF0;
       border-left-width: 2px;
-      border-left-color: #A2313E;
+      border-left-color: #009FF0;
     }
     .main-list{
         flex: 1;
@@ -67,10 +73,10 @@
         flex-direction: column;
         flex-wrap: nowrap;
         margin-top: 86px;
-        margin-bottom: 90px;
+        margin-bottom: 100px;
+        /*margin-bottom: 220px;*/
         background-color: #fff;
         width: 588px;
-        height: 1060px;
     }
     .ad-img{
         width: 532px;
@@ -117,11 +123,13 @@
     import util from '../util';
     import refresher from '../components/refresh.vue';
     import Header2 from '../components/Header2.vue';
+    import tabBar from '../components/tabBar.vue';
     var navigator = weex.requireModule('navigator')
     var storage = weex.requireModule('storage')
     var modal = weex.requireModule('modal')
     export default {
         components: {
+            'tab-bar': tabBar,
             'refresher': refresher,
             'header2': Header2
         },
@@ -186,7 +194,11 @@
                         })
                     }
                 })
-            }
+            },
+            onTabTo(_result){
+                  let _key = _result.data.key || '';
+                  this.$router && this.$router.push('/'+_key)
+              }
         }
     }
 </script>

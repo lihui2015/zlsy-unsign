@@ -1,6 +1,6 @@
 <template>
     <div :class="['wrapper', isIpx&&isIpx()?'w-ipx':'']">
-        <header2 title="西游记" :leftBtn='leftButton'></header2>
+        <header2 :title="name" :leftBtn='leftButton'></header2>
         <scroller class="main" offset-accuracy="300px" loadmoreoffset="300">
             <refresher></refresher>
             <div class="book-detail">
@@ -64,6 +64,7 @@
                 <!--<text class="indicator">Loading ...</text>-->
             <!--</loading>-->
         </scroller>
+        <tab-bar @tabTo="onTabTo" router='bookDetail'></tab-bar>
     </div>
 </template>
 <style scoped>
@@ -72,6 +73,11 @@
     }
     .wrapper{
         background-color: #f4f4f4;
+        position: absolute;
+        top:0px;
+        bottom:0px;
+        left:0px;
+        right:0px;
     }
     .w-ipx{
         margin-top: 40px;
@@ -82,10 +88,10 @@
         flex-direction: column;
         flex-wrap: nowrap;
         margin-top: 86px;
-        margin-bottom: 90px;
+        margin-bottom: 100px;
+        /*margin-bottom: 220px;*/
         background-color: #fff;
         width: 750px;
-        height: 1070px;
     } 
     .book-detail{
       flex-direction: row;
@@ -137,7 +143,7 @@
       font-size: 34px;
     }
     .i-read{
-      background-color: #8BC34A;
+      background-color: #009FF0;
       font-size: 32px;
       color: #ffffff;
       width: 343px;
@@ -355,11 +361,13 @@
     import util from '../util';
     import refresher from '../components/refresh.vue';
     import Header2 from '../components/Header2.vue';
+    import tabBar from '../components/tabBar.vue';
     var navigator = weex.requireModule('navigator')
     var storage = weex.requireModule('storage')
     var modal = weex.requireModule('modal')
     export default {
         components: {
+            'tab-bar': tabBar,
             'refresher': refresher,
             'header2': Header2
         },
@@ -378,6 +386,7 @@
                 loadinging: false,
                 hasNomare: false,
                 placeholder: 'Loading...',
+                name:'',
                 //pdfUrl:'/json/storage/pdf/xiyou.pdf',
                 workerSrc: 'https://cdn.bootcss.com/pdf.js/1.9.456/pdf.worker.min.js',
                 starbar: 'http://172.18.22.119:8081/web/assets/images/iconpic-star-S-default.png',
@@ -386,6 +395,7 @@
         },
         created () {
             this.bookID = this.$route.params.index;
+            this.name = this.$route.params.name;
             var _self = this;
             storage.getItem('token',event => {
               this.token = event.data;
@@ -473,7 +483,11 @@
             modal.toast({ message: 'Loading', duration: 1 })
             this.loadinging = true;
             this.getComment();
-          }
+          },
+          onTabTo(_result){
+                  let _key = _result.data.key || '';
+                  this.$router && this.$router.push('/'+_key)
+              }
         }
     }
 </script>

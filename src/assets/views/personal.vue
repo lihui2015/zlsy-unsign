@@ -7,6 +7,8 @@
                 <block-5 :article="ar" url=""></block-5>
             </div>
         </scroller> -->
+        <tab-bar @tabTo="onTabTo" router='personal'></tab-bar>
+
     </div>
 </template>
 <style scoped>
@@ -35,20 +37,17 @@
 <script>
     import util from '../util';
     import Header2 from '../components/Header2.vue';
-    import refresher from '../components/refresh.vue';
-    import Block5 from '../components/Block5.vue';
+    import tabBar from '../components/tabBar.vue';
+
     var navigator = weex.requireModule('navigator')
     export default {
         data () {
             return {
-                topics:[],
-                articles:[]
             }
         },
         components: {
-            'header2': Header2,
-            'refresher': refresher,
-            'block-5': Block5,
+            'tab-bar': tabBar,
+            'header2': Header2
         },
         created () {
             // this.testGET('api/activity/articles', res => {
@@ -62,6 +61,10 @@
                     this.articles.push(...this.articles);
                 }, 100)
             },
+            onTabTo(_result){
+                  let _key = _result.data.key || '';
+                  this.$router && this.$router.push('/'+_key)
+              }
         }
     }
 </script>

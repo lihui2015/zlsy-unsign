@@ -1,45 +1,185 @@
 <template>
-  <div>
-    <slider class="slider" interval="3000" auto-play="true">
-      <div class="frame" v-for="img in imageList">
-        <image class="image" resize="cover" :src="img.src"></image>
-      </div>
-    </slider>
-  </div>
+    <div :class="['wrapper', isIpx&&isIpx()?'w-ipx':'']">
+        <header2  :title="name" :leftBtn='leftBtn' :rightBtn="rightBtn"></header2>
+        <scroller class="main-list" offset-accuracy="300px" @loadmore="onloadmore" loadmoreoffset="300">
+            <refresher></refresher>
+            <div class="selected">
+              <div v-for="se in selected" class="selected-item">                  
+                <block-4 :selecte="se"></block-4>
+              </div>
+            </div>
+            <div class="commen">
+              <div v-for="co in commens" class="commen-item cell-button">
+                  <block-5 :commen="co"></block-5>
+              </div>
+            </div>
+        </scroller>
+    </div>
 </template>
+<style scoped>
+
+    .iconfont {
+        font-family:iconfont;
+    }
+    .wrapper{
+        background-color: #f4f4f4;
+        position: absolute;
+        top:0px;
+        bottom:0px;
+        left:0px;
+        right:0px;
+    }
+    .w-ipx{
+        margin-top: 40px;
+        margin-bottom: 50px;
+    }
+    .main-list{
+        margin-top: 86px;
+        background-color: #f4f4f4;
+        margin-bottom: 0px;
+        /*margin-bottom: 120px;*/
+    }
+    .cell-button{
+        padding-bottom: 18px;
+    }
+    .commen-item{
+      background-color: #f4f4f4;
+    }
+    .selected{
+      background-color: #f4f4f4;
+      padding-bottom: 18px;
+    }
+
+</style>
 
 <script>
-export default {
-  name: 'home',
-    data () {
-      return {
-        imageList: [
-          { src: 'https://gd2.alicdn.com/bao/uploaded/i2/T14H1LFwBcXXXXXXXX_!!0-item_pic.jpg'},
-          { src: 'https://gd1.alicdn.com/bao/uploaded/i1/TB1PXJCJFXXXXciXFXXXXXXXXXX_!!0-item_pic.jpg'},
-          { src: 'https://gd3.alicdn.com/bao/uploaded/i3/TB1x6hYLXXXXXazXVXXXXXXXXXX_!!0-item_pic.jpg'}
-        ]
-      }
+    import util from '../util';
+    import Header2 from '../components/Header2.vue';
+    import refresher from '../components/refresh.vue';
+    import Block5 from '../components/Block5.vue';
+    import Block4 from '../components/Block4.vue';
+    import { WxcTag } from 'weex-ui';
+    var navigator = weex.requireModule('navigator')
+    var storage = weex.requireModule('storage')
+    var modal = weex.requireModule('modal')
+    export default {
+        data () {
+          var _self = this;
+            return {
+                name:'',
+                leftBtn:{
+                  name: '<'
+                },
+                rightBtn:{
+                  name: '发帖',
+                  fun: function(){
+                    _self.$router.push('/postCreate/'+_self.listID);
+                  }
+                },
+                articles:[],
+                selected:[],
+                commens:[],
+                token: '',
+                listID: 1,
+                current_page: 1,
+                total: 1,
+                loadinging: false,
+                hasNomare: false
+            }
+        },
+        components: {
+            'header2': Header2,
+            'refresher': refresher,
+            'block-5': Block5,
+            'block-4': Block4,
+            'WxcTag':WxcTag
+        },
+        created () {
+            this.name = this.$route.params.name;
+            this.listID = this.$route.params.index;
+            storage.getItem('token',event => {
+                this.token = event.data;
+                this.getSelectedList();
+                this.getCommenList()
+                // this.getCommen()
+            })
+        },
+        methods: {
+          getSelectedList(){
+              var _self = this;
+              this.GET('posts/chosen/'+_self.listID+'/2', _self.token, res => {
+                if(res.data.code == 200){
+                  let result = res.data.result;
+                  _self.selected = result;
+                }else{
+                  modal.toast({
+                      message: res.data.code + ":" + _self.token,
+                      duration: 3
+                  })
+                }
+              })
+            },
+            getCommen(){
+              var _self = this;
+              this.testGET('api/activity/commen',res =>{
+                if(res.data.code == 200){
+                        let result = res.data.result;
+                        for(let i = 0; i<result.data.length; i++){
+                          this.commens.push(result.data[i])
+                        }
+                        this.total = this.last_page;
+                        if(result.last_page = result.current_page){
+                          //最后一页
+                          _self.hasNomare = true;
+                        }else if(result.last_page > result.current_page){
+                          //非最后一页
+                          this.current_page = result.current_page + 1;
+                        }
+                        
+                    }else{
+                        modal.toast({
+                            message: res.data.code + ":" + _self.token,
+                            duration: 3
+                        })
+                    }
+              })
+            },
+            getCommenList(){
+                var _self = this;
+                this.GET('posts/list/'+_self.listID, this.token, res => {
+                    this.loadinging = false;
+                    if(res.data.code == 200){
+                        let result = res.data.result;
+                        for(let i = 0; i<result.data.length; i++){
+                          this.commens.push(result.data[i])
+                        }
+                        this.total = this.last_page;
+                        if(result.last_page = result.current_page){
+                          //最后一页
+                          _self.hasNomare = true;
+                        }else if(result.last_page > result.current_page){
+                          //非最后一页
+                          this.current_page = result.current_page + 1;
+                        }
+                        
+                    }else{
+                        modal.toast({
+                            message: res.data.code + ":" + _self.token,
+                            duration: 3
+                        })
+                    }
+                })
+            },
+            onloadmore () {
+                // var _self = this;
+                // if(_self.hasNomare){
+                //   modal.toast({ message: '没有更多活动', duration: 1 })
+                //   return false;
+                // }
+                // modal.toast({ message: 'Loading', duration: 1 })
+                // this.loadinging = true;
+                // this.getCommenList();
+            },
+        }
     }
-  }
 </script>
-
-<style scoped>
-  .image {
-    width: 700px;
-    height: 700px;
-  }
-  .slider {
-    margin-top: 25px;
-    margin-left: 25px;
-    width: 700px;
-    height: 700px;
-    border-width: 2px;
-    border-style: solid;
-    border-color: #41B883;
-  }
-  .frame {
-    width: 700px;
-    height: 700px;
-    position: relative;
-  }
-</style>

@@ -1,13 +1,13 @@
 <template>
     <div class="wrapper">
         <div class="tlt-box cell-tag">
-            <text class="tlt" @click="jump('/sort')">图书精选</text>
-            <wxc-icon name="more" @click="jump('/sort')" class="colorWhite"></wxc-icon>
+            <text class="tlt" @click="jump('/list/0/图书精选')">图书精选</text>
+            <wxc-icon name="more" @click="jump('/list/0/图书精选')" class="colorWhite"></wxc-icon>
         </div>
         <div class="box">
             <div class="i-book" v-for="i in books">
-                <image class="bk-img" resize="cover" :src="i.full_cover" @click="jump('/bookDetail/'+i.id)"></image>
-                <text class="bk-tlt" @click="jump('/bookDetail/'+i.id)">{{i.book_name}}</text>
+                <image class="bk-img" resize="cover" :src="i.full_cover" @click="jump('/bookDetail/'+i.id+'/'+i.book_name)"></image>
+                <text class="bk-tlt" @click="jump('/bookDetail/'+i.id+'/'+i.book_name)">{{i.book_name}}</text>
                 <text class="bk-count">{{i.read_count}}人在阅读</text>
             </div>
         </div>
@@ -50,21 +50,24 @@
         padding-left: 10px;
         padding-right: 10px;
         padding-top: 20px;
+        width: 750px;
     }
     .i-book{
-        width: 215px;
+        width: 223px;
         padding-top: 20px;
         padding-bottom: 20px;
+        margin-right: 10px;
+        margin-left: 10px;
     }
     .bk-img{
         height: 291px;
-        width: 215px;
+        width: 223px;
         background-color: #f4f4f4;
     }
     .bk-tlt{
         font-size: 32px;
         color:#333;
-        width: 215px;
+        width: 223px;
         margin-top: 16px;
         overflow: hidden;
         lines:1;

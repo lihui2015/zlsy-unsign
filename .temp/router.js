@@ -14,6 +14,8 @@ import personal from '@/assets/views/personal'
 import book from '@/assets/views/book'
 import comment from '@/assets/views/comment'
 import login from '@/assets/views/login'
+import empty from '@/assets/views/_empty'
+import postCreate from '@/assets/views/postCreate'
 import defaultPage from '@/assets/views/default'
 
 Vue.use(Router)
@@ -36,12 +38,12 @@ module.exports = new Router({
       component: sort
     },
     {
-      path: '/list/:index',
+      path: '/list/:index/:name',
       name: 'list',
       component: list
     },
     {
-      path: '/bookDetail/:index',
+      path: '/bookDetail/:index/:name',
       name: 'bookDetail',
       component: bookDetail
     },
@@ -61,14 +63,19 @@ module.exports = new Router({
       component: activity
     },
     {
-      path: '/online',
+      path: '/online/:index/:name',
       name: 'online',
       component: online
     },
     {
-      path: '/themeDetail',
+      path: '/themeDetail/:index',
       name: 'themeDetail',
       component: themeDetail
+    },
+    {
+      path: '/postCreate/:index',
+      name: 'postCreate',
+      component: postCreate
     },
     {
       path: '/offline',
@@ -89,6 +96,11 @@ module.exports = new Router({
       path: '/login',
       name: 'login',
       component: login
+    },
+    {
+      path: '/_empty',
+      name: 'empty',
+      component: empty
     }
   ]
 })

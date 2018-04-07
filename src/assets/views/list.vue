@@ -1,15 +1,15 @@
 <template>
     <div :class="['wrapper', isIpx&&isIpx()?'w-ipx':'']">
-        <header2 title="文学" :leftBtn='leftButton'></header2>
+        <header2 :title="name" :leftBtn='leftButton'></header2>
         <scroller class="main-list" >
             <refresher></refresher>
             <div class="book-list">
                 <div class="sub-i" v-for="i in booklist">
-                    <image class="i-img" resize="cover" :src="i.full_cover" @click="jump('/bookDetail/'+i.id)"></image>
+                    <image class="i-img" resize="cover" :src="i.full_cover" @click="jump('/bookDetail/'+i.id+'/'+i.book_name)"></image>
                     <div class="text-box">
-                        <text class="i-name" @click="jump('/bookDetail/'+i.id)">{{i.book_name}}</text>
+                        <text class="i-name" @click="jump('/bookDetail/'+i.id+'/'+i.book_name)">{{i.book_name}}</text>
                         <text class="i-author">作者：{{i.author}}</text>
-                        <text class="i-dec" @click="jump('/bookDetail/'+i.id)">{{i.description}}</text>
+                        <text class="i-dec" @click="jump('/bookDetail/'+i.id+'/'+i.book_name)">{{i.description}}</text>
                     </div>
                     
                 </div>
@@ -21,6 +21,7 @@
                 <!--<text class="indicator">Loading ...</text>-->
             <!--</loading>-->
         </scroller>
+        <tab-bar @tabTo="onTabTo" router='list'></tab-bar>
     </div>
 </template>
 <style scoped>
@@ -30,6 +31,11 @@
     }
     .wrapper{
         background-color: #f4f4f4;
+        position: absolute;
+        top:0px;
+        bottom:0px;
+        left:0px;
+        right:0px;
     }
     .w-ipx{
         margin-top: 40px;
@@ -40,10 +46,10 @@
         flex-direction: column;
         flex-wrap: nowrap;
         margin-top: 86px;
-        margin-bottom: 90px;
+        margin-bottom: 100px;
+        /*margin-bottom: 220px;*/
         background-color: #fff;
         width: 750px;
-        height: 1070px;
     }
     .book-list{
         padding-left: 20px;
@@ -113,17 +119,20 @@
     import util from '../util';
     import refresher from '../components/refresh.vue';
     import Header2 from '../components/Header2.vue';
+    import tabBar from '../components/tabBar.vue';
     var navigator = weex.requireModule('navigator')
     var storage = weex.requireModule('storage')
     var modal = weex.requireModule('modal')
     export default {
         components: {
+            'tab-bar': tabBar,
             'refresher': refresher,
             'header2': Header2
         },
         data () {
             return {
                 booklist: [],
+                name: '',
                 token: '',
                 listID: 1,
                 current_page: 1,
@@ -136,7 +145,7 @@
             }
         },
         created () {
-            
+            this.name = this.$route.params.name;
             storage.getItem('token',event => {
                 this.token = event.data;
                 this.listID = this.$route.params.index;
@@ -146,7 +155,13 @@
         methods: {
             getList(){
                 var _self = this;
-                this.GET('books/categories/child/'+this.listID+'?page='+this.current_page, this.token, res => {
+                var url = '';
+                if(this.listID == 0){
+                    url = 'books/chosen/0?page='+this.current_page
+                }else{
+                    url = 'books/categories/child/'+this.listID+'?page='+this.current_page
+                }
+                this.GET(url, this.token, res => {
                     this.loadinging = false;
                     if(res.data.code == 200){
                         let result = res.data.result;
@@ -179,6 +194,10 @@
                 modal.toast({ message: 'Loading', duration: 1 })
                 this.loadinging = true;
                 this.getList();
+              },
+              onTabTo(_result){
+                  let _key = _result.data.key || '';
+                  this.$router && this.$router.push('/'+_key)
               }
         }
     }

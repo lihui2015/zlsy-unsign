@@ -1,45 +1,384 @@
 <template>
-  <div>
-    <slider class="slider" interval="3000" auto-play="true">
-      <div class="frame" v-for="img in imageList">
-        <image class="image" resize="cover" :src="img.src"></image>
+  <div :class="['wrapper', isIpx&&isIpx()?'w-ipx':'']">
+        <header2 :title="postDetail.title" :leftBtn='leftBtn'></header2>
+        <scroller class="main" offset-accuracy="300px" loadmoreoffset="300">
+            <refresher></refresher>
+        <div class="contentBox">
+          <div class="auther-box">
+              <image class="auther-img" resize="cover" :src="readersImg"></image>
+              <div class="auther-detail">
+                  <text class="auther-name">{{readersName}}</text>
+                  <text class="auther-time">{{readersTime}}</text>
+              </div>
+          </div>
+          <div class="tlt-box">
+              <text class="tlt">{{postDetail.title}}</text>
+          </div>
+          <div class="description-box">
+              <text class="description">{{postDetail.content}}</text>
+          </div>
+          
+        </div>
+        <div class="like-box" v-if="ups.length != 0">
+          <div class="like-wrap" v-for="(up,i) in postDetail.ups">
+            <text class="like-name">{{up.name}}</text>
+            <text class="like-name" v-if="i != postDetail.ups.length-1">、</text>
+          </div>
+          <text class="like-text">点赞</text>
+        </div>
+        <div class="comment-box">
+          <div class="comment-item" v-for="item in comments">
+            <image class="comment-author-img" :src="item.reader.full_avatar"></image>
+            <div class="comment-detail">
+              <div class="comment-author">
+                <text class="comment-author-name">{{item.reader.name}}</text>
+                <text class="comment-author-time">{{item.reader.created_at}}</text>
+              </div>
+              <div class="comment-content">
+                <text class="comment-text">{{item.content}}</text>
+              </div>
+            </div>
+          </div>
+        </div>
+        <loading class="loading" @loading="onloading" :display="loadinging ? 'show' : 'hide'">
+              <text class="indicator-text">{{placeholder}}</text>
+              <loading-indicator class="indicator"></loading-indicator>
+            </loading> 
+      </scroller>
+      <div class="comment-form">
+        <!-- <text class="more iconfont">&#xe744;</text> -->
+        <input type="text" placeholder="" class="input" value="" @input='oninput' disabled='false' autofocus='false' @click="focus" ref="input"/>
+        <text class="btn" @click="post()">提交</text>
       </div>
-    </slider>
   </div>
 </template>
 
 <script>
+import Header2 from '../components/Header2.vue';
+var storage = weex.requireModule('storage')
+var modal = weex.requireModule('modal')
 export default {
-  name: 'home',
+  name: 'themeDetail',
+  components: {
+            'header2': Header2
+        },
     data () {
       return {
-        imageList: [
-          { src: 'https://gd2.alicdn.com/bao/uploaded/i2/T14H1LFwBcXXXXXXXX_!!0-item_pic.jpg'},
-          { src: 'https://gd1.alicdn.com/bao/uploaded/i1/TB1PXJCJFXXXXciXFXXXXXXXXXX_!!0-item_pic.jpg'},
-          { src: 'https://gd3.alicdn.com/bao/uploaded/i3/TB1x6hYLXXXXXazXVXXXXXXXXXX_!!0-item_pic.jpg'}
-        ]
+        postDetail:{},
+        postID:'',
+        token: '',
+        leftBtn:{
+          name: '<'
+        },
+        readersImg: '',
+        readersName: '',
+        readersTime: '',
+        current_page: 1,
+        comments: [],
+        total: 1,
+        loadinging: false,
+        hasNomare: false,
+        placeholder: '',
+        ups: [],
+        commentContent: ''
+      }
+    },
+    created(){
+        this.postID = this.$route.params.index;
+        storage.getItem('token',event => {
+          this.token = event.data;
+          //获取帖子详情
+          this.GET('posts/detail/'+this.postID, this.token, res => {
+            if(res.data.code == 200){
+              let result = res.data.result;
+              this.postDetail = result;
+              this.readersImg = result.readers.full_avatar;
+              this.readersName = result.readers.name;
+              this.readersTime = result.readers.created_at;
+              this.ups = result.ups;
+            }else{
+              modal.toast({
+                message: res.data.code + ":" + this.token,
+                duration: 3
+              })
+            }  
+          });
+          //增加阅读次数
+          this.POST('posts/view/'+this.postID, this.token, '', res => {
+            if(res.data.code == 200){
+            }else{
+            }  
+          });
+          //获取评论详情
+          this.getComment();
+        })
+        
+    },
+    methods:{
+      getComment(){
+        var _self = this;
+        this.GET('posts/comments/'+this.postID+'?page='+this.current_page, this.token, res => {
+            this.loadinging = false;
+            if(res.data.code == 200){
+                let result = res.data.result;
+                if(result.data.length == 0){
+                  //_self.placeholder = "暂无评论"
+                }
+                for(let i = 0; i<result.data.length; i++){
+                  this.comments.push(result.data[i])
+                }
+                this.total = this.last_page;
+                if(result.last_page = result.current_page){
+                  //最后一页
+                  _self.hasNomare = true;
+                }else if(result.last_page > result.current_page){
+                  //非最后一页
+                  this.current_page = result.current_page + 1;
+                }
+                
+            }else{
+                modal.toast({
+                    message: res.data.code + ":" + _self.token,
+                    duration: 3
+                })
+            }
+          });
+      },
+      onloading (event) {
+        var _self = this;
+        if(_self.hasNomare){
+          modal.toast({ message: '没有更多评论', duration: 1 })
+          return false;
+        }
+        modal.toast({ message: 'Loading', duration: 1 })
+        this.loadinging = true;
+        this.getComment();
+      },
+      oninput(event){
+        this.commentContent = event.value;
+      },
+      focus(){
+        this.$refs['input'].focus();
+      },
+      post(){
+        var _self = this;
+        if(_self.commentContent.length == 0){
+            return false;
+        }
+        var data = JSON.stringify({"content":_self.commentContent});
+        _self.POST('posts/comment/'+_self.postID, _self.token, data, res => {
+          if (res.data.code == 200){
+            _self.$router.push('/_empty');
+          }else{
+            modal.toast({
+                message: res.data.message,
+                duration: 3
+            })
+          }
+        });
       }
     }
   }
 </script>
 
 <style scoped>
-  .image {
-    width: 700px;
-    height: 700px;
-  }
-  .slider {
-    margin-top: 25px;
-    margin-left: 25px;
-    width: 700px;
-    height: 700px;
-    border-width: 2px;
-    border-style: solid;
-    border-color: #41B883;
-  }
-  .frame {
-    width: 700px;
-    height: 700px;
-    position: relative;
-  }
+  .iconfont {
+        font-family:iconfont;
+    }
+    .wrapper{
+        background-color: #fefefe;
+        position: absolute;
+        top:0px;
+        bottom:0px;
+        left:0px;
+        right:0px;
+    }
+    .w-ipx{
+        margin-top: 40px;
+        margin-bottom: 50px;
+    }
+    .main{
+      margin-bottom: 100px;
+      /*margin-bottom: 220px;*/
+      width: 750px;
+    }
+    .comment-form{
+      position: fixed;
+      left: 0;
+      right:0;
+      /*top: 1115px;*/
+      bottom: 0px;
+      width: 750px;
+      height: 90px;
+      background-color: #f0f0f0;
+      flex-direction: row;
+      align-items: center;
+    }
+    .more{
+      font-size: 50px;
+      color: #888888;
+      padding-left: 20px;
+    }
+    .input{
+      flex: 1;
+      height: 60px;
+      /*width: 400px;*/
+      padding-left:10px;
+      padding-right:10px;
+      padding-top:10px;
+      padding-bottom:10px;
+      font-size: 32px;
+      background-color: #ffffff;
+      margin-left: 20px;
+    }
+    .btn{
+      font-size: 34px;
+      color: #888888;
+      padding-left: 20px;
+      padding-right: 20px;
+      text-align: center;
+    }
+    .contentBox{
+      margin-top:86px;
+      background-color: #ffffff;
+      padding-top: 20px;
+      padding-bottom: 20px;
+      padding-left: 20px;
+      padding-right: 20px;
+      border-bottom-width: 1px;
+      border-color: #f0f0f0;
+    }
+    .auther-box{
+        flex-direction: row;
+        align-items: center;
+        
+    }
+    .auther-img{
+        border-radius: 10px;
+        width: 60px;
+        height: 60px;
+        margin-right: 20px;
+    }
+    .auther-detail{
+        width: 400px;
+    }
+    .auther-name{
+        font-size: 34px;
+        line-height: 34px;
+        color: #666666;
+    }
+    .auther-time{
+        font-size: 30px;
+        line-height: 32px;
+        margin-top: 10px;
+        color: #888888;
+    }
+    .tlt-box{
+        margin-top:20px;
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+    .tlt{
+        font-size: 36px;
+        color: #666666;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        width: 600px;
+    }
+    .description-box{
+        margin-top: 20px;
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+    .description{
+        color: #888888;
+        font-size: 32px;
+        line-height: 48px;
+    }
+    .like-box{
+      margin-left: 20px;
+      margin-right: 20px;
+      border-bottom-width: 1px;
+      border-color: #f0f0f0;
+      flex-direction: row;
+      align-items: center;
+      padding-top: 20px;
+      padding-bottom: 20px;
+      font-size: 32px;
+    }
+    .like-wrap{
+      flex-direction: row;
+      align-items: center;
+    }
+    .like-name{
+      color: #888888;
+      font-size: 32px;
+    }
+    .like-text{
+      color:#009FF0;
+      margin-left: 20px;
+      font-size:32px;
+    }
+    .comment-box{
+      padding-left: 20px;
+      padding-right: 20px;
+    }
+    .comment-item{
+      flex-direction: row;
+      border-bottom-width: 1px;
+      border-color: #f0f0f0;
+      padding-top: 20px;
+      padding-bottom: 20px;
+      padding-left: 10px;
+      padding-right: 10px;
+    }
+    .comment-author-img{
+      width: 70px;
+      height: 70px;
+      border-radius: 10px;
+      margin-right: 30px;
+    }
+    .comment-detail{
+      width: 610px;
+
+    }
+    .comment-author{}
+    .comment-author-name{
+      font-size: 34px;
+      color: #888888;
+    }
+    .comment-author-time{
+      font-size: 30px;
+      color: #acacac;
+      margin-top: 10px;
+    }
+    .comment-content{
+      margin-top: 20px;
+    }
+    .comment-text{
+      font-size: 34px;
+      color: #888888;
+    }
+    .loading {
+      width: 750px;
+      display: -ms-flex;
+      display: -webkit-flex;
+      display: flex;
+      -ms-flex-align: center;
+      -webkit-align-items: center;
+      -webkit-box-align: center;
+      align-items: center;
+    }
+    .indicator-text {
+      color: #888888;
+      font-size: 42px;
+      text-align: center;
+    }
+    .indicator {
+      margin-top: 16px;
+      height: 40px;
+      width: 40px;
+      color: blue;
+    }
 </style>

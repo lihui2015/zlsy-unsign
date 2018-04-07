@@ -1,60 +1,42 @@
 <template>
-    <div class="wrapper">
-        <scroller class="tp-box" scroll-direction="horizontal" show-scrollbar=false>
-            <div class="i-tp" v-for="i in topics">
-                <image class="tp-img" resize="cover" :src="i.img"></image>
-                <text class="tp-name">{{i.name}}</text>
-            </div>
-        </scroller>
+    <div class="selected-cell"  @click="jump('/themeDetail/'+selecte.id)">
+        <wxc-tag type="solid" tag-color="#009FF0" font-color="#ffffff" value="置顶" class="tag"></wxc-tag>
+        <text class="title">{{selecte.title}}</text>
     </div>
 </template>
 <style scoped>
     .iconfont {
         font-family:iconfont;
     }
-    .wrapper{
+    .selected-cell{
         background-color: #fff;
-    }
-
-    .tp-box{
-        height: 200px;
-        padding: 20px;
+        padding-top: 20px;
+        padding-bottom: 20px;
+        padding-left: 20px;
+        padding-right: 20px;
         flex-direction: row;
+        align-items: center;
+        border-bottom-width: 1px;
+        border-color: #cccccc;
     }
-    .i-tp{
-        width: 275px;
-        height: 150px;
-        margin: 10px;
-    }
-    .tp-img{
-        position: absolute;
-        top:0;
-        left: 0;
-        width: 275px;
-        height: 150px;
-        border-radius: 10px;
-        background-color: #f4f4f4;
-    }
-
-    .tp-name{
-        font-size: 28px;
-        margin-left: 20px;
+    .tag{
+        font-size: 32px;
         margin-right: 20px;
-        margin-top: 57px;
-        overflow: hidden;
-        text-align: center;
-        color:#fff;
-        lines:1;
-        white-space: nowrap;
-        text-overflow: ellipsis;
+        margin-left: 20px;
+    }
+    .title{
+        font-size: 34px;
+        color: #000000;
     }
 </style>
 <script>
+    var navigator = weex.requireModule('navigator')
+    import { WxcTag } from 'weex-ui';
+    import util from '../util';
     export default {
-        props:["topics"],
-        data () {
-            return {
-            }
+        props:["selecte"],
+        components: { WxcTag },
+        created(){
         },
         methods: {
         }

@@ -32,6 +32,12 @@ export default {
           })
         }  
       });
+      //增加阅读次数
+      this.POST('books/count/'+this.bookID, this.token, '', res => {
+        if(res.data.code == 200){
+        }else{
+        }  
+      });
     })
     
   }

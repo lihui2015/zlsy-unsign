@@ -1,0 +1,57 @@
+{
+    "code": 200,
+    "result": {
+        "current_page": 1,
+        "data": [
+            {
+                "id": 3,
+                "post_id": 3,
+                "reader_id": 2,
+                "title": "噢噢噢噢",
+                "content": "隐隐约约一",
+                "status": 1,
+                "is_chosen": 0,
+                "parent_id": 0,
+                "score": 4,
+                "created_at": "2018-04-02 14:23:34",
+                "updated_at": "2018-04-02 14:23:34",
+                "deleted_at": null,
+                "reader": {
+                    "id": 2,
+                    "name": "test",
+                    "unit": null,
+                    "student_id": null,
+                    "borrow_id": null,
+                    "nickname": "test",
+                    "gender": 1,
+                    "description": null,
+                    "email": "test@test.com",
+                    "phone": "17327486666",
+                    "avatar": "/images/default.png",
+                    "is_public": 0,
+                    "is_private": 0,
+                    "wechat_id": null,
+                    "wechat_name": null,
+                    "qq_id": null,
+                    "qq_name": null,
+                    "status": 1,
+                    "expire_time": "2018-04-03 15:23:22",
+                    "created_at": "2018-03-30 03:23:22",
+                    "updated_at": "2018-04-02 05:37:24",
+                    "deleted_at": null,
+                    "full_avatar": "http://www.imbawin.com/storage/avatar/2018/04/02/tdsPjcjh5HpziRd23S5A5P8sSKjkzNbCu5CAg1Py.jpg"
+                }
+            }
+        ],
+        "first_page_url": "http://herebook.test/app/posts/comments/3?page=1",
+        "from": 1,
+        "last_page": 1,
+        "last_page_url": "http://herebook.test/app/posts/comments/3?page=1",
+        "next_page_url": null,
+        "path": "http://herebook.test/app/posts/comments/3",
+        "per_page": 10,
+        "prev_page_url": null,
+        "to": 2,
+        "total": 2
+    }
+}

@@ -1,14 +1,17 @@
 <template>
-    <div class="wrapper">
-        <text class="tlt">猜你喜欢</text>
-        <div class="gb-box">
-            <div class="i-gd" v-for="i in goods"  @click="jumpWeb(i.url)">
-                <image class="gd-img" resize="cover" :src="i.img"></image>
-                <text class="gd-info">{{i.info}}</text>
-                <text class="gd-tlt">{{i.tlt}}</text>
-                <text class="gd-price">¥{{i.price}}</text>
-            </div>
+    <div class="wrapper"  @click="jump('/online/'+article.id+'/' + article.title)">
+        <div class="auther-box">
+            <image class="auther-img" resize="cover" :src="article.auther.full_avatar"></image>
+            <text class="auther-name">{{article.auther.name}}</text>
         </div>
+        <div class="img-box">
+            <image class="main-img" resize="cover" :src="article.full_thumb"></image>
+        </div>
+        <div class="tlt-box">
+            <text class="tlt">{{article.title}}</text>
+        </div>
+        <text class="info">{{article.activity_start_time}}开始</text>
+        <text class="info">{{article.address}}</text>
     </div>
 </template>
 <style scoped>
@@ -16,85 +19,77 @@
         font-family:iconfont;
     }
     .wrapper{
-        background-color: #fff;
-        padding-bottom: 10px;
-        padding-top: 26px;
-        width: 750px;
-    }
-    .tlt{
-        text-align: center;
-        color:#333;
-        width: 750px;
-        padding: 10px;
-        font-size: 30px;
-    }
-    .gb-box{
-        padding: 16px;
-        display: flex;
-        flex-direction: row;
-        flex-wrap: wrap;
-        justify-content: space-between;
-    }
-    .i-gd{
-        width: 350px;
-        height: 510px;
-        margin-bottom: 20px;
-    }
-    .gd-img{
-        width: 350px;
-        height: 350px;
-        background-color: #f4f4f4;
-    }
-
-    .gd-tlt{
-        font-size: 28px;
-        color:#333;
-        width: 350px;
-        margin-top: 15px;
-        overflow: hidden;
-        lines:1;
-        white-space: nowrap;
-        text-overflow: ellipsis;
-    }
-    .gd-info{
-        display: block;
-        font-size: 28px;
-        width: 350px;
-        height: 65px;
-        padding-left: 10px;
-        padding-right: 10px;
+        background-color: #ffffff;
         padding-top: 15px;
         padding-bottom: 15px;
-        color:#9F8A60;
-        background-color: #F1ECE2;
+    }
+    .auther-box{
+        height: 75px;
+        padding-top: 10px;
+        padding-left: 25px;
+        display: flex;
+        flex-wrap: nowrap;
+        flex-direction: row;
+    }
+    .auther-img{
+        height: 58px;
+        width: 58px;
+        border-radius: 58px;
+    }
+    .auther-name{
+        flex:1;
+        font-size: 30px;
+        height: 58px;
+        padding-left: 20px;
+        padding-top: 10px;
+    }
+    .img-box{
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+    }
+    .main-img{
+        flex: 1;
+        height: 380px;
+    }
+    .tlt-box{
+        height: 80px;
+        padding: 20px 20px 10px;
+        display: flex;
+        flex-wrap: nowrap;
+        flex-direction: row;
+    }
+    .tlt{
+        font-size: 34px;
+        flex: 1;
         overflow: hidden;
         lines:1;
-        white-space: nowrap;
         text-overflow: ellipsis;
     }
-    .gd-price{
-        font-size: 28px;
-        width: 350px;
-        margin-top: 10px;
-        color:#b4282d;
+    .info{
+        font-size: 32px;
+        padding-left: 20px;
+        padding-right: 20px;
+        margin-top:10px;
         overflow: hidden;
         lines:1;
-        white-space: nowrap;
         text-overflow: ellipsis;
+        color:#666;
     }
 </style>
 <script>
     var navigator = weex.requireModule('navigator')
+    
     import util from '../util';
     export default {
-        props:["newGoods","hotGoods","head","hasMore","goods"],
+        props:["article","url"],
         data () {
             return {
             }
         },
         methods: {
             jumpWeb (_url) {
-                if(!_url) _url = 'http%3A%2F%2Fm.you.163.com%2Fitem%2Fdetail%3Fid%3D1009024%23%2F%3F_k%3Dfakdg7';
+                if(!_url) _url = 'http://m.you.163.com/topic/v1/pub/XLymbwEO0J.html';
                 const url = this.$getConfig().bundleUrl;
                 navigator.push({
                     url: util.setBundleUrl(url, 'page/webview.js?weburl='+_url) ,

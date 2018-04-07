@@ -21,6 +21,8 @@
 <style scoped>
     .iconfont {
         font-family:iconfont;
+        font-size: 60px;
+        text-align: center;
     }
     .cell-tag{
         background-color:#009FF0;
