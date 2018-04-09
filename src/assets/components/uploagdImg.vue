@@ -1,10 +1,15 @@
 <template>
-<image @click="uploadImage" :src="uploadFileTipImage" :style="uploadNativeStyle"></image>
+<image @click="uploadTest" :src="uploadFileTipImage" :style="uploadNativeStyle"></image>
    </template>
 
     <script>
-import GlobalApiConfig from "../api/config/GlobalAipConfig";
-import weexUtils from "../utils/WeexUtils";
+// import GlobalApiConfig from "../api/config/GlobalAipConfig";
+// import weexUtils from "../utils/WeexUtils";
+
+import Nat from 'natjs'
+
+
+const modal = weex.requireModule('modal');
 
 const actionSheet = weex.requireModule('actionSheet');
 const photo = weex.requireModule('photo');
@@ -13,15 +18,17 @@ const nat_camera = weex.requireModule('nat_camera');
 const nat_network_transfer = weex.requireModule('nat_network_transfer');
 
 //图片服务器地址
-const PIC_SERVICE_URL = GlobalApiConfig.PIC_SERVICE_URL;
-const PIC_SERVICE_DOMAIN = GlobalApiConfig.PIC_SERVICE_DOMAIN;
+// const PIC_SERVICE_URL = GlobalApiConfig.PIC_SERVICE_URL;
+// const PIC_SERVICE_DOMAIN = GlobalApiConfig.PIC_SERVICE_DOMAIN;
+const PIC_SERVICE_URL = 'http://www.domain.com/app/file/upload';
+const PIC_SERVICE_DOMAIN = 'http://www.imbawin.com/';
 
 export default {
     props: {
         //上传的提示图片
         uploadFileTipImage: {
             type: String,
-            default: ""
+            default: "http://www.imbawin.com/images/default.png"
         },
         //上传区域宽度
         width: {
@@ -58,10 +65,13 @@ export default {
             default: 0
         },
         //裁图比例
-        proportion: {
-            type: Array,
-            default: [1, 1]
+        proportion:function(){
+            return [1,1];
         },
+        // proportion: {
+        //     type: Array,
+        //     default: [1, 1]
+        // },
         crop: {
             default: true
         },
@@ -81,6 +91,15 @@ export default {
         }
     },
     methods: {
+        uploadTest(){
+            console.log(Nat.image.pick);
+            Nat.image.pick({
+                limit: 3,
+                showCamera: false
+            }, (err, ret) => {
+                console.log(ret.paths)
+            })
+        },
         uploadByNative(filePath) {
             const self = this;
             console.log("上传filePath：" + filePath);
@@ -136,6 +155,7 @@ export default {
             items[2] = {'type': 1, 'message': '取消'};
 
             const self = this;
+            console.log(actionSheet);
             actionSheet.create({
                 'items': items,
                 'title': '提示',
@@ -160,12 +180,20 @@ export default {
                 photo.capture(flag, this.crop, {aspectX: aspectX, aspectY: aspectY}, (data) => {
                     console.log("local path-> " + data);
                     if (data === undefined || data === null) {
-                        weexUtils.toast("图片选择出现异常!");
+                        modal.toast({
+                            message: '图片选择出现异常!',
+                            duration: 3
+                        })
+                        //weexUtils.toast("图片选择出现异常!");
                         return;
                     }
                     self.uploadByNative(data);
                 }, (message) => {
-                    weexUtils.toast(message);
+                    modal.toast({
+                        message: message,
+                        duration: 3
+                    })
+                    //weexUtils.toast(message);
                 });
             });
         },

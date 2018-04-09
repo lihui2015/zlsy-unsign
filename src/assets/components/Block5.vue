@@ -13,6 +13,9 @@
         <div class="description-box" @click="jump('/themeDetail/'+commen.id)">
             <text class="description">{{commen.description}}</text>
         </div>
+        <div class="img-box">
+            <image class="main-img" v-for="img in commen.html_image" :src="img" resize="cover"></image>
+        </div>
         <div class="wedge-box">
             <div class="wedge-commen wedge" @click="jump('/themeDetail/'+commen.id)">
                 <text class="iconfont">&#xe744;</text>
@@ -90,6 +93,18 @@
         color: #888888;
         font-size: 32px;
         line-height: 48px;
+    }
+    .img-box{
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        margin-top: 20px;
+        margin-bottom: 10px;
+    }
+    .main-img{
+        width: 200px;
+        height: 200px;
+        margin-right: 10px;
     }
     .wedge-box{
         flex-direction: row;

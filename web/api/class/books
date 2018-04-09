@@ -1,0 +1,27 @@
+{
+  "code":"200",
+  "result":{
+    "books":[
+      "http://www.imbawin.com/images/1.jpg",
+      "http://www.imbawin.com/images/2.jpg",
+      "http://www.imbawin.com/images/3.jpg", 
+      "http://www.imbawin.com/images/4.jpg", 
+      "http://www.imbawin.com/images/5.jpg",
+      "http://www.imbawin.com/images/6.jpg",
+      "http://www.imbawin.com/images/7.jpg",
+      "http://www.imbawin.com/images/8.jpg", 
+      "http://www.imbawin.com/images/9.jpg", 
+      "http://www.imbawin.com/images/10.jpg",
+      "http://www.imbawin.com/storage/cover/2018/04/04/ywc3ivOhUMAZ7OAnLMXBuzABywFICmjg0ueBfoqI.png", 
+      "http://www.imbawin.com/storage/cover/2018/04/02/BkhcWr8dxRPDYELRZx6iwLtkwON97LzXRmiMGJOy.jpg", 
+      "http://www.imbawin.com/storage/posts/2018/04/07/Nhryh0AN7OSEm5OBATvpIRNVvzr0U8LVCTrRozUj.jpg",
+      "http://www.imbawin.com/storage/posts/2018/04/07/r6em1OwHFiL3a0KeTMyDXivCy4SebPclGihBlZHy.jpg",
+      "http://www.imbawin.com/storage/cover/2018/04/02/5yTvPnUPKgwDB2l0YT2sMCQmLSu3BAsACSp743iY.jpg",
+      "http://www.imbawin.com/storage/cover/2018/04/02/5yTvPnUPKgwDB2l0YT2sMCQmLSu3BAsACSp743iY.jpg",
+      "http://www.imbawin.com/storage/cover/2018/04/02/SLXgffHHP65sK8Ab8HJBHFhImfZyFowv58k7fX9V.jpg",
+      "http://www.imbawin.com/storage/cover/2018/04/02/TUR5dKHuWkMsMbxvF3pvSIq0r4Sh1Lf6EbryvSAf.jpg", 
+      "http://www.imbawin.com/storage/cover/2018/04/02/n8KPxnEEu5U80qRseFGOsG7UuoHdEycbAqVrsonP.jpg",
+      "http://www.imbawin.com/storage/cover/2018/04/04/ywc3ivOhUMAZ7OAnLMXBuzABywFICmjg0ueBfoqI.png"
+      ]
+  }
+}

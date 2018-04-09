@@ -19,14 +19,26 @@
                   <text ref='collect' :class="['i-collect', collectTag == 1 ? 'collected' : '']" @click="collect(collectTag)">&#xe744; 收藏</text>
                   <text class="i-share">&#xe744; 分享</text>
                 </div>
-                <text class="i-read" @click="jump('/book/'+bookID)">立即阅读</text>
+                <text class="i-read" @click="jump('/book-scroller/'+bookID)">立即阅读</text>
               </div>
             </div>
             <div class="relative-activity section-box">
               <text class="activity-tag section">&#xe744; 相关活动</text>
               <scroller class="activity-box" scroll-direction="horizontal" show-scrollbar=false>
                 <div class="activity-item" v-for="act in detail.activity">
-                  <image class="act-img" :src="act.image"></image>
+                  <image class="act-img" :src="act.full_thumb"></image>
+                  <text class="act-title">{{act.title}}</text>
+                </div>
+                <div class="activity-item" v-for="act in detail.activity">
+                  <image class="act-img" :src="act.full_thumb"></image>
+                  <text class="act-title">{{act.title}}</text>
+                </div>
+                <div class="activity-item" v-for="act in detail.activity">
+                  <image class="act-img" :src="act.full_thumb"></image>
+                  <text class="act-title">{{act.title}}</text>
+                </div>
+                <div class="activity-item" v-for="act in detail.activity">
+                  <image class="act-img" :src="act.full_thumb"></image>
                   <text class="act-title">{{act.title}}</text>
                 </div>
               </scroller>
@@ -56,7 +68,7 @@
                 </div>
               </div>
             </div>
-            <loading class="loading" @loading="onloading" :display="loadinging ? 'show' : 'hide'">
+            <loading @loading="onloading" :class="['loading',loadinging ? 'show' : 'hide']">
               <text class="indicator-text">{{placeholder}}</text>
               <loading-indicator class="indicator"></loading-indicator>
             </loading> 
@@ -335,26 +347,32 @@
       width: 160px;
     }
     .loading {
-    width: 750;
-    display: -ms-flex;
-    display: -webkit-flex;
-    display: flex;
-    -ms-flex-align: center;
-    -webkit-align-items: center;
-    -webkit-box-align: center;
-    align-items: center;
-  }
-  .indicator-text {
-    color: #888888;
-    font-size: 42px;
-    text-align: center;
-  }
-  .indicator {
-    margin-top: 16px;
-    height: 40px;
-    width: 40px;
-    color: blue;
-  }
+      width: 750;
+      display: -ms-flex;
+      display: -webkit-flex;
+      display: flex;
+      -ms-flex-align: center;
+      -webkit-align-items: center;
+      -webkit-box-align: center;
+      align-items: center;
+    }
+    .indicator-text {
+      color: #888888;
+      font-size: 42px;
+      text-align: center;
+    }
+    .indicator {
+      margin-top: 16px;
+      height: 40px;
+      width: 40px;
+      color: blue;
+    }
+    .show{
+        opacity: 1;
+    }
+    .hide{
+        opacity: 0;
+    }
 </style>
 
 <script>
@@ -389,8 +407,8 @@
                 name:'',
                 //pdfUrl:'/json/storage/pdf/xiyou.pdf',
                 workerSrc: 'https://cdn.bootcss.com/pdf.js/1.9.456/pdf.worker.min.js',
-                starbar: 'http://172.18.22.119:8081/web/assets/images/iconpic-star-S-default.png',
-                star: 'http://172.18.22.119:8081/web/assets/images/iconpic-star-S.png'
+                starbar: 'http://www.imbawin.com/images/iconpic-star-S-default.png',
+                star: 'http://www.imbawin.com/images/iconpic-star-S.png'
             }
         },
         created () {

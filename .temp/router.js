@@ -12,6 +12,8 @@ import offline from '@/assets/views/offline'
 import signUp from '@/assets/views/signUp'
 import personal from '@/assets/views/personal'
 import book from '@/assets/views/book'
+import bookImage from '@/assets/views/book-image'
+import bookScroller from '@/assets/views/book-scroller'
 import comment from '@/assets/views/comment'
 import login from '@/assets/views/login'
 import empty from '@/assets/views/_empty'
@@ -51,6 +53,16 @@ module.exports = new Router({
       path: '/book/:index',
       name: 'book',
       component: book
+    },
+    {
+      path: '/book-image/:index',
+      name: 'bookImage',
+      component: bookImage
+    },
+    {
+      path: '/book-scroller/:index',
+      name: 'bookScroller',
+      component: bookScroller
     },
     {
       path: '/comment/:index',

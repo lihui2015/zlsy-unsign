@@ -1,10 +1,10 @@
 <template>
     <div :class="['wrapper', isIpx&&isIpx()?'w-ipx':'']">
         <header2  :title="name" :leftBtn='leftBtn' :rightBtn="rightBtn"></header2>
-        <scroller class="main-list" offset-accuracy="300px" @loadmore="onloadmore" loadmoreoffset="300">
+        <scroller class="main-list" offset-accuracy="300px">
             <refresher></refresher>
             <div class="selected">
-              <div v-for="se in selected" class="selected-item">                  
+              <div v-for="se in selected" class="selected-item">   
                 <block-4 :selecte="se"></block-4>
               </div>
             </div>
@@ -13,6 +13,9 @@
                   <block-5 :commen="co"></block-5>
               </div>
             </div>
+            <loading @loading="onloading" :class="['loading',loadinging ? 'show' : 'hide']">
+               <loading-indicator class="indicator"></loading-indicator>
+             </loading> !
         </scroller>
     </div>
 </template>
@@ -49,7 +52,12 @@
       background-color: #f4f4f4;
       padding-bottom: 18px;
     }
-
+    .show{
+        opacity: 1;
+    }
+    .hide{
+        opacity: 0;
+    }
 </style>
 
 <script>
@@ -146,7 +154,7 @@
             },
             getCommenList(){
                 var _self = this;
-                this.GET('posts/list/'+_self.listID, this.token, res => {
+                this.GET('posts/list/'+_self.listID+'/?page='+this.current_page, this.token, res => {
                     this.loadinging = false;
                     if(res.data.code == 200){
                         let result = res.data.result;
@@ -154,7 +162,7 @@
                           this.commens.push(result.data[i])
                         }
                         this.total = this.last_page;
-                        if(result.last_page = result.current_page){
+                        if(result.last_page == result.current_page){
                           //最后一页
                           _self.hasNomare = true;
                         }else if(result.last_page > result.current_page){
@@ -170,15 +178,15 @@
                     }
                 })
             },
-            onloadmore () {
-                // var _self = this;
-                // if(_self.hasNomare){
-                //   modal.toast({ message: '没有更多活动', duration: 1 })
-                //   return false;
-                // }
-                // modal.toast({ message: 'Loading', duration: 1 })
-                // this.loadinging = true;
-                // this.getCommenList();
+            onloading () {
+                var _self = this;
+                if(_self.hasNomare){
+                  modal.toast({ message: '没有更多帖子', duration: 1 })
+                  return false;
+                }
+                modal.toast({ message: 'Loading', duration: 1 })
+                this.loadinging = true;
+                this.getCommenList();
             },
         }
     }

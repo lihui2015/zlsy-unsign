@@ -1,11 +1,14 @@
 <template>
     <div :class="['wrapper', isIpx&&isIpx()?'w-ipx':'']">
         <header2  title="活动"></header2>
-        <scroller class="main-list" offset-accuracy="300px" @loadmore="onloadmore" loadmoreoffset="300">
+        <scroller class="main-list" offset-accuracy="300px">
             <refresher></refresher>
             <div v-for="ar in articles" class="cell-button">
                 <block-3 :article="ar" url=""></block-3>
             </div>
+            <loading @loading="onloading" :class="['loading',loadinging ? 'show' : 'hide']">
+               <loading-indicator class="indicator"></loading-indicator>
+             </loading> !
         </scroller>
         <tab-bar @tabTo="onTabTo" router='activity'></tab-bar>
     </div>
@@ -38,7 +41,12 @@
         background-color: #f4f4f4;
         padding-bottom: 18px;
     }
-
+    .show{
+        opacity: 1;
+    }
+    .hide{
+        opacity: 0;
+    }
 </style>
 
 <script>
@@ -102,7 +110,7 @@
                     }
                 })
             },
-            onloadmore () {
+            onloading () {
                 var _self = this;
                 if(_self.hasNomare){
                   modal.toast({ message: '没有更多活动', duration: 1 })

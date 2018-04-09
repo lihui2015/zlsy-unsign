@@ -17,6 +17,9 @@
           <div class="description-box">
               <text class="description">{{postDetail.content}}</text>
           </div>
+          <div class="image-box">
+            <image v-for="(img,i) in postDetail.html_image" :src="img" resize="cover" class="main-img"></image>
+          </div>
           
         </div>
         <div class="like-box" v-if="ups.length != 0">
@@ -40,10 +43,10 @@
             </div>
           </div>
         </div>
-        <loading class="loading" @loading="onloading" :display="loadinging ? 'show' : 'hide'">
-              <text class="indicator-text">{{placeholder}}</text>
-              <loading-indicator class="indicator"></loading-indicator>
-            </loading> 
+        <loading @loading="onloading" :class="['loading',loadinging ? 'show' : 'hide']">
+          <text class="indicator-text">{{placeholder}}</text>
+          <loading-indicator class="indicator"></loading-indicator>
+        </loading> 
       </scroller>
       <div class="comment-form">
         <!-- <text class="more iconfont">&#xe744;</text> -->
@@ -128,7 +131,7 @@ export default {
                   this.comments.push(result.data[i])
                 }
                 this.total = this.last_page;
-                if(result.last_page = result.current_page){
+                if(result.last_page == result.current_page){
                   //最后一页
                   _self.hasNomare = true;
                 }else if(result.last_page > result.current_page){
@@ -296,6 +299,16 @@ export default {
         font-size: 32px;
         line-height: 48px;
     }
+    .img-box{
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+    }
+    .main-img{
+        flex: 1;
+        height: 380px;
+        margin-top: 20px;
+    }
     .like-box{
       margin-left: 20px;
       margin-right: 20px;
@@ -380,5 +393,11 @@ export default {
       height: 40px;
       width: 40px;
       color: blue;
+    }
+    .show{
+        opacity: 1;
+    }
+    .hide{
+        opacity: 0;
     }
 </style>

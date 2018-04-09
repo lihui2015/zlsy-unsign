@@ -14,10 +14,10 @@
                     
                 </div>
             </div>
-            <!--<loading class="loading" @loading="onloading" :display="loadinging ? 'show' : 'hide'">
+            <loading :class="['loading',loadinging ? 'show' : 'hide']" @loading="onloading">
               <loading-indicator class="indicator"></loading-indicator>
             </loading> 
-            <loading class="loading" display="hide">-->
+            <!--<loading class="loading" display="hide">-->
                 <!--<text class="indicator">Loading ...</text>-->
             <!--</loading>-->
         </scroller>
@@ -101,18 +101,24 @@
         -webkit-align-items: center;
         -webkit-box-align: center;
         align-items: center;
-      }
-      .indicator-text {
+    }
+    .indicator-text {
         color: #888888;
         font-size: 42px;
         text-align: center;
-      }
-      .indicator {
+    }
+    .indicator {
         margin-top: 16px;
         height: 40px;
         width: 40px;
         color: blue;
-      }
+    }
+    .show{
+        opacity: 1;
+    }
+    .hide{
+        opacity: 0;
+    }
 </style>
 
 <script>
@@ -169,7 +175,7 @@
                           this.booklist.push(result.data[i])
                         }
                         this.total = this.last_page;
-                        if(result.last_page = result.current_page){
+                        if(result.last_page == result.current_page){
                           //最后一页
                           _self.hasNomare = true;
                         }else if(result.last_page > result.current_page){

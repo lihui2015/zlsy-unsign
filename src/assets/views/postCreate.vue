@@ -8,17 +8,20 @@
     <div class="textBox">
       <textarea class="textarea" @input='oninput' placeholder="这一刻的想法..." disabled='false' autofocus='false'></textarea>
     </div>
+    <uploadImg></uploadImg>
 </div>
 </template>
 
 <script>
 import util from '../util';
 import Header2 from '../components/Header2.vue';
+import uploadImg from '../components/uploagdImg.vue';
 var modal = weex.requireModule('modal');
 var storage = weex.requireModule('storage');
 export default {
   name: 'postCreate',
   components: {
+    'uploadImg': uploadImg,    
     'header2': Header2
   },
   data(){

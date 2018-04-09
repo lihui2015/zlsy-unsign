@@ -25,11 +25,11 @@
         font-family:iconfont;
     }
     .wrapper{
-        position: absolute;
+        /*position: absolute;
         top:0px;
         bottom:0px;
         left:0px;
-        right:0px;
+        right:0px;*/
     }
     .main-list{
         /*margin-top:86px;*/
