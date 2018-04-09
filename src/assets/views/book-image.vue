@@ -4,7 +4,7 @@
       
       <div :class="['main-list']" @click="toggleClass()">
           <div class="cell-button">
-                <bookSlider :imageList="books" @pageTurn="onchange" ></bookSlider>
+                <bookSlider :imageList="books" @pageTurn="onchange" :isInfinit="isInfinit"  @nextPage="next" @prevPage="prev" :lefthasMore="lefthasMore" :righthasMore="righthasMore"></bookSlider>
             </div>
       </div>
   </div>
@@ -28,6 +28,7 @@
 <script>
 import Header2 from '../components/Header2.vue';
 import bookSlider from '../components/bookSlider.vue';
+var modal = weex.requireModule('modal')
     export default {
         name: 'bookImage',
         components:{
@@ -45,8 +46,13 @@ import bookSlider from '../components/bookSlider.vue';
               showIndex: 0,
               bookList:[],
               slideNumber: 5,
-              totalPage: 10,
-              currentPage:0,
+              startPage:1,
+              totalPage:4,
+              pageSize: 5,
+              lefthasMore: true,
+              righthasMore: false,
+              isInfinit: "false",
+              currentIndex:0
               
             }
         },
@@ -55,7 +61,7 @@ import bookSlider from '../components/bookSlider.vue';
           this.testGET('api/class/books', res => {
                 let result = res.data.result;
                 this.bookList = result['books'];
-                _self.getImage(0);
+                this.books = result['books'].slice(0,_self.pageSize);
           })
           
           //this.getBooks('books');
@@ -94,16 +100,57 @@ import bookSlider from '../components/bookSlider.vue';
               })
             },
             onchange (event) {
-              let currentIndex = event.index;
+              this.currentIndex = event.index;
               let _self = this;
-              console.log(currentIndex);
-              if(currentIndex == _self.slideNumber -1){
-                _self.getImage(_self.slideNumber*_self.currentPage)
+              console.log("index->"+this.currentIndex);
+              console.log("dir->"+event.dir);
+              // if(this.currentIndex == 4 && event.dir == "left"){
+              //   if(this.lefthasMore){
+              //     this.next()
+              //   }
+              // }
+   
+              // if(this.currentIndex == 0 && event.dir == "right"){
+              //   if(this.righthasMore){
+              //     this.prev();
+              //   }
+              // }
+            },
+            next(){
+              if(this.startPage == this.totalPage){
+                this.lefthasMore = false;
+                return false;
               }
-              if(currentIndex == _self.slideNumber+1){
-                _self.books = _self.books.slice(0,5)
-                //_self.books.splice(0,_self.slideNumber);
+              
+              this.righthasMore = true;
+
+              var start = this.pageSize * this.startPage;
+              var end = start + this.pageSize;
+              this.books = this.bookList.slice(start,end)
+              this.startPage = this.startPage + 1;
+
+              if(this.startPage == this.totalPage){
+                this.lefthasMore = false;
               }
+              //console.log("next->"+this.startPage)
+            },
+            prev(){
+              if(this.startPage == 1){
+                this.righthasMore = false;
+                return false;
+              }
+
+              this.lefthasMore = true;
+
+              this.startPage = this.startPage - 1;
+              var end = this.pageSize * this.startPage;
+              var start = end - this.pageSize;
+              this.books = this.bookList.slice(start,end)
+
+              if(this.startPage == 1){
+                this.righthasMore = false;
+              }
+              //console.log("prev->"+this.startPage)
             },
             toggleClass(){
               this.isShow = this.isShow ? false : true;

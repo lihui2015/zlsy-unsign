@@ -1,12 +1,11 @@
 <template>
     <div :class="['wrapper', isIpx&&isIpx()?'w-ipx':'']">
         <header2  title="专题"></header2>
-        <scroller class="main-list" offset-accuracy="300px">
-            <refresher></refresher>
+        <div class="main-list">
             <div  class="cell-button">
             <block-4 :topics="topics" @nextPage="next" @prevPage="prev" :lefthasMore="lefthasMore" :righthasMore="righthasMore"></block-4>
             </div>
-        </scroller>
+        </div>
     </div>
 </template>
 <style scoped>
@@ -22,11 +21,11 @@
         margin-bottom: 50px;
     }
     .main-list{
-        margin-top: 113px;
-        margin-bottom: 90px;
+        /*margin-top: 113px;
+        margin-bottom: 90px;*/
     }
     .cell-button{
-        padding-bottom: 18px;
+       /* padding-bottom: 18px;*/
     }
 
 </style>

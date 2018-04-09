@@ -1,0 +1,69 @@
+<template>
+    <slider class="slider" auto-play="false" interval="5000" @change="onchange" :infinite="isInfinit" :index="0">
+        <div class="frame" v-for="(img,key) in imageList" v-on:swipe="onSwipe($event,key)" :ref="'item'+key">
+            <image class="image" resize="contain" :lsrc="img" :src="img" :ref="'img'+key"></image>
+        </div>
+        <indicator class="indicator"></indicator>
+    </slider>
+</template>
+<style scoped>
+    .iconfont {
+        font-family:iconfont;
+    }
+    .image {
+        width: 750px;
+        height: 1245px;
+    }
+    .slider {
+        width: 750px;
+        height: 1245px;
+    }
+    .frame {
+        width: 750px;
+        height: 1245px;
+        position: relative;
+    }
+    .indicator {
+        width: 750px;
+        height: 40px;
+        item-color: #000000;
+        item-selected-color: #b4282d;
+        item-size: 12px;
+        position: absolute;
+        bottom: 300px;
+        right: 0px;
+    }
+</style>
+<script>
+    const dom = weex.requireModule('dom')
+    const modal = weex.requireModule('modal')
+    export default {
+        props:["imageList","isInfinit"],
+        data () {
+            return {
+                dir:'right'
+            }
+        },
+        created(){
+            //console.log(this.imageList);
+            //this.changeImg();
+        },
+        methods: {
+            changeImg(){
+                
+            },
+            onchange (event) {
+                var _self = this;
+                // modal.toast({
+                //     message:this.isInfinit,
+                //     duration:1
+                //   })
+                this.$emit("pageTurn",{index:event.index,dir:_self.dir})
+            },
+            onSwipe(event,index){
+                var _self = this;
+                _self.dir = event.direction;
+            }
+        }
+    }
+</script>
