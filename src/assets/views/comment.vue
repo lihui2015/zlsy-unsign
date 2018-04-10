@@ -9,7 +9,7 @@
         </div>
     </div>
     <div class="textBox">
-      <textarea class="textarea" @input='oninput' placeholder="写下你的评论吧~" disabled='false' autofocus='true'></textarea>
+      <textarea class="textarea" @input='oninput' placeholder="写下你的评论吧~" disabled='false' autofocus='true' @click="focus" ref="textarea"></textarea>
     </div>
 </div>
 </template>
@@ -91,6 +91,9 @@ export default {
     },
     oninput(event){
       this.comment = event.value;
+    },
+    focus(){
+        this.$refs.textarea.focus();
     }
   }
   }
