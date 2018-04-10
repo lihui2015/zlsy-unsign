@@ -25,18 +25,24 @@
         width: 750px;
         height: 1245px;
         overflow:hidden;
-        flex-direction: row;
+        position: relative;
     }
     .test{
         /*width: 750px;
   height: 1245px;*/
-  width:3750px;
+ /* width:3750px;
   margin-left:0px;
-  flex-direction: row;
+  flex-direction: row;*/
+  width: 750px;
+        height: 1245px;
+  position:relative;
     }
     .i-tp{
         width: 750px;
   height: 1245px;
+  position: absolute;
+        top:0;
+        left: 0;
     }
     .tp-img{
         position: absolute;
@@ -71,7 +77,7 @@
     const animation = weex.requireModule('animation')
   const modal = weex.requireModule('modal')
     export default {
-        props:["topics",'lefthasMore','righthasMore','more','isShow'],
+        props:["topics",'lefthasMore','righthasMore','more'],
         data () {
             return {
                 isStart: true,
@@ -97,11 +103,6 @@
                 var el = this.$refs.test;
                 var move = 0;
                 console.log("index->"+index+',length->'+(_self.topics.length-1));
-                if(_self.isShow){
-                    this.$emit("toggleShow",{open:false});
-                    return false;
-                }
-                
                 if(dir == 'left'){
                     if(index == _self.topics.length-1){
                         this.$emit("nextPage")

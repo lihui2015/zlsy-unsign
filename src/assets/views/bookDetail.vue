@@ -19,7 +19,7 @@
                   <text ref='collect' :class="['i-collect', collectTag == 1 ? 'collected' : '']" @click="collect(collectTag)">&#xe744; 收藏</text>
                   <text class="i-share">&#xe744; 分享</text>
                 </div>
-                <text class="i-read" @click="jump('/book-scroller/'+bookID)">立即阅读</text>
+                <text class="i-read" @click="jump('/book-scroller/'+bookID+'/'+collectTag)">立即阅读</text>
               </div>
             </div>
             <div class="relative-activity section-box">

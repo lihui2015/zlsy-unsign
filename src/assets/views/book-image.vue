@@ -41,8 +41,9 @@ var modal = weex.requireModule('modal')
               leftBtn:{
                 name: '<'
               },
-              holder:'http://www.imbawin.com/images/default.png',
               isShow: false,
+              holder:'http://www.imbawin.com/images/default.png',
+              
               showIndex: 0,
               bookList:[],
               slideNumber: 5,

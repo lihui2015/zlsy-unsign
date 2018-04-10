@@ -60,7 +60,7 @@ module.exports = new Router({
       component: bookImage
     },
     {
-      path: '/book-scroller/:index',
+      path: '/book-scroller/:index/:isCollect',
       name: 'bookScroller',
       component: bookScroller
     },
