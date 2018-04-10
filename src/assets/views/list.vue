@@ -146,7 +146,7 @@
                 loadinging: false,
                 hasNomare: false,
                 leftButton: {
-                    name:"<"
+                    name:"&#xe697;"
                 }
             }
         },

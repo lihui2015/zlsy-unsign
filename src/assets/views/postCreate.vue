@@ -8,7 +8,7 @@
     <div class="textBox">
       <textarea class="textarea" @input='oninput' placeholder="这一刻的想法..." disabled='false' autofocus='false'></textarea>
     </div>
-    <uploadImg></uploadImg>
+    <!-- <uploadImg></uploadImg> -->
 </div>
 </template>
 
@@ -26,7 +26,7 @@ export default {
   },
   data(){
       var _self = this;
-    return {
+      return {
       leftBtn: {
           name:"<"
       },
@@ -55,7 +55,7 @@ export default {
                 _self.POST('posts/create/'+_self.postID, _self.token, data, res => {
                   if (res.data.code == 200){
                     modal.toast({
-                        message: res.data.message,
+                        message: res.data.message+",请等待审核",
                         duration: 1
                     })
                     _self.$router.go(-1)

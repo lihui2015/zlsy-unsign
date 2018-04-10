@@ -2,7 +2,7 @@
     <div class="wrapper">
         <div class="tlt-box cell-tag">
             <text class="tlt" @click="jump('/list/0/图书精选')">图书精选</text>
-            <wxc-icon name="more" @click="jump('/list/0/图书精选')" class="colorWhite"></wxc-icon>
+            <text @click="jump('/list/0/图书精选')" class="colorWhite iconfont">&#xe6a7;</text>
         </div>
         <div class="box">
             <div class="i-book" v-for="i in books">
@@ -33,13 +33,14 @@
     }
     .colorWhite{
         color:#ffffff;
+        font-size: 48px;
     }
     .wrapper{
-        margin-top: 30px;
+        margin-top: 0px;
         padding-bottom: 20px;
     }
     .tlt-box{
-        margin-top: 10px;
+        margin-top: 1px;
         flex-direction: row;
         justify-content: space-between;
         align-items: center;

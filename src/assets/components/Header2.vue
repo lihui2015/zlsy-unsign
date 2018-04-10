@@ -1,7 +1,7 @@
 <template>
     <div :class="['wrapper']">
         <div class="left" @click="goBack">
-            <text class="leftTxt" v-if="leftBtn">{{leftBtn.name}}</text>
+            <text class="leftTxt iconfont" v-if="leftBtn">&#xe697;</text>
         </div>
         <text class="tlt">{{title}}</text>
         <div class="right">
@@ -10,6 +10,9 @@
     </div>
 </template>
 <style scoped>
+.iconfont {
+        font-family:iconfont;
+    }
     .wrapper{
         position: fixed;
         top: 0;
@@ -61,7 +64,7 @@
         color: #ffffff;
     }
     .leftTxt{
-        font-size: 34px;
+        font-size: 46px;
         color: #ffffff;
     }
 </style>
@@ -74,7 +77,13 @@
         },
         methods: {
             goBack: function(){
-                this.$router.go(-1)
+
+                if(this.leftBtn.fun){
+                    this.leftBtn.fun();
+                }else{
+                    this.$router.go(-1)
+                }
+                
             }
         }
     }

@@ -1,6 +1,7 @@
 <template>
     <refresh class="u-refresh" @refresh="onrefresh" @pullingdown="onpullingdown" :display="refreshing ? 'show' : 'hide'">
-        <image class="loading-bg" resize="contain" src="http://doc.zwwill.com/yanxuan/imgs/yxbox-bg.png?v5"></image>
+        <!-- <image class="loading-bg" resize="contain" src="http://doc.zwwill.com/yanxuan/imgs/yxbox-bg.png?v5"></image> -->
+        <text class="loading-bg"></text>
         <div class="l-txt-box">
             <text ref="lTxt1" class="l-txt l-txt-1">好</text>
             <text ref="lTxt2" class="l-txt l-txt-2">的</text>
@@ -16,7 +17,7 @@
 <style scoped>
 
     .u-refresh{
-        height: 170px;
+        height: 50px;
         width: 750px;
         flex-direction: row;
         flex-wrap: nowrap;
@@ -27,10 +28,10 @@
         left: 250px;
         margin-top: 40px;
         width: 250px;
-        height: 120px;
+        height: 10px;
     }
     .l-txt-box{
-        height: 106px;
+        height: 16px;
         width: 200px;
         overflow: hidden;
     }
@@ -73,9 +74,9 @@
                 }
             },
             loadingAniDown(){
-                for(var i=0;i<this.loadingAR.length;i++){
-                    this.shake(this.$refs[this.loadingAR[i].ref],0,0,0,0,200);
-                }
+                // for(var i=0;i<this.loadingAR.length;i++){
+                //     this.shake(this.$refs[this.loadingAR[i].ref],0,0,0,0,200);
+                // }
                 this.$emit('loadingDown',{
                     status : 'loadingDown'
                 })
@@ -93,13 +94,15 @@
                 }.bind(this))
             },
             onrefresh (event) {
+//                console.log('is refreshing')
+//                modal.toast({ message: 'refresh', duration: 1 })
 
-                this.loadingAni();
+                //this.loadingAni();
                 this.refreshing = true;
                 setTimeout(() => {
                     this.refreshing = false;
                     this.loadingAniDown();
-                }, 1300)
+                }, 100)
             },
             onpullingdown (event) {
             }

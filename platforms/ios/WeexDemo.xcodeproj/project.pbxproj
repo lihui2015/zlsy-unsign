@@ -256,13 +256,13 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 775BEEA81C1E8ECC008D1629 /* Build configuration list for PBXNativeTarget "WeexDemo" */;
 			buildPhases = (
-				E68B508CCD615E141F501B02 /* [CP] Check Pods Manifest.lock */,
+				A5E60A3BD35BFEB1F8534EAF /* [CP] Check Pods Manifest.lock */,
 				0A2546EC1E00EDC5008B7C9F /* Bundle deploy server */,
 				775BEE771C1E8ECC008D1629 /* Sources */,
 				775BEE781C1E8ECC008D1629 /* Frameworks */,
 				775BEE791C1E8ECC008D1629 /* Resources */,
-				5E0D11AFF71FFD9FE0F0856B /* [CP] Embed Pods Frameworks */,
-				DA9FD558CC770962640DA196 /* [CP] Copy Pods Resources */,
+				1477B272E1B3CDAA59A1581E /* [CP] Embed Pods Frameworks */,
+				A181675A25EFF769470AAC35 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -400,6 +400,21 @@
 			shellPath = /bin/sh;
 			shellScript = "case \"$CONFIGURATION\" in\n  Debug)\n  # Speed up build times by skipping the creation of the offline package for debug\n  # builds on the simulator since the packager is supposed to be running anyways.\n    if [[ \"$PLATFORM_NAME\" == *simulator ]]; then\n      echo \"Skipping bundling for Simulator platform\"\n      exit 0;\n    fi\n\n    DEV=true\n    ;;\n  \"\")\n    echo \"$0 must be invoked by Xcode\"\n    exit 1\n    ;;\n  *)\n    DEV=false\n    ;;\nesac\n\nset -x\nDEST=$CONFIGURATION_BUILD_DIR/$UNLOCALIZED_RESOURCES_FOLDER_PATH\n\nif [[ \"$CONFIGURATION\" = \"Debug\" && ! \"$PLATFORM_NAME\" == *simulator ]];\nthen\n  PLISTBUDDY='/usr/libexec/PlistBuddy'\n  PLIST=$TARGET_BUILD_DIR/$INFOPLIST_PATH\n  IP=$(ipconfig getifaddr en0)\n  if [ -z \"$IP\" ]; then\n    IP=$(ifconfig | grep 'inet ' | grep -v 127.0.0.1 | cut -d\\   -f2  | awk 'NR==1{print $1}')\n  fi\n  $PLISTBUDDY -c \"Add NSAppTransportSecurity:NSExceptionDomains:localhost:NSTemporaryExceptionAllowsInsecureHTTPLoads bool true\" \"$PLIST\"\n  $PLISTBUDDY -c \"Add NSAppTransportSecurity:NSExceptionDomains:$IP.xip.io:NSTemporaryExceptionAllowsInsecureHTTPLoads bool true\" \"$PLIST\"\n  echo $IP > \"$DEST/ip.txt\"\nfi\n\n";
 		};
+		1477B272E1B3CDAA59A1581E /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-WeexDemo/Pods-WeexDemo-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		4FBDCA8DAA9AE3F9E0411F65 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -430,21 +445,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "myFile=\"XcodeCoverage/exportenv.sh\"\n\nif [ -f \"$myFile\" ]; then\nXcodeCoverage/exportenv.sh\nfi";
-		};
-		5E0D11AFF71FFD9FE0F0856B /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-WeexDemo/Pods-WeexDemo-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
 		};
 		62254A043B5C03D898ED0475 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -481,7 +481,7 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-WeexUITestDemo/Pods-WeexUITestDemo-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		DA9FD558CC770962640DA196 /* [CP] Copy Pods Resources */ = {
+		A181675A25EFF769470AAC35 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -501,7 +501,7 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-WeexDemo/Pods-WeexDemo-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		E68B508CCD615E141F501B02 /* [CP] Check Pods Manifest.lock */ = {
+		A5E60A3BD35BFEB1F8534EAF /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (

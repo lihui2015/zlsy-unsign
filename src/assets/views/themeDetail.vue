@@ -171,6 +171,10 @@ export default {
         var data = JSON.stringify({"content":_self.commentContent});
         _self.POST('posts/comment/'+_self.postID, _self.token, data, res => {
           if (res.data.code == 200){
+            modal.toast({
+                message: "评论发表成功，请等待审核",
+                duration: 3
+            })
             _self.$router.push('/_empty');
           }else{
             modal.toast({
@@ -210,7 +214,7 @@ export default {
       left: 0;
       right:0;
       /*top: 1115px;*/
-      bottom: 0px;
+      bottom: 50px;
       width: 750px;
       height: 90px;
       background-color: #f0f0f0;

@@ -1,31 +1,17 @@
 <template>
     <div :class="['wrapper', isIpx&&isIpx()?'w-ipx':'']">
-        <!--<div v-for="i in items">-->
-            <!--<div class="bar-item" @click="tabTo(i.key)">-->
-                <!--<text class="bar-ic iconfont">{{i.icon}}</text>-->
-                <!--<text class="bar-txt">{{i.name}}</text>-->
-            <!--</div>-->
-        <!--</div>-->
 
         <div class="bar-item" @click="tabTo('home')">
-            <text class="bar-ic iconfont" :class="[this.isActive('home')]">&#xe660;</text>
+            <text class="bar-ic iconfont icon-home" :class="[this.isActive('home')]">&#xe661;</text>
             <text class="bar-txt" :class="[this.isActive('home')]">首页</text>
         </div>
         <div class="bar-item" @click="tabTo('activity')">
-            <text class="bar-ic iconfont" :class="[this.pIndexKey == 'activity'?'bar-active':'']">&#xe744;</text>
+            <text class="bar-ic iconfont icon-activity" :class="[this.pIndexKey == 'activity'?'bar-active':'']">&#xe62a;</text>
             <text class="bar-txt" :class="[this.pIndexKey == 'activity'?'bar-active':'']">活动</text>
             <text class="notice-dot"></text>
         </div>
-        <!--<div class="bar-item" @click="tabTo('class')">
-            <text class="bar-ic iconfont" :class="[this.isActive('class')]">&#xe605;</text>
-            <text class="bar-txt" :class="[this.isActive('class')]">分类</text>
-        </div>
-        <div class="bar-item" @click="tabTo('shop')">
-            <text class="bar-ic iconfont" :class="[this.isActive('shop')]">&#xe61a;</text>
-            <text class="bar-txt" :class="[this.isActive('shop')]">购物车</text>
-        </div>-->
         <div class="bar-item" @click="tabTo('personal')">
-            <text class="bar-ic iconfont" :class="[this.isActive('personal')]">&#xe639;</text>
+            <text class="bar-ic iconfont icon-person" :class="[this.isActive('personal')]">&#xe6b8;</text>
             <text class="bar-txt" :class="[this.isActive('personal')]">个人</text>
             <text class="i-notice">2</text>
         </div>
@@ -37,7 +23,7 @@
     }
     .wrapper{
         position: fixed;
-        bottom: 0;
+        bottom: 50px;
         /*top: 1105px;*/
         left: 0;
         right: 0;
@@ -60,6 +46,7 @@
         color:#666;
         text-align: center;
     }
+    
     .bar-active{
         color:#009FF0;
     }
@@ -67,6 +54,15 @@
         padding-top: 10px;
         font-size: 42px;
         line-height: 42px;
+    }
+    .icon-home{
+        font-size: 60px;
+    }
+    .icon-activity{
+        font-size: 48px;
+    }
+    .icon-person{
+        font-size: 40px;
     }
     .bar-txt{
         font-size: 30px;
@@ -114,15 +110,8 @@
                 return this.pIndexKey === _c ?'bar-active':''
             },
             tabTo(_key){
-                //if(this.pIndexKey === _key) return;
                 this.pIndexKey = _key;
                 this.$router.push('/'+_key);
-                // this.$emit('tabTo',{
-                //     status : 'tabTo',
-                //     data : {
-                //         key : _key
-                //     }
-                // })
             }
         }
     }

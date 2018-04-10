@@ -4,7 +4,7 @@
             <image class="auther-img" resize="cover" :src="commen.readers.full_avatar"></image>
             <div class="auther-detail">
                 <text class="auther-name">{{commen.readers.name}}</text>
-                <text class="auther-time">{{commen.readers.created_at}}</text>
+                <text class="auther-time">{{commen.created_at}}</text>
             </div>
         </div>
         <div class="tlt-box" @click="jump('/themeDetail/'+commen.id)">
@@ -18,15 +18,16 @@
         </div>
         <div class="wedge-box">
             <div class="wedge-commen wedge" @click="jump('/themeDetail/'+commen.id)">
-                <text class="iconfont">&#xe744;</text>
+                <text class="iconfont">&#xe608;</text>
                 <text class="wedge-text">评论</text>
+                <text class="wedge-text wedge-num">{{commen.comments_count}}</text>
             </div>
             <div class="wedge-like wedge" v-if="isLike == 1">
-                <text class="iconfont active">&#xe744;</text>
+                <text class="iconfont active">&#xe603;</text>
                 <text class="wedge-text active">{{commen.up}}</text>
             </div>
             <div class="wedge-like wedge" @click="like(commen.id)" v-else>
-                <text class="iconfont">&#xe744;</text>
+                <text class="iconfont">&#xe603;</text>
                 <text class="wedge-text">赞</text>
             </div>
             <!-- <div class="wedge-share wedge">
@@ -119,6 +120,9 @@
     .wedge-text{
         font-size: 30px;
         color: #9d9d9d;
+        margin-left: 10px;
+    }
+    .wedge-num{
         margin-left: 10px;
     }
     .iconfont{

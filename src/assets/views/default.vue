@@ -6,12 +6,12 @@
             <div class="cell-button">
                 <yx-slider :imageList="YXBanners" ></yx-slider>
             </div>
-            <div class="cell-button">
+            <!-- <div class="cell-button">
                 <book-search></book-search>
             </div>
             <div class="cell-button">
                 <block-1 :items="borrowRecords"></block-1>
-            </div>
+            </div> -->
             <div class="cell-button">
                 <block-2 :books="bookList"></block-2>
             </div>

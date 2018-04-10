@@ -33,15 +33,16 @@
   width:3750px;
   margin-left:0px;
   flex-direction: row;
+  align-items: center;
     }
     .i-tp{
         width: 750px;
   height: 1245px;
     }
     .tp-img{
-        position: absolute;
+        /*position: absolute;
         top:0;
-        left: 0;
+        left: 0;*/
         width:750px;
   height: 1245px;
         background-color: #f4f4f4;
@@ -92,6 +93,7 @@
         },
         methods: {
             onSwipe(event,index){
+                event.stopPropagation();
                 var _self = this;
                 var dir = event.direction;
                 var el = this.$refs.test;

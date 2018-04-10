@@ -2,15 +2,15 @@
     <div :class="['wrapper', isIpx&&isIpx()?'w-ipx':'']">
 
         <div class="bar-item" @click="toggleCatalog()">
-            <text class="bar-ic iconfont" :class="[]">&#xe660;</text>
+            <text class="bar-ic iconfont" :class="[]">&#xe65f;</text>
             <text class="bar-txt" :class="[]">目录</text>
         </div>
         <div class="bar-item" @click="collect(collectTag)">
-            <text class="bar-ic iconfont" :class="[collectTag == 1?'bar-active':'']">&#xe744;</text>
+            <text class="bar-ic iconfont icon-collect" :class="[collectTag == 1?'bar-active':'']">&#xe604;</text>
             <text class="bar-txt" :class="[collectTag == 1?'bar-active':'']">收藏</text>
         </div>
-        <div class="bar-item" @click="jump('/comment/'+bookID)">
-            <text class="bar-ic iconfont">&#xe639;</text>
+        <div class="bar-item" @click="toggleComment">
+            <text class="bar-ic iconfont icon-comment">&#xe608;</text>
             <text class="bar-txt">评论</text>
         </div>
     </div>
@@ -43,7 +43,7 @@
         text-align: center;
     }
     .bar-active{
-        color:orange;
+        color:red;
     }
     .bar-ic{
         padding-top: 10px;
@@ -54,6 +54,12 @@
         font-size: 30px;
         padding-top: 3px;
         line-height: 30px;
+    }
+    .icon-collect{
+        font-size: 44px;
+    }
+    .icon-comment{
+        font-size: 46px;
     }
 </style>
 <script>
@@ -77,6 +83,9 @@
         methods: {
             toggleCatalog(){
                 this.$emit("toggleOpen");
+            },
+            toggleComment(){
+                this.$emit("toggleComment")
             },
             collect(isCollected){
                 if(isCollected == 1){

@@ -9,47 +9,50 @@
                 <text class="i-name">{{detail.book_name}}</text>
                 <div class="star-box">
                   <image :src="starbar" class="star-bar"></image>
-                  <div class="star" :data-star="detail.score">
+                  <div  :class="['star','star'+detail.score]">
                     <image :src="star" class="starImg"></image>
                   </div>
                 </div>
                 <text class="i-author">作者：{{detail.author}}</text>
                 <text class="i-count">{{detail.read_count}}人阅读</text>
-                <div class="shareBox">
-                  <text ref='collect' :class="['i-collect', collectTag == 1 ? 'collected' : '']" @click="collect(collectTag)">&#xe744; 收藏</text>
-                  <text class="i-share">&#xe744; 分享</text>
+                <div class="shareBox" @click="collect(collectTag)">
+                  <text ref='collect' :class="['i-collect','iconfont', collectTag == 1 ? 'collected' : '']">&#xe604;</text>
+                  <text :class="['i-collect-text',collectTag == 1 ? 'collected' : '']">收藏</text>
+                  <!-- <text class="i-share">&#xe744; 分享</text> -->
                 </div>
-                <text class="i-read" @click="jump('/book-scroller/'+bookID+'/'+collectTag)">立即阅读</text>
+                
               </div>
             </div>
-            <div class="relative-activity section-box">
-              <text class="activity-tag section">&#xe744; 相关活动</text>
+            <div class="book-btn">
+              <text class="i-read" @click="jump('/book-scroller/'+bookID+'/'+collectTag+'/'+detail.book_name)">立即阅读</text>
+            </div>
+            <div class="relative-activity section-box" v-if="activities.length > 0">
+              <div class="tagWrap">
+                <text class="activity-tag iconfont icon-text">&#xe62a;</text>
+                <text class="activity-text tag-text">相关活动</text>
+              </div>
               <scroller class="activity-box" scroll-direction="horizontal" show-scrollbar=false>
-                <div class="activity-item" v-for="act in detail.activity">
-                  <image class="act-img" :src="act.full_thumb"></image>
-                  <text class="act-title">{{act.title}}</text>
-                </div>
-                <div class="activity-item" v-for="act in detail.activity">
-                  <image class="act-img" :src="act.full_thumb"></image>
-                  <text class="act-title">{{act.title}}</text>
-                </div>
-                <div class="activity-item" v-for="act in detail.activity">
-                  <image class="act-img" :src="act.full_thumb"></image>
-                  <text class="act-title">{{act.title}}</text>
-                </div>
-                <div class="activity-item" v-for="act in detail.activity">
-                  <image class="act-img" :src="act.full_thumb"></image>
-                  <text class="act-title">{{act.title}}</text>
+                <div class="activity-item" v-for="act in detail.activity" @click="jump('/online/'+act.id+'/' + act.title)">
+                  <image class="act-img" :src="act.full_thumb" resize="cover"></image>
+                  <div class="act-titleBox">
+                    <text class="act-title">{{act.title}}</text>
+                  </div>
                 </div>
               </scroller>
             </div>
             <div class="book-desc section-box">
-              <text class="desc-tag section">&#xe744; 书籍简介</text>
+              <div class="tagWrap">
+                <text class="desc-tag iconfont icon-text">&#xe62b;</text>
+                <text class="desc-text tag-text">书籍简介</text>
+              </div>
               <text class="desc-content">{{detail.description}}</text>
             </div>
             <div class="book-comment section-box">
               <div class="comment-header section">
-                <text class="comment-tag">&#xe744; 读书评论</text>
+                <div class="tagWrap">
+                  <text class="comment-tag iconfont icon-text">&#xe608;</text>
+                  <text class="comment-text tag-text">读书评论</text>
+                </div>
                 <text class="comment-btn" @click="jump('/comment/'+bookID)">我要评论</text>
               </div>
               <div class="comment-item" v-for="item in comments">
@@ -61,7 +64,7 @@
                   </div>
                   <div class="star-box">
                     <image :src="starbar" class="star-bar"></image>
-                    <div class="star" :data-star="item.score">
+                    <div :class="['star','star'+item.score]">
                       <image :src="star" class="starImg"></image>
                     </div>
                   </div>
@@ -142,43 +145,63 @@
       flex-direction: row;
       color: #101010;
       font-size: 34px;
-      margin-top: 10px;
+      margin-top: 15px;
+      align-items: center;
     }
     .i-collect{
-      margin-right: 40px;
+      margin-right: 10px;
+      font-size: 36px;
+      color:#606060;
+    }
+    .i-collect-text{
+      color:#606060;
       font-size: 34px;
     }
     .collected{
-      color: #ffa500;
+      color: #009FF0;
     }
     .i-share{
       font-size: 34px;
     }
+    .book-btn{
+      align-items: center;
+      margin-top:10px;
+    }
     .i-read{
       background-color: #009FF0;
-      font-size: 32px;
+      font-size: 34px;
       color: #ffffff;
-      width: 343px;
-      height: 50px;
+      width: 700px;
+      height: 70px;
+      line-height: 70px;
       text-align: center;
-      line-height: 50px;
       border-radius: 10px;
-      margin-top: 10px;
     }
 
     .section-box{
-      border-top-width: 1px;
-      border-top-color: #333333;
-      padding-bottom: 10px;      
+      /*padding-bottom: 10px; */
+      margin-top: 20px;     
     }
-    .section{
-      color: #101010;
-      font-size: 34px;
-      background-color: #eeeeee;
-      height: 80px;
-      line-height: 80px;
+    .tagWrap{
+      flex-direction: row;
+      align-items: center;
+      background-color: #009FF0;
+      height: 70px;
       padding-left: 20px;
       padding-right: 20px;
+    }
+    .icon-text{
+      font-size: 40px;
+      color: #ffffff;
+      margin-right: 10px;
+    }
+    .tag-text{
+      color: #ffffff;
+      font-size: 34px;
+    }
+    .section{
+      background-color: #009FF0;
+      padding-right:20px;
     }
     .relative-activity{
       
@@ -188,10 +211,10 @@
     }
     .activity-box{
       width: 750px;
-      height: 220px;
+      height: 210px;
       flex-direction: row;
       padding-top: 20px;
-      padding-bottom: 20px;
+      padding-bottom: 0px;
       padding-left: 15px;
       padding-right: 15px;
     }
@@ -205,15 +228,22 @@
       width: 345px;
       height: 180px;
     }
+    .act-titleBox{
+      width: 345px;
+      height: 180px;
+      position: absolute;
+      top: 0;
+      left: 0;
+      background-color: rgba(0,0,0,0.3);
+      justify-content: center;
+      align-items: center;
+    }
     .act-title{ 
       width: 345px;
-      position: absolute;
-      left: 0;
-      top: 70px;
       padding-left: 20px;
       padding-right: 20px;      
       text-align: center;
-      color:#101010;
+      color:#ffffff;
       font-size: 32px;
       lines: 1;
     }
@@ -223,12 +253,12 @@
     .desc-tag{
     }
     .desc-content{
-      padding-top: 10px;
+      padding-top: 20px;
       padding-bottom: 10px;
       padding-left: 20px;
       padding-right: 20px;      
       font-size: 32px;
-      color: #101010;
+      color: #6c6c6c;
       line-height: 40px;
     }
 
@@ -241,30 +271,31 @@
       align-items: center;
     }
     .comment-tag{
-      color: #101010;
+      color: #ffffff;
       font-size: 34px;
     }
     .comment-btn{
       border-radius: 10px;
       border-width: 1px;
-      border-color: #101010;
-      color: #101010;
-      width: 144px;
+      border-color: #ffffff;
+      color: #ffffff;
       height: 54px;
       text-align: center;
       line-height: 54px;
       font-size: 34px;
+      padding-left:15px;
+      padding-right:15px;
     }
     .comment-item{
       border-bottom-width: 1px;
-      border-bottom-color: #cccccc;
+      border-bottom-color: #dedede;
       padding-top: 20px;
       padding-bottom: 20px;
       padding-left: 20px;
       padding-right: 20px;      
     }
     .comment-content{
-      color: #101010;
+      color: #606060;
       font-size: 32px;
       line-height: 40px;
     }
@@ -287,8 +318,11 @@
       margin-right: 10px;
     }
     .comment-author-name{
-      color: #666666;
+      color: #8d8d8d;
       font-size: 32px;
+    }
+    .icon-text{
+      font-size: 40px;
     }
 
     .detail .star-box{
@@ -312,6 +346,24 @@
     }   
     .starImg{
       height: 32px;
+      width: 160px;
+    }
+    .star0{
+      width: 0px;
+    }
+    .star1{
+      width: 32px;
+    }
+    .star2{
+      width: 64px;
+    }
+    .star3{
+      width: 96px;
+    }
+    .star4{
+      width: 128px;
+    }
+    .star5{
       width: 160px;
     }
     .star[data-star$='0']{
@@ -392,8 +444,9 @@
         data () {
             return {
                 detail: {},
+                activities:[],
                 leftButton: {
-                    name:"<"
+                    name:"&#xe697;"
                 },
                 token: '',
                 bookID: '',
@@ -423,6 +476,7 @@
                     let result = res.data.result;
                     this.detail = result;
                     this.collectTag = result.is_collect;
+                    this.activities = result.activity;
                 }else{
                     modal.toast({
                         message: res.data.code + ":" + _self.token,

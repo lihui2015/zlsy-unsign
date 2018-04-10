@@ -10,12 +10,24 @@
         <list class="list">
             <cell class="cell" v-for="ca in catalog">
             <div class="panel" @click="goto(ca.startPage,ca.endPage)">
-                <text class="text">{{ca.name}}</text>
+              <text class="text prefix">{{ca.prefix}}</text>
+                <text class="text">{{ca.title}}</text>
             </div>
             </cell>
         </list>
       </div>
     </wxc-popup>
+    <!-- <div class="catalog-box" ref="catalogPopup" :show="open">
+      <div class="catalog-content" v-on:swipe="onSwipe($event)">
+        <list class="list">
+            <cell class="cell" v-for="ca in catalog">
+            <div class="panel" @click="goto(ca.startPage,ca.endPage)">
+                <text class="text">{{ca.name}}</text>
+            </div>
+            </cell>
+        </list>
+      </div>
+    </div> -->
     </div>
   </div>
 </template>
@@ -26,7 +38,7 @@
     }
     .catalog-content{
         position:absolute;
-        top:86px;
+        top:0px;
         left:0;
         bottom:0;
         right:0;
@@ -41,12 +53,18 @@
         border-bottom-width: 1px;
         border-style: solid;
         border-color: #dedede;
-        justify-content:center;
+        align-items:center;
+        flex-direction: row;
   }
+
   .text {
         font-size: 36px;
         text-align: left;
         color: #898989;
+  }
+  .prefix{
+    margin-right: 20px;
+    color:#009FF0;
   }
 </style>
 
@@ -86,6 +104,8 @@
       },
       goto(start,end){
         console.log(start);
+        var tempS = 8;
+        var tempE = 10;
         this.$refs.catalogPopup.hide();
       }
     }

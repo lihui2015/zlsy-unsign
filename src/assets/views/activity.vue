@@ -8,7 +8,7 @@
             </div>
             <loading @loading="onloading" :class="['loading',loadinging ? 'show' : 'hide']">
                <loading-indicator class="indicator"></loading-indicator>
-             </loading> !
+             </loading>
         </scroller>
         <tab-bar @tabTo="onTabTo" router='activity'></tab-bar>
     </div>

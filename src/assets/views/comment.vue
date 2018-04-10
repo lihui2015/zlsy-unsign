@@ -28,7 +28,7 @@ export default {
       var _self = this;
     return {
       leftBtn: {
-          name:"X"
+          name:"&#xe69a;"
       },
       score: null,
       comment: '',
@@ -55,7 +55,7 @@ export default {
                 _self.POST('books/comment/'+_self.bookID, _self.token, data, res => {
                   if (res.data.code == 200){
                     modal.toast({
-                        message: res.data.message,
+                        message: res.data.message+",请等待审核",
                         duration: 1
                     })
                     _self.$router.go(-1)
@@ -122,7 +122,7 @@ export default {
     }
     .star{
         font-size: 60px;
-        color: #333333;
+        color: orange;
         margin-right: 30px;
         line-height: 60px;
     }
