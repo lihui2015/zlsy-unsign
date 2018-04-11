@@ -7,25 +7,26 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationSet;
-import android.view.animation.RotateAnimation;
 import android.view.animation.ScaleAnimation;
+import android.view.animation.AlphaAnimation;
 
 
 public class SplashActivity extends AppCompatActivity {
 
+  private ImageView imageView = null;
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_splash);
 
-    View textView = findViewById(R.id.fullscreen_content);
+    imageView = (ImageView) findViewById(R.id.bitmapImageView);
     ScaleAnimation scaleAnimation = new ScaleAnimation(0.0f, 1.0f, 0.0f, 1.0f, Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF, 0.5f);
-    RotateAnimation rotateAnimation = new RotateAnimation(0f, 360f, Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF, 0.5f);
+    AlphaAnimation alphaAnimation = new AlphaAnimation(1, 0);
 
     AnimationSet animationSet = new AnimationSet(false);
     animationSet.addAnimation(scaleAnimation);
-    animationSet.addAnimation(rotateAnimation);
+    animationSet.addAnimation(alphaAnimation);
     animationSet.setDuration(1500);
 
     animationSet.setAnimationListener(new Animation.AnimationListener() {
@@ -49,6 +50,6 @@ public class SplashActivity extends AppCompatActivity {
       public void onAnimationRepeat(Animation animation) {
       }
     });
-    textView.startAnimation(animationSet);
+    imageView.startAnimation(animationSet);
   }
 }

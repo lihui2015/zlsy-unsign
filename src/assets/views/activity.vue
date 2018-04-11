@@ -1,7 +1,7 @@
 <template>
     <div :class="['wrapper', isIpx&&isIpx()?'w-ipx':'']">
         <header2  title="活动"></header2>
-        <scroller class="main-list" offset-accuracy="300px">
+        <scroller class="main-list" :class="[isand?'android-main-list':'']" offset-accuracy="300px">
             <refresher></refresher>
             <div v-for="ar in articles" class="cell-button">
                 <block-3 :article="ar" url=""></block-3>
@@ -20,11 +20,6 @@
     }
     .wrapper{
         background-color: #f4f4f4;
-        position: absolute;
-        top:0px;
-        bottom:0px;
-        left:0px;
-        right:0px;
     }
     .w-ipx{
         margin-top: 40px;
@@ -36,6 +31,9 @@
         /*margin-bottom: 220px;*/
         background-color: #f4f4f4;
 
+    }
+    .android-main-list{
+        margin-bottom: 150px;
     }
     .cell-button{
         background-color: #f4f4f4;
@@ -50,12 +48,11 @@
 </style>
 
 <script>
-    import util from '../util';
     import Header2 from '../components/Header2.vue';
     import refresher from '../components/refresh.vue';
     import Block3 from '../components/Block3.vue';
     import tabBar from '../components/tabBar.vue';
-
+    import { Utils } from 'weex-ui';
     var navigator = weex.requireModule('navigator')
     var storage = weex.requireModule('storage')
     var modal = weex.requireModule('modal')
@@ -68,7 +65,8 @@
                 current_page: 1,
                 total: 1,
                 loadinging: false,
-                hasNomare: false
+                hasNomare: false,
+                isand:false
             }
         },
         components: {
@@ -78,6 +76,7 @@
             'block-3': Block3,
         },
         created () {
+            this.isand = Utils.env.isAndroid();
             storage.getItem('token',event => {
                 this.token = event.data;
                 this.getList()

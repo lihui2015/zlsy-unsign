@@ -1,13 +1,14 @@
 <template>
-<image @click="uploadTest" :src="uploadFileTipImage" :style="uploadNativeStyle"></image>
-   </template>
+    <div>
+    <image @click="uploadTest" :src="uploadFileTipImage" :style="uploadNativeStyle"></image>
+    </div>
+</template>
 
-    <script>
+<script>
 // import GlobalApiConfig from "../api/config/GlobalAipConfig";
 // import weexUtils from "../utils/WeexUtils";
 
 import Nat from 'natjs'
-
 
 const modal = weex.requireModule('modal');
 

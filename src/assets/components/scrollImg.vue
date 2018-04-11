@@ -1,7 +1,7 @@
 <template>
     <div class="wrapper">
         <div :class="['tp-box',isStart?'start':'end']">
-            <div :class="['test']" ref="test">
+            <div class="test" ref="test" :style="">
                 <div class="i-tp" v-for="(img,index) in topics" v-on:swipe="onSwipe($event,index)" :ref="'item'+index">
                     <image class="tp-img" resize="contain" :src="img"></image>
                 </div>
@@ -30,7 +30,6 @@
     .test{
         /*width: 750px;
   height: 1245px;*/
-  width:3750px;
   margin-left:0px;
   flex-direction: row;
   align-items: center;
@@ -70,9 +69,9 @@
 <script>
     var dom = weex.requireModule('dom')
     const animation = weex.requireModule('animation')
-  const modal = weex.requireModule('modal')
+    const modal = weex.requireModule('modal')
     export default {
-        props:["topics",'lefthasMore','righthasMore','more','isShow'],
+        props:["topics",'lefthasMore','righthasMore','more','isShow','isCom'],
         data () {
             return {
                 isStart: true,
@@ -85,11 +84,16 @@
                   "left": 0,
                   "right": 0
                 },
-                isFirst:true
+                isFirst:true,
+                testStyle:{}
             }
         },
         created(){
-            //console.log(this.topics)
+            const width = 750*(this.topics.length);
+            this.testStyle = {
+                width: width + "px"
+            };
+            console.log(this.topics)
         },
         methods: {
             onSwipe(event,index){
@@ -133,6 +137,10 @@
                     if(index == 0){
                         this.$emit("prevPage")
                         if(this.righthasMore){
+                            setTimeout(function(){
+                                console.log(_self.topics.length);
+                            },100)
+                            
                             var rightStart = (this.topics.length - 1) * 750
                             animation.transition(el, {
                               styles: {

@@ -1,7 +1,7 @@
 <template>
     <div :class="['wrapper', isIpx&&isIpx()?'w-ipx':'']">
         <header2 :title="name" :leftBtn='leftButton'></header2>
-        <scroller class="main" offset-accuracy="300px" loadmoreoffset="300">
+        <scroller class="main" :class="[isand?'android-main':'']" offset-accuracy="300px" loadmoreoffset="300">
             <refresher></refresher>
             <div class="book-detail">
               <image class="i-img" resize="cover" :src="detail.full_cover"></image>
@@ -88,11 +88,6 @@
     }
     .wrapper{
         background-color: #f4f4f4;
-        position: absolute;
-        top:0px;
-        bottom:0px;
-        left:0px;
-        right:0px;
     }
     .w-ipx{
         margin-top: 40px;
@@ -108,6 +103,9 @@
         background-color: #fff;
         width: 750px;
     } 
+    .android-main{
+      margin-bottom: 150px;
+    }
     .book-detail{
       flex-direction: row;
       flex-wrap: nowrap;
@@ -428,7 +426,7 @@
 </style>
 
 <script>
-    import util from '../util';
+    import { Utils } from 'weex-ui';
     import refresher from '../components/refresh.vue';
     import Header2 from '../components/Header2.vue';
     import tabBar from '../components/tabBar.vue';
@@ -461,12 +459,14 @@
                 //pdfUrl:'/json/storage/pdf/xiyou.pdf',
                 workerSrc: 'https://cdn.bootcss.com/pdf.js/1.9.456/pdf.worker.min.js',
                 starbar: 'http://www.imbawin.com/images/iconpic-star-S-default.png',
-                star: 'http://www.imbawin.com/images/iconpic-star-S.png'
+                star: 'http://www.imbawin.com/images/iconpic-star-S.png',
+                isand:false
             }
         },
         created () {
             this.bookID = this.$route.params.index;
             this.name = this.$route.params.name;
+            this.isand = Utils.env.isAndroid();
             var _self = this;
             storage.getItem('token',event => {
               this.token = event.data;

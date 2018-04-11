@@ -6,7 +6,7 @@
         </text> -->
         <div class="main-list" @click="toggleFun('test')">
             <div  class="cell-button">
-            <scrollImg :topics="topics" @nextPage="next" @prevPage="prev" :lefthasMore="lefthasMore" :righthasMore="righthasMore" :more="more" @toggleShow="toggleShow" :isShow="isShow"></scrollImg>
+            <scrollImg :topics="topics" @nextPage="next" @prevPage="prev" :lefthasMore="lefthasMore" :righthasMore="righthasMore" :more="more" @toggleShow="toggleShow" :isShow="isShow" :isCom="isCompleted"></scrollImg>
             </div>
         </div>
         <bookBar v-if="isShow" :collectTag="collectTag" @toggleOpen="catalogHandle" :bookID="bookID" @toggleComment="toggleComment"></bookBar>
@@ -64,14 +64,16 @@
                 catalog:[],
                 totalPage:1,
                 startPage:1,
-                pageSize: 5,
+                pageSize: 2,
                 lefthasMore: true,
                 righthasMore: false,
                 isOpen:false,
                 collectTag:'',
                 bookID:'',
                 bookName:'',
-                isOpenComment:false
+                isOpenComment:false,
+                mod:0,
+                isCompleted:''
             }
         },
         components: {
@@ -106,6 +108,7 @@
                   this.topics = this.books.slice(0,_self.pageSize);
                   this.more = this.books.slice(_self.pageSize,_self.pageSize*2);
                   this.totalPage = Math.ceil(result.count / this.pageSize);
+                  this.mod = result.count % this.pageSize;
                 }else{
                   modal.toast({
                     message: res.data.code + ":" + this.token,
@@ -151,6 +154,7 @@
               if(this.startPage == this.totalPage){
                 this.lefthasMore = false;
               }
+              this.isCompleted = true;
               //console.log("next->"+this.startPage)
             },
             prev(){
@@ -162,13 +166,15 @@
               this.lefthasMore = true;
 
               this.startPage = this.startPage - 1;
-              var end = this.pageSize * this.startPage;
-              var start = end - this.pageSize;
+              var end,start;
+              end = this.pageSize * this.startPage;
+              start = end - this.pageSize;
               this.topics = this.books.slice(start,end)
 
               if(this.startPage == 1){
                 this.righthasMore = false;
               }
+              this.isCompleted = true;              
               //console.log("prev->"+this.startPage)
             },
             getPage(start,end){
