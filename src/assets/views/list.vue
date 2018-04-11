@@ -1,7 +1,7 @@
 <template>
     <div :class="['wrapper', isIpx&&isIpx()?'w-ipx':'']">
         <header2 :title="name" :leftBtn='leftButton'></header2>
-        <scroller class="main-list" >
+        <scroller class="main-list" :class="[isand?'android-main-list':'']">
             <refresher></refresher>
             <div class="book-list">
                 <div class="sub-i" v-for="i in booklist">
@@ -31,25 +31,20 @@
     }
     .wrapper{
         background-color: #f4f4f4;
-        position: absolute;
-        top:0px;
-        bottom:0px;
-        left:0px;
-        right:0px;
     }
     .w-ipx{
         margin-top: 40px;
         margin-bottom: 50px;
     }
     .main-list{
-        display: flex;
-        flex-direction: column;
-        flex-wrap: nowrap;
         margin-top: 86px;
         margin-bottom: 100px;
         /*margin-bottom: 220px;*/
         background-color: #fff;
         width: 750px;
+    }
+    .android-main-list{
+        margin-bottom: 150px;
     }
     .book-list{
         padding-left: 20px;
@@ -122,7 +117,7 @@
 </style>
 
 <script>
-    import util from '../util';
+    import { Utils } from 'weex-ui';
     import refresher from '../components/refresh.vue';
     import Header2 from '../components/Header2.vue';
     import tabBar from '../components/tabBar.vue';
@@ -147,11 +142,13 @@
                 hasNomare: false,
                 leftButton: {
                     name:"&#xe697;"
-                }
+                },
+                isand:false
             }
         },
         created () {
             this.name = this.$route.params.name;
+            this.isand = Utils.env.isAndroid();
             storage.getItem('token',event => {
                 this.token = event.data;
                 this.listID = this.$route.params.index;

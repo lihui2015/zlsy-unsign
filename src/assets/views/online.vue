@@ -26,11 +26,6 @@
     }
     .wrapper{
         background-color: #f4f4f4;
-        position: absolute;
-        top:0px;
-        bottom:0px;
-        left:0px;
-        right:0px;
     }
     .w-ipx{
         margin-top: 40px;

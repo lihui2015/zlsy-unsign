@@ -1,7 +1,7 @@
 <template>
     <div :class="['wrapper', isIpx&&isIpx()?'w-ipx':'']">
         <home-header title="阅读活动"></home-header>
-        <scroller :class="['main-list']">
+        <scroller :class="['main-list',isand?'android-main-list':'']">
             <refresher></refresher>
             <div class="cell-button">
                 <yx-slider :imageList="YXBanners" ></yx-slider>
@@ -25,11 +25,11 @@
         font-family:iconfont;
     }
     .wrapper{
-        position: absolute;
+        /*position: absolute;
         top:0px;
         bottom:0px;
         left:0px;
-        right:0px;
+        right:0px;*/
     }
     .main-list{
         /*margin-top:86px;*/
@@ -39,6 +39,9 @@
         background-color:#f8f8f8;
         /*margin-top: 167px;*/
         /*margin-bottom: 90px;*/
+    }
+    .android-main-list{
+        margin-bottom: 150px;
     }
     .ml-ipx{
         margin-top: 208px;
@@ -54,7 +57,7 @@
     var modal = weex.requireModule('modal')
     var navigator = weex.requireModule('navigator')
     var storage = weex.requireModule('storage');
-    import util from '../util';
+    import { Utils } from 'weex-ui';
     import Header from '../components/header.vue';
     import refresher from '../components/refresh.vue';
     import YXSlider from '../components/YXSlider.vue';
@@ -79,11 +82,13 @@
                 borrowRecords: [],
                 bookList: [],
                 showLoading: 'hide',
-                token: ''
+                token: '',
+                isand:false
             }
         },
         created () {
             var _self = this;
+            this.isand = Utils.env.isAndroid();
             storage.getItem('token',event => {
                 _self.token = event.data;
 

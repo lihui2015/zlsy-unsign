@@ -21,8 +21,6 @@
         height: 86px;
         padding-top: 0px;
         background-color: #009FF0;
-        opacity: .99;
-        z-index: 101;
         flex-wrap: nowrap;
         flex-direction: row;
         justify-content: space-around;

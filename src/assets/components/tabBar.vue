@@ -1,5 +1,5 @@
 <template>
-    <div :class="['wrapper', isIpx&&isIpx()?'w-ipx':'']">
+    <div :class="['wrapper', isIpx&&isIpx()?'w-ipx':'',isand?'android-main-list':'']">
 
         <div class="bar-item" @click="tabTo('home')">
             <text class="bar-ic iconfont icon-home" :class="[this.isActive('home')]">&#xe661;</text>
@@ -23,7 +23,7 @@
     }
     .wrapper{
         position: fixed;
-        bottom: 50px;
+        bottom: 0px;
         /*top: 1105px;*/
         left: 0;
         right: 0;
@@ -35,6 +35,9 @@
         border-top-width: 1px;
         border-top-color: #d9d9d9;
         background-color: #f0f0f0;
+    }
+    .android-wrapper{
+        bottom: 50px;
     }
     .w-ipx{
         height: 150px;
@@ -93,7 +96,7 @@
     }
 </style>
 <script>
-
+    import { Utils } from 'weex-ui';
     var modal = weex.requireModule('modal');
     export default {
         props:['router'],
@@ -101,10 +104,13 @@
         },
         data () {
             return {
-                pIndexKey:this.router
+                pIndexKey:this.router,
+                isand:false
             }
         },
-        mounted(){},
+        created(){
+            this.isand = Utils.env.isAndroid();
+        },
         methods: {
             isActive:function (_c) {
                 return this.pIndexKey === _c ?'bar-active':''

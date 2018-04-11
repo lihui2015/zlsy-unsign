@@ -1,7 +1,7 @@
 <template>
   <div :class="['wrapper', isIpx&&isIpx()?'w-ipx':'']">
         <header2 :title="postDetail.title" :leftBtn='leftBtn'></header2>
-        <scroller class="main" offset-accuracy="300px" loadmoreoffset="300">
+        <scroller class="main" :class="[isand?'android-main':'']" offset-accuracy="300px" loadmoreoffset="300">
             <refresher></refresher>
         <div class="contentBox">
           <div class="auther-box">
@@ -48,7 +48,7 @@
           <loading-indicator class="indicator"></loading-indicator>
         </loading> 
       </scroller>
-      <div class="comment-form">
+      <div class="comment-form" :class="[isand?'android-comment-form':'']">
         <!-- <text class="more iconfont">&#xe744;</text> -->
         <input type="text" placeholder="" class="input" value="" @input='oninput' disabled='false' autofocus='false' @click="focus" ref="input"/>
         <text class="btn" @click="post()">提交</text>
@@ -58,6 +58,7 @@
 
 <script>
 import Header2 from '../components/Header2.vue';
+import { Utils } from 'weex-ui';
 var storage = weex.requireModule('storage')
 var modal = weex.requireModule('modal')
 export default {
@@ -83,10 +84,12 @@ export default {
         hasNomare: false,
         placeholder: '',
         ups: [],
-        commentContent: ''
+        commentContent: '',
+        isand: false
       }
     },
     created(){
+        this.isand = Utils.env.isAndroid();
         this.postID = this.$route.params.index;
         storage.getItem('token',event => {
           this.token = event.data;
@@ -194,11 +197,6 @@ export default {
     }
     .wrapper{
         background-color: #fefefe;
-        position: absolute;
-        top:0px;
-        bottom:0px;
-        left:0px;
-        right:0px;
     }
     .w-ipx{
         margin-top: 40px;
@@ -209,17 +207,23 @@ export default {
       /*margin-bottom: 220px;*/
       width: 750px;
     }
+    .android-main{
+      margin-bottom: 150px;
+    }
     .comment-form{
       position: fixed;
       left: 0;
       right:0;
       /*top: 1115px;*/
-      bottom: 50px;
+      bottom: 0px;
       width: 750px;
       height: 90px;
       background-color: #f0f0f0;
       flex-direction: row;
       align-items: center;
+    }
+    .android-comment-form{
+      bottom:50px;
     }
     .more{
       font-size: 50px;
