@@ -36,7 +36,7 @@
         width: 750px;
         /*margin-bottom: 220px;*/
         margin-bottom: 100px;
-        background-color:#f8f8f8;
+        background-color:#ffffff;
         /*margin-top: 167px;*/
         /*margin-bottom: 90px;*/
     }
@@ -98,10 +98,10 @@
                         let result = res.data.result;
                         this.YXBanners = result;
                     }else{
-                        modal.toast({
-                            message: res.data.code + ":" + _self.token,
-                            duration: 3
-                        })
+                        // modal.toast({
+                        //     message: res.data.code + ":" + _self.token,
+                        //     duration: 3
+                        // })
                     }
                 });
 
@@ -118,10 +118,10 @@
                         this.bookList = result;
                         this.borrowRecords = result;
                     }else{
-                        modal.toast({
-                            message: res.data.code + ":" + _self.token,
-                            duration: 3
-                        })
+                        // modal.toast({
+                        //     message: res.data.code + ":" + _self.token,
+                        //     duration: 3
+                        // })
                     }
                 })
             })

@@ -14,7 +14,7 @@
               </div>
             </div>
             <loading @loading="onloading" :class="['loading',loadinging ? 'show' : 'hide']">
-               <loading-indicator class="indicator"></loading-indicator>
+               <!-- <loading-indicator class="indicator"></loading-indicator> -->
              </loading>
         </scroller>
     </div>

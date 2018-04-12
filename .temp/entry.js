@@ -43,7 +43,7 @@ var mixins = {
                 headers:{
                     "access-token": token
                 },
-                url: 'http://www.imbawin.com/app/' + api
+                url: 'http://zl.senseitgroup.com/app/' + api
             }, callback)
         },
         POST (api, token, data, callback) {
@@ -55,7 +55,7 @@ var mixins = {
                     "Content-Type": "application/json"
                 },
                 body: data,
-                url: 'http://www.imbawin.com/app/' + api
+                url: 'http://zl.senseitgroup.com/app/' + api
             }, callback)
         }
 

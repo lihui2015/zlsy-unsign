@@ -20,7 +20,7 @@
       name: 'App',
       data () {
           return {
-              login: false
+              login: true
           }
       },
       components: {

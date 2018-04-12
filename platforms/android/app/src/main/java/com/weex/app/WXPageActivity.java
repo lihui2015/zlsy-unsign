@@ -7,6 +7,7 @@ import android.support.annotation.NonNull;
 import android.support.v4.content.LocalBroadcastManager;
 import android.text.TextUtils;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -31,6 +32,7 @@ import com.taobao.weex.utils.WXSoInstallMgrSdk;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import android.view.KeyEvent;
 
 public class WXPageActivity extends AbsWeexActivity implements
     WXSDKInstance.NestedInstanceInterceptor {
@@ -253,14 +255,14 @@ public class WXPageActivity extends AbsWeexActivity implements
   }
 
   @Override  
-  public boolean onKeyDown(int keyCode, KeyEvent event) {  
+  public boolean onKeyDown(int keyCode, KeyEvent event) {
     
       if (keyCode == KeyEvent.KEYCODE_BACK) {  
-          // Intent home = new Intent(Intent.ACTION_MAIN);  
-          // home.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);  
-          // home.addCategory(Intent.CATEGORY_HOME);  
-          // startActivity(home);  
-          setContentView(R.layout.activity_wxpage);
+           Intent home = new Intent(Intent.ACTION_MAIN);
+           home.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+           home.addCategory(Intent.CATEGORY_HOME);
+           startActivity(home);
+          //setContentView(R.layout.activity_wxpage);
           return true;  
       }  
       return super.onKeyDown(keyCode, event);  

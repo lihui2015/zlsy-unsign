@@ -72,8 +72,8 @@
               </div>
             </div>
             <loading @loading="onloading" :class="['loading',loadinging ? 'show' : 'hide']">
-              <text class="indicator-text">{{placeholder}}</text>
-              <loading-indicator class="indicator"></loading-indicator>
+              <!-- <text class="indicator-text">{{placeholder}}</text> -->
+              <!-- <loading-indicator class="indicator"></loading-indicator> -->
             </loading> 
             <!--<loading class="loading" display="hide">-->
                 <!--<text class="indicator">Loading ...</text>-->

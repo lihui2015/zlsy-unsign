@@ -93,7 +93,7 @@
             this.testStyle = {
                 width: width + "px"
             };
-            console.log(this.topics)
+            // console.log(this.topics)
         },
         methods: {
             onSwipe(event,index){
@@ -102,7 +102,7 @@
                 var dir = event.direction;
                 var el = this.$refs.test;
                 var move = 0;
-                console.log("index->"+index+',length->'+(_self.topics.length-1));
+                //console.log("index->"+index+',length->'+(_self.topics.length-1));
                 if(_self.isShow){
                     this.$emit("toggleShow",{open:false});
                     return false;
@@ -137,9 +137,9 @@
                     if(index == 0){
                         this.$emit("prevPage")
                         if(this.righthasMore){
-                            setTimeout(function(){
-                                console.log(_self.topics.length);
-                            },100)
+                            // setTimeout(function(){
+                            //     console.log(_self.topics.length);
+                            // },100)
                             
                             var rightStart = (this.topics.length - 1) * 750
                             animation.transition(el, {

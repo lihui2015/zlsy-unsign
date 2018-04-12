@@ -1028,6 +1028,10 @@
         "source": "/Users/apple/.gradle/caches/transforms-1/files-1.1/appcompat-v7-26.1.0.aar/cc304b66e6f024f82edefd049f01eea0/res/drawable-xxhdpi-v4/abc_textfield_default_mtrl_alpha.9.png"
     },
     {
+        "merged": "/Users/apple/www/weex/zlsy-1/platforms/android/app/build/intermediates/res/merged/debug/mipmap-xxxhdpi_logonew.png.flat",
+        "source": "/Users/apple/www/weex/zlsy-1/platforms/android/app/src/main/res/mipmap-xxxhdpi/logonew.png"
+    },
+    {
         "merged": "/Users/apple/www/weex/zlsy-ui/platforms/android/app/build/intermediates/res/merged/debug/drawable-ldrtl-xhdpi-v17_abc_ic_menu_copy_mtrl_am_alpha.png.flat",
         "source": "/Users/apple/.gradle/caches/transforms-1/files-1.1/appcompat-v7-26.1.0.aar/cc304b66e6f024f82edefd049f01eea0/res/drawable-ldrtl-xhdpi-v17/abc_ic_menu_copy_mtrl_am_alpha.png"
     },

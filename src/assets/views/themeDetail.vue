@@ -15,7 +15,7 @@
               <text class="tlt">{{postDetail.title}}</text>
           </div>
           <div class="description-box">
-              <text class="description">{{postDetail.content}}</text>
+              <text class="description">{{postDetail.html_content}}</text>
           </div>
           <div class="image-box">
             <image v-for="(img,i) in postDetail.html_image" :src="img" resize="cover" class="main-img"></image>
@@ -44,8 +44,8 @@
           </div>
         </div>
         <loading @loading="onloading" :class="['loading',loadinging ? 'show' : 'hide']">
-          <text class="indicator-text">{{placeholder}}</text>
-          <loading-indicator class="indicator"></loading-indicator>
+          <!-- <text class="indicator-text">{{placeholder}}</text> -->
+          <!-- <loading-indicator class="indicator"></loading-indicator> -->
         </loading> 
       </scroller>
       <div class="comment-form" :class="[isand?'android-comment-form':'']">

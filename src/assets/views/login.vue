@@ -4,7 +4,7 @@
         <input type="tel" autofocus="true" placeholder="手机号" class="input-style" v-model="phone">
         <input type="password" placeholder="密码" class="input-style" v-model="password">
         <text class="login-btn" @click="signIn()">立即登录</text>
-        <text class="forget-psw">忘记密码？</text>
+        <!-- <text class="forget-psw">忘记密码？</text> -->
     </div>
 </template>
 <style scoped>
@@ -85,7 +85,7 @@
                 stream.fetch({
                     method: 'POST',
                     type: 'json',
-                    url: 'http://www.imbawin.com/app/login?phone='+ph+'&password='+pw
+                    url: 'http://zl.senseitgroup.com/app/login?phone='+ph+'&password='+pw
                     //url: '/json/login?phone=17327486666&password=123456'
                 }, function(res){
                     if(res.data.code == 200){

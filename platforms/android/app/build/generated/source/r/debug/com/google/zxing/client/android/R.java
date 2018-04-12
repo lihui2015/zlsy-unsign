@@ -31,9 +31,9 @@ public final class R {
         public static final int zxing_viewfinder_mask = 0x7f05006c;
     }
     public static final class id {
-        public static final int centerCrop = 0x7f080028;
-        public static final int fitCenter = 0x7f080048;
-        public static final int fitXY = 0x7f080049;
+        public static final int centerCrop = 0x7f080029;
+        public static final int fitCenter = 0x7f080049;
+        public static final int fitXY = 0x7f08004a;
         public static final int zxing_back_button = 0x7f0800b7;
         public static final int zxing_barcode_scanner = 0x7f0800b8;
         public static final int zxing_barcode_surface = 0x7f0800b9;

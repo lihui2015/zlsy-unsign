@@ -1,5 +1,5 @@
 <template>
-    <div :class="['wrapper', isIpx&&isIpx()?'w-ipx':'',isand?'android-main-list':'']">
+    <div :class="['wrapper', isIpx&&isIpx()?'w-ipx':'',isand?'android-wrapper':'']">
 
         <div class="bar-item" @click="tabTo('home')">
             <text class="bar-ic iconfont icon-home" :class="[this.isActive('home')]">&#xe661;</text>
@@ -36,6 +36,7 @@
         border-top-color: #d9d9d9;
         background-color: #f0f0f0;
     }
+    
     .android-wrapper{
         bottom: 50px;
     }

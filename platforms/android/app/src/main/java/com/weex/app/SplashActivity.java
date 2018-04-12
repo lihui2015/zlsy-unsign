@@ -13,21 +13,19 @@ import android.view.animation.AlphaAnimation;
 
 public class SplashActivity extends AppCompatActivity {
 
-  private ImageView imageView = null;
-
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_splash);
 
-    imageView = (ImageView) findViewById(R.id.bitmapImageView);
-    ScaleAnimation scaleAnimation = new ScaleAnimation(0.0f, 1.0f, 0.0f, 1.0f, Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF, 0.5f);
-    AlphaAnimation alphaAnimation = new AlphaAnimation(1, 0);
+    View imageView = findViewById(R.id.bitmapImageView);
+    //ScaleAnimation scaleAnimation = new ScaleAnimation(0.0f, 1.0f, 0.0f, 1.0f, Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF, 0.5f);
+    AlphaAnimation alphaAnimation = new AlphaAnimation(1, 1);
 
     AnimationSet animationSet = new AnimationSet(false);
-    animationSet.addAnimation(scaleAnimation);
+    //animationSet.addAnimation(scaleAnimation);
     animationSet.addAnimation(alphaAnimation);
-    animationSet.setDuration(1500);
+    animationSet.setDuration(1000);
 
     animationSet.setAnimationListener(new Animation.AnimationListener() {
       @Override
