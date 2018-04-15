@@ -15,9 +15,14 @@ import bookImage from '@/assets/views/book-image'
 import bookScroller from '@/assets/views/book-scroller'
 import comment from '@/assets/views/comment'
 import login from '@/assets/views/login'
+import register from '@/assets/views/register'
+import forgetPSW from '@/assets/views/forgetPSW'
+import resetPSW from '@/assets/views/resetPSW'
 import empty from '@/assets/views/_empty'
 import postCreate from '@/assets/views/postCreate'
 import defaultPage from '@/assets/views/default'
+import bookshelf from '@/assets/views/bookshelf'
+import mypost from '@/assets/views/mypost'
 
 Vue.use(Router)
 
@@ -104,9 +109,34 @@ module.exports = new Router({
       component: personal
     },
     {
+      path: '/bookshelf',
+      name: 'bookshelf',
+      component: bookshelf
+    },
+    {
+      path: '/mypost',
+      name: 'mypost',
+      component: mypost
+    },
+    {
       path: '/login',
       name: 'login',
       component: login
+    },
+    {
+      path: '/register',
+      name: 'register',
+      component: register
+    },
+    {
+      path: '/forgetPSW',
+      name: 'forgetPSW',
+      component: forgetPSW
+    },
+    {
+      path: '/resetPSW',
+      name: 'resetPSW',
+      component: forgetPSW
     },
     {
       path: '/_empty',

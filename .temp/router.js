@@ -16,9 +16,16 @@ import bookImage from '@/assets/views/book-image'
 import bookScroller from '@/assets/views/book-scroller'
 import comment from '@/assets/views/comment'
 import login from '@/assets/views/login'
+import register from '@/assets/views/register'
+import forgetPSW from '@/assets/views/forgetPSW'
+import resetPSW from '@/assets/views/resetPSW'
 import empty from '@/assets/views/_empty'
 import postCreate from '@/assets/views/postCreate'
 import defaultPage from '@/assets/views/default'
+import bookshelf from '@/assets/views/bookshelf'
+import mypost from '@/assets/views/mypost'
+
+import tabBar from '@/assets/components/tabBar'
 
 Vue.use(Router)
 
@@ -26,88 +33,131 @@ module.exports = new Router({
   routes: [
     {
       path: '/',
-      name: 'defaultPage',
-      component: defaultPage
+      name: 'home',
+      component: home,
+      meta: { requiresAuth: true }
     },
     {
       path: '/home',
       name: 'home',
-      component: home
+      component: home,
+      meta: { requiresAuth: true }
     },
     {
       path: '/sort',
       name: 'sort',
-      component: sort
+      component: sort,
+      meta: { requiresAuth: true }
     },
     {
       path: '/list/:index/:name',
       name: 'list',
-      component: list
+      component: list,
+      meta: { requiresAuth: true }
     },
     {
       path: '/bookDetail/:index/:name',
       name: 'bookDetail',
-      component: bookDetail
+      component: bookDetail,
+      meta: { requiresAuth: true }
     },
     {
       path: '/book/:index',
       name: 'book',
-      component: book
+      component: book,
+      meta: { requiresAuth: true }
     },
     {
       path: '/book-image/:index',
       name: 'bookImage',
-      component: bookImage
+      component: bookImage,
+      meta: { requiresAuth: true }
     },
     {
       path: '/book-scroller/:index/:isCollect/:name',
       name: 'bookScroller',
-      component: bookScroller
+      component: bookScroller,
+      meta: { requiresAuth: true }
     },
     {
       path: '/comment/:index',
       name: 'comment',
-      component: comment
+      component: comment,
+      meta: { requiresAuth: true }
     },
     {
       path: '/activity',
       name: 'activity',
-      component: activity
+      component: activity,
+      meta: { requiresAuth: true }
     },
     {
       path: '/online/:index/:name',
       name: 'online',
-      component: online
+      component: online,
+      meta: { requiresAuth: true }
     },
     {
       path: '/themeDetail/:index',
       name: 'themeDetail',
-      component: themeDetail
+      component: themeDetail,
+      meta: { requiresAuth: true }
     },
     {
       path: '/postCreate/:index',
       name: 'postCreate',
-      component: postCreate
+      component: postCreate,
+      meta: { requiresAuth: true }
     },
     {
       path: '/offline',
       name: 'offline',
-      component: offline
+      component: offline,
+      meta: { requiresAuth: true }
     },
     {
       path: '/signUp',
       name: 'signUp',
-      component: signUp
+      component: signUp,
+      meta: { requiresAuth: true }
     },
     {
       path: '/personal',
       name: 'personal',
-      component: personal
+      component: personal,
+      meta: { requiresAuth: true }
+    },
+    {
+      path: '/bookshelf',
+      name: 'bookshelf',
+      component: bookshelf,
+      meta: { requiresAuth: true }
+    },
+    {
+      path: '/mypost',
+      name: 'mypost',
+      component: mypost,
+      meta: { requiresAuth: true }
     },
     {
       path: '/login',
       name: 'login',
       component: login
+    },
+    {
+      path: '/register',
+      name: 'register',
+      component: register
+    },
+    {
+      path: '/forgetPSW',
+      name: 'forgetPSW',
+      component: forgetPSW
+    },
+    {
+      path: '/resetPSW',
+      name: 'resetPSW',
+      component: resetPSW
     },
     {
       path: '/_empty',

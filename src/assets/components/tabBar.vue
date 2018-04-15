@@ -12,7 +12,7 @@
         </div>
         <div class="bar-item" @click="tabTo('personal')">
             <text class="bar-ic iconfont icon-person" :class="[this.isActive('personal')]">&#xe6b8;</text>
-            <text class="bar-txt" :class="[this.isActive('personal')]">个人</text>
+            <text class="bar-txt" :class="[this.isActive('personal')]">我的</text>
             <text class="i-notice">2</text>
         </div>
     </div>

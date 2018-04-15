@@ -2,7 +2,7 @@
     <div :class="['wrapper', isIpx&&isIpx()?'w-ipx':'']">
         <header2  title="活动"></header2>
         <scroller class="main-list" :class="[isand?'android-main-list':'']" offset-accuracy="300px">
-            <refresher></refresher>
+            <!-- <refresher></refresher> -->
             <div v-for="ar in articles" class="cell-button">
                 <block-3 :article="ar" url=""></block-3>
             </div>
@@ -28,7 +28,7 @@
     .main-list{
         margin-top: 86px;
         margin-bottom: 100px;
-        /*margin-bottom: 220px;*/
+        /*margin-bottom: 290px;*/
         background-color: #f4f4f4;
 
     }

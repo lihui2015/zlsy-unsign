@@ -34,14 +34,14 @@
     .main-list{
         /*margin-top:86px;*/
         width: 750px;
-        /*margin-bottom: 220px;*/
-        margin-bottom: 100px;
+        margin-bottom: 290px;
+        /*margin-bottom: 100px;*/
         background-color:#ffffff;
         /*margin-top: 167px;*/
         /*margin-bottom: 90px;*/
     }
     .android-main-list{
-        margin-bottom: 150px;
+        /*margin-bottom: 150px;*/
     }
     .ml-ipx{
         margin-top: 208px;
@@ -87,6 +87,7 @@
             }
         },
         created () {
+            //weex.requireModule('PDFModule').readPDF("book id", "token");
             var _self = this;
             this.isand = Utils.env.isAndroid();
             storage.getItem('token',event => {

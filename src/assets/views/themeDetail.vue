@@ -35,7 +35,7 @@
             <div class="comment-detail">
               <div class="comment-author">
                 <text class="comment-author-name">{{item.reader.name}}</text>
-                <text class="comment-author-time">{{item.reader.created_at}}</text>
+                <text class="comment-author-time">{{item.created_at}}</text>
               </div>
               <div class="comment-content">
                 <text class="comment-text">{{item.content}}</text>
@@ -204,7 +204,7 @@ export default {
     }
     .main{
       margin-bottom: 100px;
-      /*margin-bottom: 220px;*/
+      /*margin-bottom: 290px;*/
       width: 750px;
     }
     .android-main{

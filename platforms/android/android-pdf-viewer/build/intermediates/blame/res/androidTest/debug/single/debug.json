@@ -1,0 +1,18 @@
+[
+    {
+        "merged": "/Users/apple/www/weex/zlsy-1/platforms/android/android-pdf-viewer/build/intermediates/res/merged/androidTest/debug/drawable_default_scroll_handle_bottom.xml.flat",
+        "source": "/Users/apple/www/weex/zlsy-1/platforms/android/android-pdf-viewer/build/intermediates/bundles/debug/res/drawable/default_scroll_handle_bottom.xml"
+    },
+    {
+        "merged": "/Users/apple/www/weex/zlsy-1/platforms/android/android-pdf-viewer/build/intermediates/res/merged/androidTest/debug/drawable_default_scroll_handle_left.xml.flat",
+        "source": "/Users/apple/www/weex/zlsy-1/platforms/android/android-pdf-viewer/build/intermediates/bundles/debug/res/drawable/default_scroll_handle_left.xml"
+    },
+    {
+        "merged": "/Users/apple/www/weex/zlsy-1/platforms/android/android-pdf-viewer/build/intermediates/res/merged/androidTest/debug/drawable_default_scroll_handle_right.xml.flat",
+        "source": "/Users/apple/www/weex/zlsy-1/platforms/android/android-pdf-viewer/build/intermediates/bundles/debug/res/drawable/default_scroll_handle_right.xml"
+    },
+    {
+        "merged": "/Users/apple/www/weex/zlsy-1/platforms/android/android-pdf-viewer/build/intermediates/res/merged/androidTest/debug/drawable_default_scroll_handle_top.xml.flat",
+        "source": "/Users/apple/www/weex/zlsy-1/platforms/android/android-pdf-viewer/build/intermediates/bundles/debug/res/drawable/default_scroll_handle_top.xml"
+    }
+]

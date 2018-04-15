@@ -34,7 +34,7 @@
     .main-list{
         /*margin-top:86px;*/
         width: 750px;
-        /*margin-bottom: 220px;*/
+        /*margin-bottom: 290px;*/
         margin-bottom: 100px;
         background-color:#ffffff;
         /*margin-top: 167px;*/

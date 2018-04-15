@@ -5,6 +5,9 @@
         <input type="password" placeholder="密码" class="input-style" v-model="password">
         <text class="login-btn" @click="signIn()">立即登录</text>
         <!-- <text class="forget-psw">忘记密码？</text> -->
+        <div>
+    <!-- <text @click="testBtn" class="login-btn mt30">testMyModule</text> -->
+  </div>
     </div>
 </template>
 <style scoped>
@@ -50,6 +53,9 @@
         width: 400px;
         text-align: center;
     }
+    .mt30{
+        margin-top: 40px;
+    }
 </style>
 
 <script>
@@ -63,6 +69,9 @@
                 phone: '',
                 password: ''
             }
+        },
+        created(){
+            //weex.requireModule('PDFModule').readPDF("book id", "token");
         },
         methods: {
             signIn(){
@@ -100,7 +109,16 @@
                     }
                     
                 })
-            }
+            },
+            // testBtn: function() {
+            //     modal.toast({
+            //         message:"test",
+            //         duration:2
+            //     })
+
+            //     weex.requireModule('PDFModule').readPDF("id", "toast");
+                
+            //   }
         }
     }
 </script>

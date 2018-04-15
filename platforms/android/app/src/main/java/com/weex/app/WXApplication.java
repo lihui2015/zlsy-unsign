@@ -1,8 +1,10 @@
 package com.weex.app;
 
 import android.app.Application;
+import android.util.Log;
 
 import com.weex.app.extend.ImageAdapter;
+import com.weex.app.extend.PDFModule;
 import com.weex.app.extend.WXEventModule;
 import com.alibaba.weex.plugin.loader.WeexPluginContainer;
 import com.weex.app.util.AppConfig;
@@ -22,7 +24,9 @@ public class WXApplication extends Application {
     );
     try {
       WXSDKEngine.registerModule("event", WXEventModule.class);
+      WXSDKEngine.registerModule("PDFModule", PDFModule.class);
     } catch (WXException e) {
+      Log.i("engine---------", e.toString());
       e.printStackTrace();
     }
     AppConfig.init(this);

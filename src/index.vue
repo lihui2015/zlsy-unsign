@@ -1,5 +1,5 @@
 <template>
-    <div class="box">
+    <div class="box" @androidback="back">
         <div class="app-wrapper" v-if="login">
             <router-view class="r-box"></router-view>
             <!-- <tab-bar @tabTo="onTabTo"></tab-bar> -->
@@ -12,6 +12,8 @@
 
 <script>
   var modal = weex.requireModule('modal');
+  var globalEvent = weex.requireModule('globalEvent');
+ 
   var storage = weex.requireModule('storage');
   import util from './assets/util';
   import tabBar from './assets/components/tabBar.vue';
@@ -43,7 +45,7 @@
                   }
               });
             }
-          })
+          }); 
       },
       methods: {
           onTabTo(_result){
@@ -53,6 +55,13 @@
           handleMessage(payload){
               this.login = payload.login;
               this.$router.push('/home')
+          },
+          back(){
+            // modal.toast({
+            //   message:"androidback",
+            //   duration:2
+            // })
+            this.$router.back();
           }
       }
   }

@@ -39,7 +39,7 @@
     .main-list{
         margin-top: 86px;
         margin-bottom: 100px;
-        /*margin-bottom: 220px;*/
+        /*margin-bottom: 290px;*/
         background-color: #fff;
         width: 750px;
     }

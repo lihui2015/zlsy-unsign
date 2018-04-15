@@ -35,7 +35,7 @@
         margin-top: 86px;
         background-color: #f4f4f4;
         margin-bottom: 0px;
-        /*margin-bottom: 120px;*/
+        /*margin-bottom: 190px;*/
     }
     .cell-button{
         padding-bottom: 18px;

@@ -16,6 +16,7 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.taobao.weex.WXSDKManager;
 import com.weex.app.hotreload.HotReloadManager;
 import com.weex.app.util.AppConfig;
 import com.weex.app.util.Constants;
@@ -33,6 +34,10 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import android.view.KeyEvent;
+
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 public class WXPageActivity extends AbsWeexActivity implements
     WXSDKInstance.NestedInstanceInterceptor {
@@ -165,7 +170,7 @@ public class WXPageActivity extends AbsWeexActivity implements
     mProgressBar.setVisibility(View.GONE);
     mTipView.setVisibility(View.VISIBLE);
     if (TextUtils.equals(errCode, WXRenderErrorCode.WX_NETWORK_ERROR)) {
-      mTipView.setText(R.string.index_tip);
+      //mTipView.setText(R.string.index_tip);
     } else {
       mTipView.setText("render error:" + errCode);
     }
@@ -253,20 +258,40 @@ public class WXPageActivity extends AbsWeexActivity implements
       }
     }
   }
+//
+//  @Override
+//  public boolean onKeyDown(int keyCode, KeyEvent event) {
+//
+//      if (keyCode == KeyEvent.KEYCODE_BACK) {
+//           Intent home = new Intent(Intent.ACTION_MAIN);
+//           home.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+//           home.addCategory(Intent.CATEGORY_HOME);
+//           startActivity(home);
+//          //setContentView(R.layout.activity_wxpage);
+//          return true;
+//      }
+//      return super.onKeyDown(keyCode, event);
+//  }
 
-  @Override  
-  public boolean onKeyDown(int keyCode, KeyEvent event) {
-    
-      if (keyCode == KeyEvent.KEYCODE_BACK) {  
-           Intent home = new Intent(Intent.ACTION_MAIN);
-           home.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-           home.addCategory(Intent.CATEGORY_HOME);
-           startActivity(home);
-          //setContentView(R.layout.activity_wxpage);
-          return true;  
-      }  
-      return super.onKeyDown(keyCode, event);  
-  } 
+//  @Override
+//  public void onBackPressed() {
+//    super.onBackPressed();
+//    Map<String,Object> params=new HashMap<>();
+//    params.put("name","returnmsg");
+//    mInstance.fireGlobalEventCallback("androidback",params);
+//
+////    List<WXSDKInstance> instances = WXSDKManager.getInstance().getWXRenderManager().getAllInstances();
+////    for (WXSDKInstance instance : instances) {
+////      instance.fireGlobalEventCallback("androidback", params);
+////    }
+//
+//    Log.i(TAG, "onBackPressed: ");
+//  }
+
+  public void onBackPressed(){
+    Log.e("USER ACTION", "BACK");
+    WXSDKManager.getInstance().fireEvent(mInstance.getInstanceId(),"_root","androidback");
+  }
 
   @Override
   public void onDestroy() {

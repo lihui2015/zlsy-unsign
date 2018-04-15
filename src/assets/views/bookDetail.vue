@@ -24,7 +24,7 @@
               </div>
             </div>
             <div class="book-btn">
-              <text class="i-read" @click="jump('/book-scroller/'+bookID+'/'+collectTag+'/'+detail.book_name)">立即阅读</text>
+              <text class="i-read" @click="readBook()">立即阅读</text>
             </div>
             <div class="relative-activity section-box" v-if="activities.length > 0">
               <div class="tagWrap">
@@ -99,7 +99,7 @@
         flex-wrap: nowrap;
         margin-top: 86px;
         margin-bottom: 100px;
-        /*margin-bottom: 220px;*/
+        /*margin-bottom: 290px;*/
         background-color: #fff;
         width: 750px;
     } 
@@ -559,7 +559,20 @@
           onTabTo(_result){
                   let _key = _result.data.key || '';
                   this.$router && this.$router.push('/'+_key)
-              }
+              },
+          readBook(){
+            //增加阅读次数
+            this.POST('books/count/'+this.bookID, this.token, '', res => {
+              if(res.data.code == 200){
+              }else{
+              }  
+            });
+            //console.log(this.token,this.bookID);
+            var id = this.bookID,
+                tk = this.token;
+            weex.requireModule('PDFModule').readPDF(id, tk);
+
+          }
         }
     }
 </script>
