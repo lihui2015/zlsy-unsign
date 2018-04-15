@@ -6,11 +6,11 @@
         <input type="password" placeholder="密码" class="input-style" v-model="password">
         <text class="login-btn" @click="signIn()">立即登录</text>
         <!-- <text class="forget-psw">忘记密码？</text> -->
-        <div class="box">
+        <!-- <div class="box">
             <text class="text">还没有账号？</text>
             <text class="btn" @click="jumpTo('/register')">注册</text>
         </div>
-        <text class="forget-psw" @click="jumpTo('/forgetPSW')">忘记密码？</text>
+        <text class="forget-psw" @click="jumpTo('/forgetPSW')">忘记密码？</text> -->
     </div>
     </div>
 </template>

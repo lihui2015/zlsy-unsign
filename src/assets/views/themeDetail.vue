@@ -100,7 +100,7 @@ export default {
               this.postDetail = result;
               this.readersImg = result.readers.full_avatar;
               this.readersName = result.readers.name;
-              this.readersTime = result.readers.created_at;
+              this.readersTime = result.created_at;
               this.ups = result.ups;
             }else{
               modal.toast({
