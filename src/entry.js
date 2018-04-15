@@ -59,6 +59,67 @@ var mixins = {
     }
 }
 
+let storage = weex.requireModule('storage');
+
+function getToken(){
+    return new Promise((resolve, reject) => {
+        storage.getItem('token',event => {
+            var localToken = event.data;
+            if(localToken == 'undefined'){
+              reject()
+            }else if(localToken != 'undefined'){
+                resolve(localToken);
+              
+            }
+          }); 
+    })
+} 
+
+function getBanner(localToken){
+    return new Promise((resolve, reject) => {
+        stream.fetch({
+          method: 'GET',
+          headers:{
+            "access-token": localToken
+          },
+          url: 'http://zl.senseitgroup.com/app/banners/list',
+          type: 'json'
+        }, (res) => {
+          let result = res.data;
+          if(result.code != 200){
+            reject(result)
+          }else if(result.code == 200){
+            resolve(result)
+          }
+        }, () => {})
+
+    })
+}
+
+var p = new Promise(function (resolve, reject) {
+    resolve(123);
+});
+
+router.beforeEach((to, from, next) => {
+  if (to.matched.some(record => record.meta.requiresAuth)) {
+    // this route requires auth, check if logged in
+    // if not, redirect to login page.
+    p.then(getToken)
+     .then(getBanner)
+     .then(function (result) {
+        next()
+    })
+     .catch(function(){
+        next({
+            path: '/login',
+            query: { redirect: to.fullPath }
+          })
+     });
+  } else {
+    next() // 确保一定要调用 next()
+  }
+})
+
 // register global mixins.
 Vue.mixin(mixins)
 

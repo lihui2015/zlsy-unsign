@@ -1,12 +1,12 @@
 <template>
     <div class="box" @androidback="back">
-        <div class="app-wrapper" v-if="login">
+        <div class="app-wrapper">
             <router-view class="r-box"></router-view>
             <!-- <tab-bar @tabTo="onTabTo"></tab-bar> -->
         </div>
-        <div class="login-page" v-else>
+        <!-- <div class="login-page" v-else>
             <login-page v-on:login="handleMessage"></login-page>
-        </div>
+        </div> -->
     </div>
 </template>
 
@@ -31,36 +31,32 @@
       },
       created () {
           util.initIconFont();
-          storage.getItem('token',event => {
-            var localToken = event.data;
-            if(localToken == 'undefined'){
-              this.login = false;
-            }else if(localToken != 'undefined'){
-              this.GET('banners/list', localToken, res => {
-                  let result = res.data;
-                  if(result.code != 200){
-                    this.login = false;
-                  }else if(result.code == 200){
-                    this.login = true;
-                  }
-              });
-            }
-          }); 
+          // storage.getItem('token',event => {
+          //   var localToken = event.data;
+          //   if(localToken == 'undefined'){
+          //     this.login = false;
+          //   }else if(localToken != 'undefined'){
+          //     this.GET('banners/list', localToken, res => {
+          //         let result = res.data;
+          //         if(result.code != 200){
+          //           this.login = false;
+          //         }else if(result.code == 200){
+          //           this.login = true;
+          //         }
+          //     });
+          //   }
+          // }); 
       },
       methods: {
-          onTabTo(_result){
-              let _key = _result.data.key || '';
-              this.$router && this.$router.push('/'+_key)
-          },
-          handleMessage(payload){
-              this.login = payload.login;
-              this.$router.push('/home')
-          },
+          // onTabTo(_result){
+          //     let _key = _result.data.key || '';
+          //     this.$router && this.$router.push('/'+_key)
+          // },
+          // handleMessage(payload){
+          //     this.login = payload.login;
+          //     this.$router.push('/home')
+          // },
           back(){
-            // modal.toast({
-            //   message:"androidback",
-            //   duration:2
-            // })
             this.$router.back();
           }
       }

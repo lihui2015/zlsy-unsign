@@ -24,7 +24,7 @@
         <text class="login-btn" @click="signIn()">注册</text>
         <div class="box">
             <text class="text">已有账号，请</text>
-            <text class="btn" @click="jumpTo('/home')">登陆</text>
+            <text class="btn" @click="jumpTo('/login')">登陆</text>
         </div>
     </div>
     </div>
@@ -172,7 +172,7 @@
                             message: res.data.message+"，请登陆",
                             duration: 1
                         })
-                        _self.$router.push('/home');
+                        _self.$router.push('/login');
                     }else if(res.data.code == 3001){
                         //已经注册过
                         modal.toast({

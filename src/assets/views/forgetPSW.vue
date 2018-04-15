@@ -23,7 +23,9 @@
         <input type="password" placeholder="密码" class="input-style" v-model="password">
         <input type="password" placeholder="确认密码" class="input-style" v-model="password_confirmation">
         <text class="login-btn" @click="signIn()">重置密码</text>
-
+        <div class="box">
+            <text class="btn" @click="jumpTo('/login')">返回登陆</text>
+        </div>
     </div>
     </div>
     </div>
@@ -186,7 +188,7 @@
                             message: res.data.message+"，请登陆",
                             duration: 1
                         })
-                        _self.$router.push('/home');
+                        _self.$router.push('/login');
                     }else{
                         modal.toast({
                             message: res.data.message,

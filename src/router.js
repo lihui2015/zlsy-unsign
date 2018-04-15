@@ -30,28 +30,33 @@ module.exports = new Router({
   routes: [
     {
       path: '/',
-      name: 'defaultPage',
-      component: defaultPage
+      name: 'home',
+      component: home,
+      meta: { requiresAuth: true }
     },
     {
       path: '/home',
       name: 'home',
-      component: home
+      component: home,
+      meta: { requiresAuth: true }
     },
     {
       path: '/sort',
       name: 'sort',
-      component: sort
+      component: sort,
+      meta: { requiresAuth: true }
     },
     {
       path: '/list/:index/:name',
       name: 'list',
-      component: list
+      component: list,
+      meta: { requiresAuth: true }
     },
     {
       path: '/bookDetail/:index/:name',
       name: 'bookDetail',
-      component: bookDetail
+      component: bookDetail,
+      meta: { requiresAuth: true }
     },
     {
       path: '/book/:index',
@@ -71,27 +76,32 @@ module.exports = new Router({
     {
       path: '/comment/:index',
       name: 'comment',
-      component: comment
+      component: comment,
+      meta: { requiresAuth: true }
     },
     {
       path: '/activity',
       name: 'activity',
-      component: activity
+      component: activity,
+      meta: { requiresAuth: true }
     },
     {
       path: '/online/:index/:name',
       name: 'online',
-      component: online
+      component: online,
+      meta: { requiresAuth: true }
     },
     {
       path: '/themeDetail/:index',
       name: 'themeDetail',
-      component: themeDetail
+      component: themeDetail,
+      meta: { requiresAuth: true }
     },
     {
       path: '/postCreate/:index',
       name: 'postCreate',
-      component: postCreate
+      component: postCreate,
+      meta: { requiresAuth: true }
     },
     {
       path: '/offline',
@@ -106,17 +116,20 @@ module.exports = new Router({
     {
       path: '/personal',
       name: 'personal',
-      component: personal
+      component: personal,
+      meta: { requiresAuth: true }
     },
     {
       path: '/bookshelf',
       name: 'bookshelf',
-      component: bookshelf
+      component: bookshelf,
+      meta: { requiresAuth: true }
     },
     {
       path: '/mypost',
       name: 'mypost',
-      component: mypost
+      component: mypost,
+      meta: { requiresAuth: true }
     },
     {
       path: '/login',

@@ -25,8 +25,6 @@ import defaultPage from '@/assets/views/default'
 import bookshelf from '@/assets/views/bookshelf'
 import mypost from '@/assets/views/mypost'
 
-import tabBar from '@/assets/components/tabBar'
-
 Vue.use(Router)
 
 module.exports = new Router({ 
@@ -64,20 +62,17 @@ module.exports = new Router({
     {
       path: '/book/:index',
       name: 'book',
-      component: book,
-      meta: { requiresAuth: true }
+      component: book
     },
     {
       path: '/book-image/:index',
       name: 'bookImage',
-      component: bookImage,
-      meta: { requiresAuth: true }
+      component: bookImage
     },
     {
       path: '/book-scroller/:index/:isCollect/:name',
       name: 'bookScroller',
-      component: bookScroller,
-      meta: { requiresAuth: true }
+      component: bookScroller
     },
     {
       path: '/comment/:index',
@@ -112,14 +107,12 @@ module.exports = new Router({
     {
       path: '/offline',
       name: 'offline',
-      component: offline,
-      meta: { requiresAuth: true }
+      component: offline
     },
     {
       path: '/signUp',
       name: 'signUp',
-      component: signUp,
-      meta: { requiresAuth: true }
+      component: signUp
     },
     {
       path: '/personal',
@@ -157,7 +150,7 @@ module.exports = new Router({
     {
       path: '/resetPSW',
       name: 'resetPSW',
-      component: resetPSW
+      component: forgetPSW
     },
     {
       path: '/_empty',

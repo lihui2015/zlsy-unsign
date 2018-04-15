@@ -62,47 +62,44 @@ var mixins = {
     }
 }
 
-// register global mixins.
-Vue.mixin(mixins)
-
 let storage = weex.requireModule('storage');
-let isLogin = false;
 
-function isStorage(input) {
-    return new Promise(function (resolve, reject) {
-      //console.log("DD")
+function getToken(){
+    return new Promise((resolve, reject) => {
         storage.getItem('token',event => {
             var localToken = event.data;
             if(localToken == 'undefined'){
               reject()
             }else if(localToken != 'undefined'){
-                resolve(localToken)
+                resolve(localToken);
+              
             }
-        })
-    });
+          }); 
+    })
+} 
+
+function getBanner(localToken){
+    return new Promise((resolve, reject) => {
+        stream.fetch({
+          method: 'GET',
+          headers:{
+            "access-token": localToken
+          },
+          url: 'http://zl.senseitgroup.com/app/banners/list',
+          type: 'json'
+        }, (res) => {
+          let result = res.data;
+          if(result.code != 200){
+            reject(result)
+          }else if(result.code == 200){
+            resolve(result)
+          }
+        }, () => {})
+
+    })
 }
 
-function getBanner(localToken) {
-    return new Promise(function (resolve, reject) {
-        stream.fetch({
-              method: 'GET',
-              headers:{
-                    "access-token": localToken
-                },
-              url: 'http://zl.senseitgroup.com/app/banners/list',
-              type: 'json'
-            }, (res) => {
-              if(res.data.code == 200){
-                resolve(res.data.code)
-              }
-              else {
-                reject()
-              }
-            }, () => {})
-    });
-}
 var p = new Promise(function (resolve, reject) {
-  
     resolve(123);
 });
 
@@ -110,23 +107,24 @@ router.beforeEach((to, from, next) => {
   if (to.matched.some(record => record.meta.requiresAuth)) {
     // this route requires auth, check if logged in
     // if not, redirect to login page.
-    p.then(isStorage)
+    p.then(getToken)
      .then(getBanner)
      .then(function (result) {
-        //已经登录
         next()
-     })
+    })
      .catch(function(){
-        //没有登录
         next({
-          path: '/login',
-          query: { redirect: to.fullPath }
-        })
+            path: '/login',
+            query: { redirect: to.fullPath }
+          })
      });
   } else {
     next() // 确保一定要调用 next()
   }
 })
+
+// register global mixins.
+Vue.mixin(mixins)
 
 /* eslint-disable no-new */
 new Vue(Vue.util.extend({el: '#root', router}, App))
