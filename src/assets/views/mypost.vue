@@ -118,6 +118,7 @@
                         let result = res.data.result;
                         for(let i = 0; i<result.length; i++){
                           this.posts.push(result[i])
+                          _self.posts[i].created_at = result[i].created_at.split(' ')[0];
                         }
                         this.total = this.last_page;
                         if(result.last_page == result.current_page){

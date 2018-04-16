@@ -54,7 +54,7 @@
     }
     .tlt-box{
         height: 80px;
-        padding: 20px 20px 10px;
+        padding: 20px 20px 0px;
         display: flex;
         flex-wrap: nowrap;
         flex-direction: row;
@@ -67,7 +67,7 @@
         text-overflow: ellipsis;
     }
     .info{
-        font-size: 32px;
+        font-size: 28px;
         padding-left: 20px;
         padding-right: 20px;
         margin-top:10px;

@@ -13,44 +13,53 @@
         </div>
         <div class="fbs">
             <div class="s-box cell-button">
-                <div class="box-tlt border-bottom" @click="jump('/bookshelf')">
-                    <div class="icon-box">
-                        <text class="item-icon iconfont">&#xe62b;</text>
-                        <text class="box-txt">我的书架</text>
-                        
+                <div class="box-wrap">
+                    <div class="box-tlt border-bottom" @click="jump('/bookshelf')">
+                        <div class="icon-box">
+                            <text class="item-icon iconfont">&#xe62b;</text>
+                            <text class="box-txt">我的书架</text>
+                            
+                        </div>
+                        <text class="i-box-in iconfont">&#xe6a7;</text>
                     </div>
-                    <text class="i-box-in iconfont">&#xe6a7;</text>
-                </div>
-                <div class="box-cont box-books">
-                    <div class="box-cont-item box-book-item" v-for="(book,i) in books" @click="jump('/bookDetail/'+book.id+'/'+book.book_name)">
-                        <image class="box-cont-img box-book-img" :src="book.book_cover" resize="cover"></image>
-                        <text class="box-cont-text box-book-text">{{book.book_name}}</text>
+                    <div class="box-cont box-books">
+                        <div class="box-cont-item box-book-item" v-for="(book,i) in books" @click="jump('/bookDetail/'+book.id+'/'+book.book_name)">
+                            <image class="box-cont-img box-book-img" :src="book.book_cover" resize="cover"></image>
+                            <text class="box-cont-text box-book-text">{{book.book_name}}</text>
+                        </div>
                     </div>
                 </div>
+                
             </div>
             <!-- <div class="s-box cell-button">
-                <div class="box-tlt border-bottom"><text class="box-txt">我的活动</text><text class="i-box-in iconfont">&#xe6a7;</text></div>
-                <div class="box-cont box-activity">
-                    <div class="box-cont-item box-activity-item">
-                        <image class="box-cont-img box-activity-img" src="http://yanxuan.nosdn.127.net/885e3901d0a3501362530435d76bebb3.jpg" resize="cover"></image>
-                        <text class="box-cont-text box-activity-text">西游记</text>
+                <div class="box-wrap">
+                    <div class="box-tlt border-bottom"><text class="box-txt">我的活动</text><text class="i-box-in iconfont">&#xe6a7;</text></div>
+                    <div class="box-cont box-activity">
+                        <div class="box-cont-item box-activity-item">
+                            <image class="box-cont-img box-activity-img" src="http://yanxuan.nosdn.127.net/885e3901d0a3501362530435d76bebb3.jpg" resize="cover"></image>
+                            <text class="box-cont-text box-activity-text">西游记</text>
+                        </div>
                     </div>
                 </div>
+                
             </div> -->
             <div class="s-box cell-button">
-                <div class="box-tlt border-bottom" @click="jump('/mypost')">
-                    <div class="icon-box">
-                        <text class="item-icon iconfont">&#xe6a2;</text>
-                        <text class="box-txt">我的帖子</text>
+                <div class="box-wrap mt0">
+                    <div class="box-tlt border-bottom" @click="jump('/mypost')">
+                        <div class="icon-box">
+                            <text class="item-icon iconfont">&#xe6a2;</text>
+                            <text class="box-txt">我的帖子</text>
+                        </div>
+                        <text class="i-box-in iconfont">&#xe6a7;</text>
                     </div>
-                    <text class="i-box-in iconfont">&#xe6a7;</text>
-                </div>
-                <div class="box-cont box-post">
-                    <div class="box-cont-item box-post-item" v-for="post in posts" @click="jump('/themeDetail/'+post.id)">
-                        <text class="box-cont-text box-post-text">{{post.title}}</text>
-                        <text class="box-post-time">{{post.created_at}}</text>
+                    <div class="box-cont box-post">
+                        <div class="box-cont-item box-post-item" v-for="post in posts" @click="jump('/themeDetail/'+post.id)">
+                            <text class="box-cont-text box-post-text">{{post.title}}</text>
+                            <text class="box-post-time">{{post.created_at}}</text>
+                        </div>
                     </div>
                 </div>
+                
             </div>
         </div>
         </scroller>
@@ -164,10 +173,10 @@
         font-family:iconfont;
     }
     .wrapper{
-        background-color: #f4f4f4;
+        background-color: #ffffff;
     }
     .fbs{
-        background-color: #f4f4f4;
+        background-color: #ffffff;
         /*padding-bottom: 1000px;
         margin-bottom: -1000px;*/
     }
@@ -182,7 +191,15 @@
         margin-bottom: 140px;
     }
     .cell-button{
-        margin-bottom: 18px;
+        background-color: #f4f4f4;
+    }
+
+    .box-wrap{
+        background-color: #ffffff;
+        margin-bottom: 20px;
+    }
+    .mt0{
+        margin-bottom: 0
     }
     .header{
         height: 246px;

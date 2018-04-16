@@ -2,9 +2,12 @@
     <div :class="['wrapper', isIpx&&isIpx()?'w-ipx':'']">
     <div class="wrapper-login">
         <text class="text">登录账户</text>
-        <input type="tel" autofocus="true" placeholder="手机号" class="input-style" v-model="phone" @click="focus()" ref="tel">
-        <input type="password" placeholder="密码" class="input-style" v-model="password">
-        <text class="login-btn" @click="signIn()">立即登录</text>
+        <div class="input-box">
+            <input type="tel" autofocus="true" placeholder="手机号" class="input-style" v-model="phone" @click="focus()" ref="tel">
+            <input type="password" placeholder="密码" class="input-style bt" v-model="password">
+        </div>
+        
+        <text class="login-btn" @click="signIn()">登录</text>
         <!-- <text class="forget-psw">忘记密码？</text> -->
         <!-- <div class="box">
             <text class="text">还没有账号？</text>
@@ -21,42 +24,53 @@
         position: absolute;
         top:0;
         left:0;
-        background-color:#ffffff;
+        background-color:#f8f8f8;
     }
     .wrapper-login{
         margin-top: 50px;
-        margin-left: 125px;
-        width: 500px;
+        margin-left: 30px;
+        width: 690px;
         align-items: center;
     }
     .text{
         font-size: 36px;
-        color: #333333;
+        color: #666666;
+    }
+    .input-box{
+        width: 690px;
+        padding-left: 30px;
+        padding-right: 30px;
+        margin-top: 40px;
+        background-color: #ffffff;
+        border-color:#f0f0f0;
+        border-width: 1px;
     }
     .input-style{
-        width: 400px;
-        height: 60px;
+        width: 630px;
+        /*height: 60px;*/
         font-size: 34px;
         color: #666666;
-        line-height: 60px;
-        border-width: 1px;
-        border-color: #cccccc;
-        padding-top: 10px;
-        padding-bottom: 10px;
-        padding-left: 20px;
-        padding-right: 20px;
-        margin-top: 40px;
+        /*line-height: 60px;*/
+        padding-top: 40px;
+        padding-bottom: 40px;
+    }
+    .bt{
+        border-top-width: 1px;
+        border-bottom-width: 0px;
+        border-right-width: 0px;
+        border-left-width: 0px;
+        border-color: #f0f0f0;
     }
     .login-btn{
-        width: 400px;
+        width: 690px;
         text-align: center;
         font-size: 34px;
         color: #ffffff;
-        background-color: green;
-        height: 60px;
-        line-height: 60px;
-        margin-top:40px;
-        border-radius: 10px;
+        background-color: #009ffc;
+        height: 80px;
+        line-height: 80px;
+        margin-top:80px;
+        border-radius: 2px;
     }
     .box{
         width: 500px;

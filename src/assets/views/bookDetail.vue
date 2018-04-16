@@ -3,30 +3,38 @@
         <header2 :title="name" :leftBtn='leftButton'></header2>
         <scroller class="main" :class="[isand?'android-main':'']" offset-accuracy="300px" loadmoreoffset="300">
             <refresher></refresher>
-            <div class="book-detail">
-              <image class="i-img" resize="cover" :src="detail.full_cover"></image>
-              <div class="detail">
-                <text class="i-name">{{detail.book_name}}</text>
-                <div class="star-box">
-                  <image :src="starbar" class="star-bar"></image>
-                  <div  :class="['star','star'+detail.score]">
-                    <image :src="star" class="starImg"></image>
+            <div class="section-box">
+              <div class="box-wrap bt40">
+                <div class="book-detail">
+                  <image class="i-img" resize="cover" :src="detail.full_cover"></image>
+                  <div class="detail">
+                    <text class="i-name">{{detail.book_name}}</text>
+                    <div class="star-box">
+                      <image :src="starbar" class="star-bar"></image>
+                      <div  :class="['star','star'+detail.score]">
+                        <image :src="star" class="starImg"></image>
+                      </div>
+                    </div>
+                    <text class="i-author">作者：{{detail.author}}</text>
+                    <text class="i-count">{{detail.read_count}}人阅读</text>
+                    <div class="shareBox" @click="collect(collectTag)">
+                      <text ref='collect' :class="['i-collect','iconfont', 'collected']" v-if="collectTag == 1">&#xe64b;</text>
+                      <text ref='collect' :class="['i-collect','iconfont']" v-else>&#xe64c;</text>
+                      <text :class="['i-collect-text',collectTag == 1 ? 'collected' : '']">收藏</text>
+                      <!-- <text class="i-share">&#xe744; 分享</text> -->
+                    </div>
+                    
                   </div>
                 </div>
-                <text class="i-author">作者：{{detail.author}}</text>
-                <text class="i-count">{{detail.read_count}}人阅读</text>
-                <div class="shareBox" @click="collect(collectTag)">
-                  <text ref='collect' :class="['i-collect','iconfont', collectTag == 1 ? 'collected' : '']">&#xe604;</text>
-                  <text :class="['i-collect-text',collectTag == 1 ? 'collected' : '']">收藏</text>
-                  <!-- <text class="i-share">&#xe744; 分享</text> -->
+                <div class="book-btn">
+                  <text class="i-read" @click="readBook()">立即阅读</text>
                 </div>
-                
               </div>
+              
             </div>
-            <div class="book-btn">
-              <text class="i-read" @click="readBook()">立即阅读</text>
-            </div>
+            
             <div class="relative-activity section-box" v-if="activities.length > 0">
+              <div class="box-wrap">
               <div class="tagWrap">
                 <text class="activity-tag iconfont icon-text">&#xe62a;</text>
                 <text class="activity-text tag-text">相关活动</text>
@@ -39,15 +47,19 @@
                   </div>
                 </div>
               </scroller>
+              </div>
             </div>
             <div class="book-desc section-box">
+              <div class="box-wrap">
               <div class="tagWrap">
                 <text class="desc-tag iconfont icon-text">&#xe62b;</text>
                 <text class="desc-text tag-text">书籍简介</text>
               </div>
               <text class="desc-content">{{detail.description}}</text>
+              </div>
             </div>
             <div class="book-comment section-box">
+              <div class="box-wrap mb0">
               <div class="comment-header section">
                 <div class="tagWrap">
                   <text class="comment-tag iconfont icon-text">&#xe608;</text>
@@ -70,6 +82,7 @@
                   </div>
                 </div>
               </div>
+              </div>
             </div>
             <loading @loading="onloading" :class="['loading',loadinging ? 'show' : 'hide']">
               <!-- <text class="indicator-text">{{placeholder}}</text> -->
@@ -87,7 +100,7 @@
         font-family:iconfont;
     }
     .wrapper{
-        background-color: #f4f4f4;
+        background-color: #ffffff;
     }
     .w-ipx{
         margin-top: 40px;
@@ -100,7 +113,7 @@
         margin-top: 86px;
         margin-bottom: 100px;
         /*margin-bottom: 290px;*/
-        background-color: #fff;
+        background-color: #ffffff;
         width: 750px;
     } 
     .android-main{
@@ -148,7 +161,7 @@
     }
     .i-collect{
       margin-right: 10px;
-      font-size: 36px;
+      font-size: 38px;
       color:#606060;
     }
     .i-collect-text{
@@ -163,42 +176,52 @@
     }
     .book-btn{
       align-items: center;
-      margin-top:10px;
+      margin-top:20px;
     }
     .i-read{
       background-color: #009FF0;
       font-size: 34px;
       color: #ffffff;
       width: 700px;
-      height: 70px;
-      line-height: 70px;
+      height: 80px;
+      line-height: 80px;
       text-align: center;
       border-radius: 10px;
     }
 
     .section-box{
       /*padding-bottom: 10px; */
-      margin-top: 20px;     
+      background-color: #f4f4f4;
+      /*margin-bottom: 20px; */    
+    }
+    .box-wrap{
+      background-color: #ffffff;
+      margin-bottom: 20px;
+    }
+    .bt40{
+      padding-bottom: 40px;
     }
     .tagWrap{
       flex-direction: row;
       align-items: center;
-      background-color: #009FF0;
-      height: 70px;
+      background-color: #ffffff;
+      height: 94px;
       padding-left: 20px;
       padding-right: 20px;
+      border-bottom-width: 1px;
+      border-color: #ededed;
     }
     .icon-text{
       font-size: 40px;
-      color: #ffffff;
+      color: #333333;
       margin-right: 10px;
     }
     .tag-text{
-      color: #ffffff;
+      color: #333333;
       font-size: 34px;
     }
     .section{
-      background-color: #009FF0;
+      background-color: #ffffff;
       padding-right:20px;
     }
     .relative-activity{
@@ -251,8 +274,8 @@
     .desc-tag{
     }
     .desc-content{
-      padding-top: 20px;
-      padding-bottom: 10px;
+      padding-top: 30px;
+      padding-bottom: 40px;
       padding-left: 20px;
       padding-right: 20px;      
       font-size: 32px;
@@ -267,16 +290,19 @@
       flex-direction: row;
       justify-content: space-between;
       align-items: center;
+      border-bottom-width: 1px;
+      border-color: #ededed;
+      background-color: #ffffff;
     }
     .comment-tag{
-      color: #ffffff;
+      color: #333333;
       font-size: 34px;
     }
     .comment-btn{
       border-radius: 10px;
       border-width: 1px;
-      border-color: #ffffff;
-      color: #ffffff;
+      border-color: #009ffc;
+      color: #009ffc;
       height: 54px;
       text-align: center;
       line-height: 54px;
@@ -284,9 +310,12 @@
       padding-left:15px;
       padding-right:15px;
     }
+    .mb0{
+      margin-bottom: 0
+    }
     .comment-item{
       border-bottom-width: 1px;
-      border-bottom-color: #dedede;
+      border-bottom-color: #f0f0f0;
       padding-top: 20px;
       padding-bottom: 20px;
       padding-left: 20px;
@@ -317,7 +346,7 @@
     }
     .comment-author-name{
       color: #8d8d8d;
-      font-size: 32px;
+      font-size: 30px;
     }
     .icon-text{
       font-size: 40px;

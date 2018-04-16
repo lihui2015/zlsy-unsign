@@ -223,7 +223,7 @@ export default {
       align-items: center;
     }
     .android-comment-form{
-      bottom:50px;
+      bottom:45px;
     }
     .more{
       font-size: 50px;
@@ -279,7 +279,7 @@ export default {
         color: #666666;
     }
     .auther-time{
-        font-size: 30px;
+        font-size: 28px;
         line-height: 32px;
         margin-top: 10px;
         color: #888888;
@@ -370,7 +370,7 @@ export default {
       color: #888888;
     }
     .comment-author-time{
-      font-size: 30px;
+      font-size: 28px;
       color: #acacac;
       margin-top: 10px;
     }

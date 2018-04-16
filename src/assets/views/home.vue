@@ -58,7 +58,7 @@
     var navigator = weex.requireModule('navigator')
     var storage = weex.requireModule('storage');
     import { Utils } from 'weex-ui';
-    import Header from '../components/header.vue';
+    import Header from '../components/Header2.vue';
     import refresher from '../components/refresh.vue';
     import YXSlider from '../components/YXSlider.vue';
     import bookSearch from '../components/bookSearch.vue';
@@ -87,6 +87,7 @@
             }
         },
         created () {
+
             var _self = this;
             this.isand = Utils.env.isAndroid();
             storage.getItem('token',event => {

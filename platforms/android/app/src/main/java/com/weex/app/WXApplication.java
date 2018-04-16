@@ -3,6 +3,7 @@ package com.weex.app;
 import android.app.Application;
 import android.util.Log;
 
+import com.weex.app.extend.CloseModule;
 import com.weex.app.extend.ImageAdapter;
 import com.weex.app.extend.PDFModule;
 import com.weex.app.extend.WXEventModule;
@@ -25,6 +26,7 @@ public class WXApplication extends Application {
     try {
       WXSDKEngine.registerModule("event", WXEventModule.class);
       WXSDKEngine.registerModule("PDFModule", PDFModule.class);
+      WXSDKEngine.registerModule("close", CloseModule.class);
     } catch (WXException e) {
       Log.i("engine---------", e.toString());
       e.printStackTrace();

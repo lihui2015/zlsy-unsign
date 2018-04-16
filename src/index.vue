@@ -57,7 +57,17 @@
           //     this.$router.push('/home')
           // },
           back(){
-            this.$router.back();
+            var path = this.$route.path;
+            // modal.toast({
+            //   message: path,
+            //   duration: 2
+            // })
+            if(path == '/' || path == '/home' || path == '/login'){
+              weex.requireModule('close').closeApp()
+            }else{
+              this.$router.back();
+            }
+            
           }
       }
   }

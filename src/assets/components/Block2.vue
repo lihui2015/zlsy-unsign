@@ -21,19 +21,19 @@
         text-align: center;
         background-color:#009FF0;
         height: 70px;
-        font-weight: 600;
+        
         text-align: left;
         padding-left: 20px;
         padding-right: 20px;
     }
     .tlt{
         color:#ffffff;
-        font-size: 36px;
-        font-weight: 600;
+        font-size: 34px;
     }
     .colorWhite{
         color:#ffffff;
         font-size: 48px;
+        font-weight: 600;
     }
     .wrapper{
         margin-top: 0px;

@@ -23,11 +23,11 @@
                 <text class="wedge-text wedge-num">{{commen.comments_count}}</text>
             </div>
             <div class="wedge-like wedge" v-if="isLike == 1">
-                <text class="iconfont active">&#xe603;</text>
+                <text class="iconfont icon-up active">&#xe7e2;</text>
                 <text class="wedge-text active">{{commen.up}}</text>
             </div>
             <div class="wedge-like wedge" @click="like(commen.id)" v-else>
-                <text class="iconfont">&#xe603;</text>
+                <text class="iconfont icon-up">&#xe7e1;</text>
                 <text class="wedge-text">赞</text>
             </div>
             <!-- <div class="wedge-share wedge">
@@ -66,7 +66,7 @@
         color: #666666;
     }
     .auther-time{
-        font-size: 30px;
+        font-size: 28px;
         line-height: 32px;
         margin-top: 10px;
         color: #888888;
@@ -118,7 +118,7 @@
         align-items: center;
     }
     .wedge-text{
-        font-size: 30px;
+        font-size: 28px;
         color: #9d9d9d;
         margin-left: 10px;
     }
@@ -128,6 +128,9 @@
     .iconfont{
         color: #9d9d9d;
         font-size: 40px;
+    }
+    .icon-up{
+        font-size: 38px;
     }
     .active{
         color: #009FF0;

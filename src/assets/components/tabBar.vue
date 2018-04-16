@@ -2,16 +2,20 @@
     <div :class="['wrapper', isIpx&&isIpx()?'w-ipx':'',isand?'android-wrapper':'']">
 
         <div class="bar-item" @click="tabTo('home')">
-            <text class="bar-ic iconfont icon-home" :class="[this.isActive('home')]">&#xe661;</text>
+            <text class="bar-ic iconfont icon-home bar-active" v-if="this.isActive('home')">&#xe702;</text>
+            <text class="bar-ic iconfont icon-home" v-else>&#xe703;</text>
+            <!-- <text class="bar-ic iconfont icon-home" :class="[this.isActive('home')]"></text> -->
             <text class="bar-txt" :class="[this.isActive('home')]">首页</text>
         </div>
         <div class="bar-item" @click="tabTo('activity')">
-            <text class="bar-ic iconfont icon-activity" :class="[this.pIndexKey == 'activity'?'bar-active':'']">&#xe62a;</text>
+            <text class="bar-ic iconfont icon-activity bar-active" v-if="this.pIndexKey == 'activity'">&#xe6df;</text>
+            <text class="bar-ic iconfont icon-activity" v-else>&#xe6de;</text>
             <text class="bar-txt" :class="[this.pIndexKey == 'activity'?'bar-active':'']">活动</text>
             <text class="notice-dot"></text>
         </div>
         <div class="bar-item" @click="tabTo('personal')">
-            <text class="bar-ic iconfont icon-person" :class="[this.isActive('personal')]">&#xe6b8;</text>
+            <text class="bar-ic iconfont icon-person bar-active" v-if="this.pIndexKey == 'personal'">&#xe715;</text>
+            <text class="bar-ic iconfont icon-person" v-else>&#xe716;</text>
             <text class="bar-txt" :class="[this.isActive('personal')]">我的</text>
             <text class="i-notice">2</text>
         </div>
@@ -38,7 +42,7 @@
     }
     
     .android-wrapper{
-        bottom: 50px;
+        bottom: 45px;
     }
     .w-ipx{
         height: 150px;
@@ -47,7 +51,7 @@
         flex: 1;
     }
     .bar-txt,.bar-ic{
-        color:#666;
+        color:#8d8d8d;
         text-align: center;
     }
     
@@ -55,11 +59,11 @@
         color:#009FF0;
     }
     .bar-ic{
-        padding-top: 10px;
-        font-size: 42px;
+        padding-top: 14px;
+        font-size: 56px;
         line-height: 42px;
     }
-    .icon-home{
+    /*.icon-home{
         font-size: 60px;
     }
     .icon-activity{
@@ -67,9 +71,9 @@
     }
     .icon-person{
         font-size: 40px;
-    }
+    }*/
     .bar-txt{
-        font-size: 30px;
+        font-size: 28px;
         padding-top: 3px;
         line-height: 30px;
     }
