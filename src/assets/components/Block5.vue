@@ -150,7 +150,6 @@
         components: { WxcTag },
         data(){
             return {
-                img: 'http://www.imbawin.com/storage/avatar/2018/04/02/tdsPjcjh5HpziRd23S5A5P8sSKjkzNbCu5CAg1Py.jpg',
                 token:'',
                 isLike:''
             }

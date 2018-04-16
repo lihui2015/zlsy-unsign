@@ -6645,7 +6645,7 @@ module.exports = {
   },
   "wrapper": {
     "position": "fixed",
-    "bottom": "0",
+    "top": "1105",
     "left": 0,
     "right": 0,
     "height": "100",
@@ -6656,9 +6656,6 @@ module.exports = {
     "borderTopWidth": "1",
     "borderTopColor": "#d9d9d9",
     "backgroundColor": "#f0f0f0"
-  },
-  "android-wrapper": {
-    "bottom": "45"
   },
   "w-ipx": {
     "height": "150"
@@ -15702,7 +15699,7 @@ module.exports.render._withStripped = true
 module.exports = {
   "wrapper": {
     "width": "750",
-    "height": "1245",
+    "height": "1345",
     "position": "absolute",
     "top": 0,
     "left": 0,
@@ -16066,7 +16063,7 @@ module.exports = __vue_exports__
 module.exports = {
   "wrapper": {
     "width": "750",
-    "height": "1245",
+    "height": "1345",
     "position": "absolute",
     "top": 0,
     "left": 0,
@@ -16946,7 +16943,7 @@ module.exports = __vue_exports__
 module.exports = {
   "wrapper": {
     "width": "750",
-    "height": "1245",
+    "height": "1345",
     "position": "absolute",
     "top": 0,
     "left": 0,

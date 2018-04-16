@@ -23,6 +23,7 @@ import postCreate from '@/assets/views/postCreate'
 import defaultPage from '@/assets/views/default'
 import bookshelf from '@/assets/views/bookshelf'
 import mypost from '@/assets/views/mypost'
+import about from '@/assets/views/about'
 
 Vue.use(Router)
 
@@ -32,6 +33,7 @@ module.exports = new Router({
       path: '/',
       name: 'home',
       component: home,
+      // redirect: '/personal',
       meta: { requiresAuth: true }
     },
     {
@@ -129,6 +131,12 @@ module.exports = new Router({
       path: '/mypost',
       name: 'mypost',
       component: mypost,
+      meta: { requiresAuth: true }
+    },
+    {
+      path: '/about',
+      name: 'about',
+      component: about,
       meta: { requiresAuth: true }
     },
     {

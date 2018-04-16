@@ -9,7 +9,11 @@
                 <text class="i-tag tag-v8 iconfont">&#xe660;</text>
                 <text class="txt-tag"></text>
             </div> -->
-            <!-- <text class="b-qrcode iconfont">&#xe788;</text> -->
+            <div class="aboutBox" @click="jump('/about')">
+                <text class="about-icon iconfont">&#xe62d;</text>
+                <text class="about-text">关于</text>
+            </div>
+            <!-- <text class="b-qrcode iconfont">&#xe62d;</text> -->
         </div>
         <div class="fbs">
             <div class="s-box cell-button">
@@ -254,6 +258,25 @@
         overflow: hidden;
         lines:1;
         text-overflow: ellipsis;
+    }
+    .aboutBox{
+        position: absolute;
+        top: 20px;
+        right: 20px;
+        flex-direction: row;
+        align-items: center;
+        justify-content: flex-end;
+        width:200px;
+        
+    }
+    .about-text{
+        font-size: 30px;
+        color: #ffffff;
+        padding-left: 6px;
+    }
+    .about-icon{
+        font-size: 40px;
+        color: #ffffff;
     }
     .b-qrcode{
         position: absolute;

@@ -62,7 +62,7 @@ public class WXPageActivity extends AbsWeexActivity implements
     mProgressBar = (ProgressBar) findViewById(R.id.progress);
     mTipView = (TextView) findViewById(R.id.index_tip);
 
-    //CacheActivity.addActivity(this);
+    CacheActivity.addActivity(this);
 
     Intent intent = getIntent();
     Uri uri = intent.getData();

@@ -4805,12 +4805,12 @@ exports.default = {
 
     methods: {
         goBack: function goBack() {
-
-            if (this.leftBtn.fun) {
-                this.leftBtn.fun();
-            } else {
-                this.$router.go(-1);
-            }
+            this.$router.go(-1);
+            // if(this.leftBtn.fun){
+            //     this.leftBtn.fun();
+            // }else{
+            //     this.$router.go(-1)
+            // }
         }
     }
 };
@@ -6645,7 +6645,7 @@ module.exports = {
   },
   "wrapper": {
     "position": "fixed",
-    "bottom": "0",
+    "top": "1105",
     "left": 0,
     "right": 0,
     "height": "100",
@@ -6656,9 +6656,6 @@ module.exports = {
     "borderTopWidth": "1",
     "borderTopColor": "#d9d9d9",
     "backgroundColor": "#f0f0f0"
-  },
-  "android-wrapper": {
-    "bottom": "45"
   },
   "w-ipx": {
     "height": "150"
@@ -10846,25 +10843,19 @@ module.exports = {
     "marginBottom": "50"
   },
   "main": {
-    "marginBottom": "100",
+    "marginBottom": "290",
     "width": "750"
-  },
-  "android-main": {
-    "marginBottom": "150"
   },
   "comment-form": {
     "position": "fixed",
     "left": 0,
     "right": 0,
-    "bottom": "0",
+    "top": "1115",
     "width": "750",
     "height": "90",
     "backgroundColor": "#f0f0f0",
     "flexDirection": "row",
     "alignItems": "center"
-  },
-  "android-comment-form": {
-    "bottom": "45"
   },
   "more": {
     "fontSize": "50",
@@ -15702,7 +15693,7 @@ module.exports.render._withStripped = true
 module.exports = {
   "wrapper": {
     "width": "750",
-    "height": "1245",
+    "height": "1345",
     "position": "absolute",
     "top": 0,
     "left": 0,
@@ -16066,7 +16057,7 @@ module.exports = __vue_exports__
 module.exports = {
   "wrapper": {
     "width": "750",
-    "height": "1245",
+    "height": "1345",
     "position": "absolute",
     "top": 0,
     "left": 0,
@@ -16946,7 +16937,7 @@ module.exports = __vue_exports__
 module.exports = {
   "wrapper": {
     "width": "750",
-    "height": "1245",
+    "height": "1345",
     "position": "absolute",
     "top": 0,
     "left": 0,

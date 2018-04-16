@@ -75,12 +75,12 @@
         },
         methods: {
             goBack: function(){
-
-                if(this.leftBtn.fun){
-                    this.leftBtn.fun();
-                }else{
-                    this.$router.go(-1)
-                }
+                this.$router.go(-1)
+                // if(this.leftBtn.fun){
+                //     this.leftBtn.fun();
+                // }else{
+                //     this.$router.go(-1)
+                // }
                 
             }
         }

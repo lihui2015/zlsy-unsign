@@ -30,7 +30,6 @@
         margin-bottom: 100px;
         /*margin-bottom: 290px;*/
         background-color: #f4f4f4;
-
     }
     .android-main-list{
         margin-bottom: 150px;
