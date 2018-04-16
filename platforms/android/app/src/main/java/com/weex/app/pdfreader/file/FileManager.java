@@ -45,6 +45,10 @@ public final class FileManager {
         });
     }
 
+    public static void onDestroy(){
+        instance = null;
+    }
+
     public static void init(Context context, int id, String token, PDFCallback callback) {
         if (instance == null) {
             synchronized (FileManager.class) {

@@ -95,6 +95,13 @@ public class PDFReaderActivity extends AppCompatActivity implements FileManager.
     }
 
     @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        FileManager.onDestroy();
+
+    }
+
+    @Override
     public void onCompleted(String path) {
         Log.e("tag", path);
         checkCatalogInit();

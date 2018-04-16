@@ -63,7 +63,7 @@
             //   duration: 2
             // })
             if(path == '/' || path == '/home' || path == '/login'){
-              weex.requireModule('close').closeApp()
+              //weex.requireModule('close').closeApp()
             }else{
               this.$router.back();
             }

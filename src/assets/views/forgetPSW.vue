@@ -12,8 +12,8 @@
                     :interval="1000"
                     tpl="{s}秒"
                     :timeBoxStyle="{backgroundColor: '#ffffff', height: '60px'}"
-                    :timeTextStyle="{fontSize: '28px', color: '#333333'}"
-                    :dotTextStyle="{color: '#333333', fontSize: '28px',justifyContent: 'center'}"
+                    :timeTextStyle="{fontSize: '28px', color: '#8d8d8d'}"
+                    :dotTextStyle="{color: '#8d8d8d', fontSize: '28px',justifyContent: 'center'}"
                     :dotBoxStyle="{width: '48px',height: '60px'}"
                     :style="{marginTop: '0px', justifyContent: 'center'}"
                     :time="TIME"
@@ -82,11 +82,14 @@
         justify-content: space-between;
     }
     .validate-input{
-        width:480px;
+        width:460px;
     }
     .validate-btn{
-        width: 150px;
+        width: 170px;
         height: 60px;
+        border-left-width: 1px;
+        border-color: #f0f0f0;
+        padding-left: 20px;
     }
     .v-btn{
         font-size: 28px;
@@ -114,11 +117,11 @@
     }
     .text{
         color: #666666;
-        font-size: 32px;
+        font-size: 30px;
     }
     .btn{
         color: #009FF0;
-        font-size: 32px;
+        font-size: 30px;
     }
 </style>
 

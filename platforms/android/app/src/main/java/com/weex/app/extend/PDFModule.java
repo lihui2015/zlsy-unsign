@@ -6,7 +6,6 @@ import android.widget.Toast;
 
 import com.taobao.weex.annotation.JSMethod;
 import com.taobao.weex.common.WXModule;
-import com.weex.app.PDFActivity;
 import com.weex.app.pdfreader.PDFReaderActivity;
 
 /**

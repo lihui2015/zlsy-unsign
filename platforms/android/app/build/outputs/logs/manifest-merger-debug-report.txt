@@ -1,9 +1,9 @@
 -- Merging decision tree log ---
 manifest
-ADDED from /Users/apple/www/weex/zlsy-1/platforms/android/app/src/main/AndroidManifest.xml:2:1-56:12
-INJECTED from /Users/apple/www/weex/zlsy-1/platforms/android/app/src/main/AndroidManifest.xml:2:1-56:12
-INJECTED from /Users/apple/www/weex/zlsy-1/platforms/android/app/src/main/AndroidManifest.xml:2:1-56:12
-INJECTED from /Users/apple/www/weex/zlsy-1/platforms/android/app/src/main/AndroidManifest.xml:2:1-56:12
+ADDED from /Users/apple/www/weex/zlsy-1/platforms/android/app/src/main/AndroidManifest.xml:2:1-51:12
+INJECTED from /Users/apple/www/weex/zlsy-1/platforms/android/app/src/main/AndroidManifest.xml:2:1-51:12
+INJECTED from /Users/apple/www/weex/zlsy-1/platforms/android/app/src/main/AndroidManifest.xml:2:1-51:12
+INJECTED from /Users/apple/www/weex/zlsy-1/platforms/android/app/src/main/AndroidManifest.xml:2:1-51:12
 MERGED from [com.taobao.android:weex_sdk:0.16.0] /Users/apple/.gradle/caches/transforms-1/files-1.1/weex_sdk-0.16.0.aar/d2e6cc63abce16524b631da6b384feec/AndroidManifest.xml:20:1-37:12
 MERGED from [com.android.support:design:26.1.0] /Users/apple/.gradle/caches/transforms-1/files-1.1/design-26.1.0.aar/4af990d6382be2e1d88098b8d2f0e055/AndroidManifest.xml:17:1-31:12
 MERGED from [com.android.support:appcompat-v7:26.1.0] /Users/apple/.gradle/caches/transforms-1/files-1.1/appcompat-v7-26.1.0.aar/cc304b66e6f024f82edefd049f01eea0/AndroidManifest.xml:17:1-31:12
@@ -24,22 +24,22 @@ MERGED from [com.taobao.android:weex_inspector:0.10.0.5] /Users/apple/.gradle/ca
 MERGED from [com.taobao.android:weexplugin-loader:1.3] /Users/apple/.gradle/caches/transforms-1/files-1.1/weexplugin-loader-1.3.aar/bcabc8dcac8bd9a6546403d5e37aef49/AndroidManifest.xml:2:1-15:12
 MERGED from [com.liulishuo.filedownloader:library:1.7.2] /Users/apple/.gradle/caches/transforms-1/files-1.1/library-1.7.2.aar/848ec4381a9485d96321a25ee12cd933/AndroidManifest.xml:2:1-18:12
 MERGED from [android.arch.lifecycle:runtime:1.0.0] /Users/apple/.gradle/caches/transforms-1/files-1.1/runtime-1.0.0.aar/a60d4291e003ac2f310b2930008dc61e/AndroidManifest.xml:17:1-30:12
-INJECTED from /Users/apple/www/weex/zlsy-1/platforms/android/app/src/main/AndroidManifest.xml:2:1-56:12
-INJECTED from /Users/apple/www/weex/zlsy-1/platforms/android/app/src/main/AndroidManifest.xml:2:1-56:12
-INJECTED from /Users/apple/www/weex/zlsy-1/platforms/android/app/src/main/AndroidManifest.xml:2:1-56:12
+INJECTED from /Users/apple/www/weex/zlsy-1/platforms/android/app/src/main/AndroidManifest.xml:2:1-51:12
+INJECTED from /Users/apple/www/weex/zlsy-1/platforms/android/app/src/main/AndroidManifest.xml:2:1-51:12
+INJECTED from /Users/apple/www/weex/zlsy-1/platforms/android/app/src/main/AndroidManifest.xml:2:1-51:12
 	package
 		ADDED from /Users/apple/www/weex/zlsy-1/platforms/android/app/src/main/AndroidManifest.xml:4:11-33
 		INJECTED from /Users/apple/www/weex/zlsy-1/platforms/android/app/src/main/AndroidManifest.xml
 		INJECTED from /Users/apple/www/weex/zlsy-1/platforms/android/app/src/main/AndroidManifest.xml
 	android:versionName
 		INJECTED from /Users/apple/www/weex/zlsy-1/platforms/android/app/src/main/AndroidManifest.xml
-		ADDED from /Users/apple/www/weex/zlsy-1/platforms/android/app/src/main/AndroidManifest.xml:2:1-56:12
+		ADDED from /Users/apple/www/weex/zlsy-1/platforms/android/app/src/main/AndroidManifest.xml:2:1-51:12
 		INJECTED from /Users/apple/www/weex/zlsy-1/platforms/android/app/src/main/AndroidManifest.xml
 	xmlns:tools
 		ADDED from /Users/apple/www/weex/zlsy-1/platforms/android/app/src/main/AndroidManifest.xml:3:11-57
 	android:versionCode
 		INJECTED from /Users/apple/www/weex/zlsy-1/platforms/android/app/src/main/AndroidManifest.xml
-		ADDED from /Users/apple/www/weex/zlsy-1/platforms/android/app/src/main/AndroidManifest.xml:2:1-56:12
+		ADDED from /Users/apple/www/weex/zlsy-1/platforms/android/app/src/main/AndroidManifest.xml:2:1-51:12
 		INJECTED from /Users/apple/www/weex/zlsy-1/platforms/android/app/src/main/AndroidManifest.xml
 	xmlns:android
 		ADDED from /Users/apple/www/weex/zlsy-1/platforms/android/app/src/main/AndroidManifest.xml:2:11-69
@@ -78,7 +78,7 @@ MERGED from [com.journeyapps:zxing-android-embedded:3.4.0] /Users/apple/.gradle/
 	android:name
 		ADDED from /Users/apple/www/weex/zlsy-1/platforms/android/app/src/main/AndroidManifest.xml:13:19-67
 application
-ADDED from /Users/apple/www/weex/zlsy-1/platforms/android/app/src/main/AndroidManifest.xml:15:5-54:19
+ADDED from /Users/apple/www/weex/zlsy-1/platforms/android/app/src/main/AndroidManifest.xml:15:5-49:19
 MERGED from [com.taobao.android:weex_sdk:0.16.0] /Users/apple/.gradle/caches/transforms-1/files-1.1/weex_sdk-0.16.0.aar/d2e6cc63abce16524b631da6b384feec/AndroidManifest.xml:29:5-35:19
 MERGED from [com.taobao.android:weex_sdk:0.16.0] /Users/apple/.gradle/caches/transforms-1/files-1.1/weex_sdk-0.16.0.aar/d2e6cc63abce16524b631da6b384feec/AndroidManifest.xml:29:5-35:19
 MERGED from [com.android.support:design:26.1.0] /Users/apple/.gradle/caches/transforms-1/files-1.1/design-26.1.0.aar/4af990d6382be2e1d88098b8d2f0e055/AndroidManifest.xml:25:5-29:19
@@ -160,26 +160,18 @@ ADDED from /Users/apple/www/weex/zlsy-1/platforms/android/app/src/main/AndroidMa
 		ADDED from /Users/apple/www/weex/zlsy-1/platforms/android/app/src/main/AndroidManifest.xml:37:13-45
 	android:name
 		ADDED from /Users/apple/www/weex/zlsy-1/platforms/android/app/src/main/AndroidManifest.xml:36:13-55
-activity#com.weex.app.PDFActivity
-ADDED from /Users/apple/www/weex/zlsy-1/platforms/android/app/src/main/AndroidManifest.xml:40:9-44:20
-	android:screenOrientation
-		ADDED from /Users/apple/www/weex/zlsy-1/platforms/android/app/src/main/AndroidManifest.xml:43:13-49
-	android:label
-		ADDED from /Users/apple/www/weex/zlsy-1/platforms/android/app/src/main/AndroidManifest.xml:42:13-45
-	android:name
-		ADDED from /Users/apple/www/weex/zlsy-1/platforms/android/app/src/main/AndroidManifest.xml:41:13-52
 activity#com.weex.app.pdfreader.PDFReaderActivity
-ADDED from /Users/apple/www/weex/zlsy-1/platforms/android/app/src/main/AndroidManifest.xml:46:9-49:20
+ADDED from /Users/apple/www/weex/zlsy-1/platforms/android/app/src/main/AndroidManifest.xml:41:9-44:20
 	android:name
-		ADDED from /Users/apple/www/weex/zlsy-1/platforms/android/app/src/main/AndroidManifest.xml:47:13-68
+		ADDED from /Users/apple/www/weex/zlsy-1/platforms/android/app/src/main/AndroidManifest.xml:42:13-68
 activity#com.journeyapps.barcodescanner.CaptureActivity
-ADDED from /Users/apple/www/weex/zlsy-1/platforms/android/app/src/main/AndroidManifest.xml:50:9-53:48
+ADDED from /Users/apple/www/weex/zlsy-1/platforms/android/app/src/main/AndroidManifest.xml:45:9-48:48
 MERGED from [com.journeyapps:zxing-android-embedded:3.4.0] /Users/apple/.gradle/caches/transforms-1/files-1.1/zxing-android-embedded-3.4.0.aar/2897fb8f1cb9d555106c90c09f6dbfe7/AndroidManifest.xml:46:9-52:63
 MERGED from [com.journeyapps:zxing-android-embedded:3.4.0] /Users/apple/.gradle/caches/transforms-1/files-1.1/zxing-android-embedded-3.4.0.aar/2897fb8f1cb9d555106c90c09f6dbfe7/AndroidManifest.xml:46:9-52:63
 	android:clearTaskOnLaunch
 		ADDED from [com.journeyapps:zxing-android-embedded:3.4.0] /Users/apple/.gradle/caches/transforms-1/files-1.1/zxing-android-embedded-3.4.0.aar/2897fb8f1cb9d555106c90c09f6dbfe7/AndroidManifest.xml:48:13-45
 	android:screenOrientation
-		ADDED from /Users/apple/www/weex/zlsy-1/platforms/android/app/src/main/AndroidManifest.xml:52:13-49
+		ADDED from /Users/apple/www/weex/zlsy-1/platforms/android/app/src/main/AndroidManifest.xml:47:13-49
 		REJECTED from [com.journeyapps:zxing-android-embedded:3.4.0] /Users/apple/.gradle/caches/transforms-1/files-1.1/zxing-android-embedded-3.4.0.aar/2897fb8f1cb9d555106c90c09f6dbfe7/AndroidManifest.xml:49:13-56
 	android:stateNotNeeded
 		ADDED from [com.journeyapps:zxing-android-embedded:3.4.0] /Users/apple/.gradle/caches/transforms-1/files-1.1/zxing-android-embedded-3.4.0.aar/2897fb8f1cb9d555106c90c09f6dbfe7/AndroidManifest.xml:50:13-42
@@ -188,9 +180,9 @@ MERGED from [com.journeyapps:zxing-android-embedded:3.4.0] /Users/apple/.gradle/
 	android:theme
 		ADDED from [com.journeyapps:zxing-android-embedded:3.4.0] /Users/apple/.gradle/caches/transforms-1/files-1.1/zxing-android-embedded-3.4.0.aar/2897fb8f1cb9d555106c90c09f6dbfe7/AndroidManifest.xml:51:13-54
 	tools:replace
-		ADDED from /Users/apple/www/weex/zlsy-1/platforms/android/app/src/main/AndroidManifest.xml:53:13-46
+		ADDED from /Users/apple/www/weex/zlsy-1/platforms/android/app/src/main/AndroidManifest.xml:48:13-46
 	android:name
-		ADDED from /Users/apple/www/weex/zlsy-1/platforms/android/app/src/main/AndroidManifest.xml:51:13-74
+		ADDED from /Users/apple/www/weex/zlsy-1/platforms/android/app/src/main/AndroidManifest.xml:46:13-74
 uses-sdk
 INJECTED from /Users/apple/www/weex/zlsy-1/platforms/android/app/src/main/AndroidManifest.xml reason: use-sdk injection requested
 INJECTED from /Users/apple/www/weex/zlsy-1/platforms/android/app/src/main/AndroidManifest.xml

@@ -19,6 +19,7 @@ import android.widget.Toast;
 import com.taobao.weex.WXSDKManager;
 import com.weex.app.hotreload.HotReloadManager;
 import com.weex.app.util.AppConfig;
+import com.weex.app.util.CacheActivity;
 import com.weex.app.util.Constants;
 import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
@@ -60,6 +61,8 @@ public class WXPageActivity extends AbsWeexActivity implements
     mContainer = (ViewGroup) findViewById(R.id.container);
     mProgressBar = (ProgressBar) findViewById(R.id.progress);
     mTipView = (TextView) findViewById(R.id.index_tip);
+
+    //CacheActivity.addActivity(this);
 
     Intent intent = getIntent();
     Uri uri = intent.getData();

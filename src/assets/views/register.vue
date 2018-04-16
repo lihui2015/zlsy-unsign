@@ -12,8 +12,8 @@
                     :interval="1000"
                     tpl="{s}秒"
                     :timeBoxStyle="{backgroundColor: '#ffffff', height: '60px'}"
-                    :timeTextStyle="{fontSize: '28px', color: '#666666'}"
-                    :dotTextStyle="{color: '#666666', fontSize: '28px',justifyContent: 'center'}"
+                    :timeTextStyle="{fontSize: '28px', color: '#8d8d8d'}"
+                    :dotTextStyle="{color: '#8d8d8d', fontSize: '28px',justifyContent: 'center'}"
                     :dotBoxStyle="{width: '48px',height: '60px'}"
                     :style="{marginTop: '0px', justifyContent: 'center'}"
                     :time="TIME"
@@ -25,8 +25,8 @@
         </div>
         <text class="login-btn" @click="signIn()">注册</text>
         <div class="box">
-            <text class="text">已有账号，返回</text>
-            <text class="btn" @click="jumpTo('/login')">登陆</text>
+            <text class="text">已有账号，</text>
+            <text class="btn" @click="jumpTo('/login')">返回登陆</text>
         </div>
     </div>
     </div>
@@ -80,12 +80,16 @@
         flex-direction: row;
         align-items: center;
         justify-content: space-between;
+
     }
     .validate-input{
-        width:480px;
+        width:460px;
     }
     .validate-btn{
-        width: 150px;
+        border-left-width: 1px;
+        border-color: #f0f0f0;
+        padding-left: 20px;
+        width: 170px;
         height: 60px;
     }
     .v-btn{
@@ -113,12 +117,12 @@
         margin-top: 40px;
     }
     .text{
-        color: #666666;
-        font-size: 32px;
+        color: #8d8d8d;
+        font-size: 30px;
     }
     .btn{
         color: #009FF0;
-        font-size: 32px;
+        font-size: 30px;
     }
 </style>
 
