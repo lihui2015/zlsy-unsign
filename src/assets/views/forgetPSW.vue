@@ -2,8 +2,9 @@
     <div :class="['wrapper', isIpx&&isIpx()?'w-ipx':'']">
     <div class="wrapper-login">
         <text class="text">忘记密码</text>
+        <div class="input-box">
         <input type="tel" autofocus="true" placeholder="手机号" class="input-style" v-model="phone" ref="tel" @click="focus">
-        <div class="validate">
+        <div class="validate bt">
             <input type="text" placeholder="验证码" class="input-style validate-input" v-model="code">
             <div class="validate-btn">
                 <text class="v-btn" @click="validate()" v-if="before">获取验证码</text>
@@ -20,8 +21,9 @@
                 </wxc-countdown>
             </div>
         </div>
-        <input type="password" placeholder="密码" class="input-style" v-model="password">
-        <input type="password" placeholder="确认密码" class="input-style" v-model="password_confirmation">
+        <input type="password" placeholder="密码" class="input-style bt" v-model="password">
+        <input type="password" placeholder="确认密码" class="input-style bt" v-model="password_confirmation">
+    </div>
         <text class="login-btn" @click="signIn()">重置密码</text>
         <div class="box">
             <text class="btn" @click="jumpTo('/login')">返回登陆</text>
@@ -32,70 +34,83 @@
 </template>
 <style scoped>
     .wrapper{
-        background-color:#ffffff;
+        width: 750px;
+        height: 1245px;
+        position: absolute;
+        top:0;
+        left:0;
+        background-color:#f8f8f8;
     }
     .wrapper-login{
         margin-top: 50px;
-        margin-left: 125px;
-        width: 500px;
+        margin-left: 30px;
+        width: 690px;
         align-items: center;
     }
     .text{
         font-size: 36px;
         color: #333333;
     }
+    .input-box{
+        width: 690px;
+        padding-left: 30px;
+        padding-right: 30px;
+        margin-top: 40px;
+        background-color: #ffffff;
+        border-color:#f0f0f0;
+        border-width: 1px;
+    }
     .input-style{
-        width: 400px;
-        height: 60px;
+        width: 630px;
+        /*height: 60px;*/
         font-size: 34px;
         color: #666666;
-        line-height: 60px;
-        border-width: 1px;
-        border-color: #cccccc;
-        padding-top: 10px;
-        padding-bottom: 10px;
-        padding-left: 20px;
-        padding-right: 20px;
-        margin-top: 40px;
+        /*line-height: 60px;*/
+        padding-top: 40px;
+        padding-bottom: 40px;
+    }
+    .bt{
+        border-top-width: 1px;
+        border-bottom-width: 0px;
+        border-right-width: 0px;
+        border-left-width: 0px;
+        border-color: #f0f0f0;
     }
     .validate{
         flex-direction: row;
         align-items: center;
+        justify-content: space-between;
     }
     .validate-input{
-        width:250px;
+        width:480px;
     }
     .validate-btn{
         width: 150px;
-        border-width: 1px;
-        border-left-width: 0px;
-        border-color: #cccccc;
         height: 60px;
-        margin-top:40px;
     }
     .v-btn{
         font-size: 28px;
-        color: #333333;
+        color: #009ffc;
         line-height: 60px;
         text-align: center;
     }
     .login-btn{
-        width: 400px;
+        width: 690px;
         text-align: center;
         font-size: 34px;
         color: #ffffff;
-        background-color: green;
-        height: 60px;
-        line-height: 60px;
-        margin-top:40px;
-        border-radius: 10px;
+        background-color: #009ffc;
+        height: 80px;
+        line-height: 80px;
+        margin-top:80px;
+        border-radius: 2px;
     }
     .box{
         width: 500px;
         flex-direction: row;
         align-items: center;
         justify-content:center;
-        margin-top: 30px;
+        margin-top: 40px;
     }
     .text{
         color: #666666;

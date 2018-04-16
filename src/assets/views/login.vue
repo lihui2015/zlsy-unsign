@@ -9,11 +9,11 @@
         
         <text class="login-btn" @click="signIn()">登录</text>
         <!-- <text class="forget-psw">忘记密码？</text> -->
-        <!-- <div class="box">
-            <text class="text">还没有账号？</text>
+        <div class="box">
             <text class="btn" @click="jumpTo('/register')">注册</text>
+            <text class="forget-psw" @click="jumpTo('/forgetPSW')">忘记密码？</text>
         </div>
-        <text class="forget-psw" @click="jumpTo('/forgetPSW')">忘记密码？</text> -->
+        
     </div>
     </div>
 </template>
@@ -76,23 +76,20 @@
         width: 500px;
         flex-direction: row;
         align-items: center;
-        justify-content:center;
-        margin-top: 30px;
+        justify-content:space-around;
+        margin-top: 40px;
     }
     .text{
         color: #666666;
-        font-size: 32px;
+        font-size: 30px;
     }
     .btn{
         color: #009FF0;
-        font-size: 32px;
+        font-size: 30px;
     }
     .forget-psw{
-        margin-top: 40px;
         color: #009FF0;
-        font-size: 32px;
-        width: 400px;
-        text-align: center;
+        font-size: 30px;
     }
     .mt30{
         margin-top: 40px;
