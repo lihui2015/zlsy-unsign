@@ -2,6 +2,7 @@ import Vue from 'vue'
 /* global Vue */
 import Router from 'vue-router'
 import home from '@/assets/views/home'
+import openDoor from '@/assets/views/openDoor'
 import sort from '@/assets/views/sort'
 import list from '@/assets/views/list'
 import bookDetail from '@/assets/views/bookDetail'
@@ -11,9 +12,6 @@ import themeDetail from '@/assets/views/themeDetail'
 import offline from '@/assets/views/offline'
 import signUp from '@/assets/views/signUp'
 import personal from '@/assets/views/personal'
-import book from '@/assets/views/book'
-import bookImage from '@/assets/views/book-image'
-import bookScroller from '@/assets/views/book-scroller'
 import comment from '@/assets/views/comment'
 import login from '@/assets/views/login'
 import register from '@/assets/views/register'
@@ -50,6 +48,12 @@ module.exports = new Router({
       meta: { requiresAuth: true }
     },
     {
+      path: '/openDoor',
+      name: 'openDoor',
+      component: openDoor,
+      meta: { requiresAuth: true }
+    },
+    {
       path: '/list/:index/:name',
       name: 'list',
       component: list,
@@ -60,21 +64,6 @@ module.exports = new Router({
       name: 'bookDetail',
       component: bookDetail,
       meta: { requiresAuth: true }
-    },
-    {
-      path: '/book/:index',
-      name: 'book',
-      component: book
-    },
-    {
-      path: '/book-image/:index',
-      name: 'bookImage',
-      component: bookImage
-    },
-    {
-      path: '/book-scroller/:index/:isCollect/:name',
-      name: 'bookScroller',
-      component: bookScroller
     },
     {
       path: '/comment/:index',

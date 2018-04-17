@@ -15,6 +15,9 @@
             <div class="cell-button">
                 <block-2 :books="bookList"></block-2>
             </div>
+            <div class="cell-button">
+                <text class="open-text" @click="jump('/openDoor')">鸟巢开柜</text>
+            </div>
         </scroller>
         <tab-bar @tabTo="onTabTo" router="home"></tab-bar>
     </div>
@@ -49,6 +52,18 @@
     }
 
     .cell-button{
+    }
+
+    .open-text{
+        background-color:#009ffc;
+        font-size: 32px;
+        width: 500px;
+        margin-left: 125px;
+        height: 80px;
+        line-height: 80px;
+        text-align: center;
+        color:#ffffff;
+        margin-top: 30px;
     }
 
 </style>

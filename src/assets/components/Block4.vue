@@ -1,7 +1,15 @@
 <template>
     <div class="selected-cell"  @click="jump('/themeDetail/'+selecte.id)">
-        <wxc-tag type="solid" tag-color="#009FF0" font-color="#ffffff" value="置顶" class="tag"></wxc-tag>
-        <text class="title">{{selecte.title}}</text>
+        <div class="title-box">
+            <wxc-tag type="solid" tag-color="#009FF0" font-color="#ffffff" value="置顶" class="tag"></wxc-tag>
+            <text class="title">{{selecte.title}}</text>
+        </div>
+        <div class="description-box">
+            <text class="description">{{selecte.description}}</text>
+        </div>
+        <div class="img-box">
+            <image class="main-img" v-for="img in selecte.html_image" :src="img" resize="cover"></image>
+        </div>
     </div>
 </template>
 <style scoped>
@@ -14,10 +22,13 @@
         padding-bottom: 20px;
         padding-left: 20px;
         padding-right: 20px;
-        flex-direction: row;
-        align-items: center;
+        
         border-bottom-width: 1px;
         border-color: #cccccc;
+    }
+    .title-box{
+        flex-direction: row;
+        align-items: center;
     }
     .tag{
         font-size: 32px;

@@ -1,6 +1,6 @@
 <template>
     <slider class="slider" auto-play="true" interval="5000" @change="onchange" infinite="false">
-        <div class="frame" v-for="img in imageList">
+        <div class="frame" v-for="(img,index) in imageList" @click="jumpTo(index)">
             <image class="image" resize="cover" :src="img.src"></image>
             <text class="image-title">{{img.title}}</text>
         </div>
@@ -56,6 +56,16 @@
         },
         methods: {
             onchange (event) {
+            },
+            jumpTo(index){
+                var banner = this.imageList[index];
+                if(banner.activity){
+                    var id = banner.activity_id,
+                        title = banner.activity.title;
+                    this.$router.push('/online/'+id+'/'+title);
+                }else{
+                    return false;
+                }
             }
         }
     }

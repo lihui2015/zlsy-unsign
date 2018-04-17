@@ -3,7 +3,9 @@
     <div class="wrapper-login">
         <text class="text">注册账户</text>
         <div class="input-box">
-        <input type="tel" autofocus="true" placeholder="手机号" class="input-style" v-model="phone" ref="tel" @click="focus">
+        <input type="tel" autofocus="true" placeholder="学号(工号)" class="input-style" v-model="number" ref="number">
+        <input type="text" placeholder="姓名" class="input-style bt" v-model="name" ref="name">
+        <input type="tel" placeholder="手机号" class="input-style bt" v-model="phone" ref="tel">
         <div class="validate bt">
             <input type="text" placeholder="验证码" class="input-style validate-input" v-model="code">
             <div class="validate-btn">
@@ -27,6 +29,10 @@
         <div class="box">
             <text class="text">已有账号，</text>
             <text class="btn" @click="jumpTo('/login')">返回登陆</text>
+        </div>
+        <div class="info-box">
+            <text class="info-text">注册说明：请输入您的学号（工号）及姓名以验证您为浙江理工大学图书馆的用户。同时，依据国家相关法律网络实名制的要求需要验证您的手机号。
+            </text>
         </div>
     </div>
     </div>
@@ -124,6 +130,20 @@
         color: #009FF0;
         font-size: 30px;
     }
+    .info-box{
+        margin-top: 50px;
+        margin-left: 20px;
+        margin-right: 20px;
+        background-color:#ffffff;
+        padding-top: 20px;
+        padding-bottom: 20px;
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+    .info-text{
+        font-size: 30px;
+        color: #8d8d8d;
+    }
 </style>
 
 <script>
@@ -135,6 +155,8 @@
     export default {
         data () {
             return {
+                number:'',
+                name:'',
                 phone: '',
                 code: '',
                 password: '',
@@ -151,12 +173,35 @@
         methods: {
             signIn(){
                 var _self = this;
-                var ph = this.phone,
+                var nu = this.number,
+                    na = this.name,
+                    ph = this.phone,
                     cd = this.code,
                     pw = this.password;
+                if(!nu.length){
+                    modal.toast({
+                        message: "请输入学号(工号)",
+                        duration: 1
+                    });
+                    return false;
+                }
+                if(!na.length){
+                    modal.toast({
+                        message: "请输入姓名",
+                        duration: 1
+                    });
+                    return false;
+                }
                 if(!ph.length){
                     modal.toast({
                         message: "请输入手机号码",
+                        duration: 1
+                    });
+                    return false;
+                }
+                if(!this.checkPhone()){
+                    modal.toast({
+                        message: "请输入11位手机号码",
                         duration: 1
                     });
                     return false;
@@ -247,6 +292,12 @@
             },
             jumpTo(_url){
                 this.$router.push(_url);
+            },
+            checkPhone(){ 
+                var phone = this.phone;
+                if(!(/^1[34578]\d{9}$/.test(phone))){ 
+                    return false; 
+                } 
             }
         }
     }
