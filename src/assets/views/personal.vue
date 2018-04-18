@@ -9,9 +9,9 @@
                 <text class="i-tag tag-v8 iconfont">&#xe660;</text>
                 <text class="txt-tag"></text>
             </div> -->
-            <div class="aboutBox" @click="jump('/about')">
-                <text class="about-icon iconfont">&#xe62d;</text>
-                <text class="about-text">关于</text>
+            <div class="aboutBox" @click="jump('/settings')">
+                <text class="about-icon iconfont">&#xe638;</text>
+                <text class="about-text">设置</text>
             </div>
             <!-- <text class="b-qrcode iconfont">&#xe62d;</text> -->
         </div>

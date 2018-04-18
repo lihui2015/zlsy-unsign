@@ -22,6 +22,7 @@ import defaultPage from '@/assets/views/default'
 import bookshelf from '@/assets/views/bookshelf'
 import mypost from '@/assets/views/mypost'
 import about from '@/assets/views/about'
+import settings from '@/assets/views/settings'
 
 Vue.use(Router)
 
@@ -126,6 +127,12 @@ module.exports = new Router({
       path: '/about',
       name: 'about',
       component: about,
+      meta: { requiresAuth: true }
+    },
+    {
+      path: '/settings',
+      name: 'settings',
+      component: settings,
       meta: { requiresAuth: true }
     },
     {
